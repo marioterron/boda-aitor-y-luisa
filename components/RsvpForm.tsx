@@ -1,24 +1,24 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function RsvpForm() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [attending, setAttending] = useState('yes')
-  const [guests, setGuests] = useState(1)
-  const [dietaryRestrictions, setDietaryRestrictions] = useState('')
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [attending, setAttending] = useState("yes");
+  const [guests, setGuests] = useState(1);
+  const [dietaryRestrictions, setDietaryRestrictions] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Here you would typically send this data to your backend
-    console.log({ name, email, attending, guests, dietaryRestrictions })
+    console.log({ name, email, attending, guests, dietaryRestrictions });
     // Reset form or show confirmation message
-  }
+  };
 
   return (
     <section className="mb-16 animate-fade-in-up">
@@ -50,8 +50,8 @@ export default function RsvpForm() {
               <input
                 type="radio"
                 value="yes"
-                checked={attending === 'yes'}
-                onChange={() => setAttending('yes')}
+                checked={attending === "yes"}
+                onChange={() => setAttending("yes")}
                 className="mr-2"
               />
               Yes
@@ -60,18 +60,20 @@ export default function RsvpForm() {
               <input
                 type="radio"
                 value="no"
-                checked={attending === 'no'}
-                onChange={() => setAttending('no')}
+                checked={attending === "no"}
+                onChange={() => setAttending("no")}
                 className="mr-2"
               />
               No
             </label>
           </div>
         </div>
-        {attending === 'yes' && (
+        {attending === "yes" && (
           <>
             <div>
-              <Label htmlFor="guests">Number of guests (including yourself)</Label>
+              <Label htmlFor="guests">
+                Number of guests (including yourself)
+              </Label>
               <Input
                 id="guests"
                 type="number"
@@ -92,11 +94,13 @@ export default function RsvpForm() {
             </div>
           </>
         )}
-        <Button type="submit" className="w-full">
+        <Button
+          type="submit"
+          className="w-full bg-black text-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors"
+        >
           Submit RSVP
         </Button>
       </form>
     </section>
-  )
+  );
 }
-
