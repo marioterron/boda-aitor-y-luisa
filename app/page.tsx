@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
 import Schedule from "../components/Schedule";
 import Location from "../components/Location";
 import Countdown from "../components/Countdown";
 import Registry from "../components/Registry";
 import DressCode from "../components/DressCode";
+import Rsvp from "../components/Rsvp";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -52,7 +53,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
       <Schedule />
       <Location />
       <Countdown />
@@ -62,6 +62,8 @@ export default function Home() {
           <DressCode />
         </div>
       </section>
+      <Rsvp />
+      <Footer />
     </main>
   );
 }
