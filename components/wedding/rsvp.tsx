@@ -1,36 +1,94 @@
+"use client";
+
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Loader2 } from "lucide-react";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Textarea } from "@/components/ui/textarea";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/hooks/use-toast";
+
+// Form validation schema
+const rsvpSchema = z.object({
+  fullName: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  attendance: z.enum(["attending", "not-attending"], {
+    required_error: "Please select your attendance status",
+  }),
+  guests: z.number().min(0).max(4, "Maximum 4 additional guests allowed"),
+  dietaryRequirements: z.string().optional(),
+  message: z.string().optional(),
+});
+
+type RsvpFormValues = z.infer<typeof rsvpSchema>;
 
 export default function Rsvp() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    attending: "yes",
-    guests: "0",
-    dietaryRestrictions: "",
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const form = useForm<RsvpFormValues>({
+    resolver: zodResolver(rsvpSchema),
+    defaultValues: {
+      fullName: "",
+      email: "",
+      attendance: "attending",
+      guests: 0,
+      dietaryRequirements: "",
+      message: "",
+    },
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // Form submission logic here
-  };
+  // Get current attendance value to conditionally render fields
+  const isAttending = form.watch("attendance") === "attending";
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  async function onSubmit(data: RsvpFormValues) {
+    setIsSubmitting(true);
+    try {
+      // TODO: Implement API call
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulated API call
+
+      toast({
+        title: "RSVP Submitted Successfully",
+        description: isAttending
+          ? "Thank you for accepting our invitation! We look forward to celebrating with you."
+          : "Thank you for letting us know. We'll miss you!",
+        variant: "default",
+        className: "bg-white text-black",
+      });
+
+      form.reset();
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description:
+          "There was a problem submitting your RSVP. Please try again.",
+        variant: "destructive",
+        className: "bg-red-500 text-white",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <section
       id="rsvp-section"
       className="relative min-h-[80vh] flex items-center justify-center bg-black text-white py-32"
     >
+      <Toaster />
       <div className="relative z-10 w-full max-w-2xl mx-auto px-4">
         <div className="text-center mb-16">
           <h3 className="text-sm uppercase tracking-[0.2em] mb-4">
@@ -46,101 +104,174 @@ export default function Rsvp() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-2">
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/40"
-              placeholder="Enter your full name"
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="fullName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-white">Full Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter your full name"
+                      className="bg-white text-gray-900 border-gray-200 focus:border-gray-400"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-2">
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email"
+            <FormField
+              control={form.control}
               name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/40"
-              placeholder="Enter your email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-white">Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter your email"
+                      className="bg-white text-gray-900 border-gray-200 focus:border-gray-400"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div>
-            <label
-              htmlFor="attending"
-              className="block text-sm font-medium mb-2"
-            >
-              Will you be attending?
-            </label>
-            <select
-              id="attending"
-              name="attending"
-              value={formData.attending}
-              onChange={handleChange}
-              className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/40 [&>option]:bg-black [&>option]:text-white"
-            >
-              <option value="yes">Yes, I will attend</option>
-              <option value="no">No, I cannot attend</option>
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="guests" className="block text-sm font-medium mb-2">
-              Number of Additional Guests
-            </label>
-            <select
-              id="guests"
-              name="guests"
-              value={formData.guests}
-              onChange={handleChange}
-              className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/40 [&>option]:bg-black [&>option]:text-white"
-            >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </div>
-
-          <div>
-            <label
-              htmlFor="dietaryRestrictions"
-              className="block text-sm font-medium mb-2"
-            >
-              Dietary Restrictions
-            </label>
-            <textarea
-              id="dietaryRestrictions"
-              name="dietaryRestrictions"
-              value={formData.dietaryRestrictions}
-              onChange={handleChange}
-              className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/40 h-24"
-              placeholder="Please let us know of any dietary restrictions"
+            <FormField
+              control={form.control}
+              name="attendance"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-white">
+                    Will you be attending?
+                  </FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="flex flex-col space-y-1"
+                    >
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="attending" />
+                        </FormControl>
+                        <FormLabel className="font-normal text-white">
+                          Joyfully Accepts
+                        </FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="not-attending" />
+                        </FormControl>
+                        <FormLabel className="font-normal text-white">
+                          Regretfully Declines
+                        </FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <button
-            type="submit"
-            className="w-full bg-white text-black py-3 px-6 rounded-lg font-medium hover:bg-white/90 transition-colors"
-          >
-            Send RSVP
-          </button>
-        </form>
+            {/* Conditional rendering of guests and dietary requirements */}
+            {isAttending && (
+              <>
+                <FormField
+                  control={form.control}
+                  name="guests"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white">
+                        Number of Additional Guests
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          min={0}
+                          max={4}
+                          className="bg-white text-gray-900 border-gray-200 focus:border-gray-400 placeholder:text-gray-400"
+                          {...field}
+                          onChange={(e) =>
+                            field.onChange(Number(e.target.value))
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage className="text-red-500" />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="dietaryRequirements"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white">
+                        Dietary Requirements
+                      </FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Please let us know of any dietary requirements"
+                          className="bg-white text-gray-900 border-gray-200 focus:border-gray-400 min-h-[100px] placeholder:text-gray-400"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-red-500" />
+                    </FormItem>
+                  )}
+                />
+              </>
+            )}
+
+            {/* Message field always visible */}
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-white">
+                    {isAttending
+                      ? "Message (Optional)"
+                      : "Would you like to send a message?"}
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder={
+                        isAttending
+                          ? "Leave a message for the couple"
+                          : "We'll miss you! Feel free to leave a message for the couple"
+                      }
+                      className="bg-white text-gray-900 border-gray-200 focus:border-gray-400 min-h-[100px] placeholder:text-gray-400"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
+            />
+
+            <Button
+              type="submit"
+              className="w-full bg-black text-white border-2 border-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors disabled:opacity-50"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <div className="flex items-center justify-center gap-2">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span>Submitting...</span>
+                </div>
+              ) : (
+                "Submit RSVP"
+              )}
+            </Button>
+          </form>
+        </Form>
       </div>
     </section>
   );
