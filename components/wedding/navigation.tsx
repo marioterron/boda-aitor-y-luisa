@@ -16,10 +16,7 @@ export default function Navigation() {
               OUR STORY
             </a>
             <a href="#" className="nav-link">
-              TRAVEL & STAY
-            </a>
-            <a href="#" className="nav-link">
-              REGISTRY
+              DRESS CODE
             </a>
             <a href="#" className="nav-link">
               FAQS

@@ -1,13 +1,15 @@
 "use client";
 
-import Navigation from "../components/Navigation";
-import Schedule from "../components/Schedule";
-import Location from "../components/Location";
-import Countdown from "../components/Countdown";
-import Registry from "../components/Registry";
-import DressCode from "../components/DressCode";
-import Rsvp from "../components/Rsvp";
-import Footer from "../components/Footer";
+import {
+  Navigation,
+  Schedule,
+  Location,
+  Countdown,
+  FAQs,
+  DressCode,
+  Rsvp,
+  Footer,
+} from "@/components/wedding";
 
 export default function Home() {
   return (
@@ -58,8 +60,8 @@ export default function Home() {
       <Countdown />
       <section className="py-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-32 py-20 px-4 max-w-7xl mx-auto">
-          <Registry />
           <DressCode />
+          <FAQs />
         </div>
       </section>
       <Rsvp />

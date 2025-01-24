@@ -29,7 +29,7 @@ export default function Rsvp() {
   return (
     <section
       id="rsvp-section"
-      className="relative min-h-[80vh] flex items-center justify-center bg-black text-white"
+      className="relative min-h-[80vh] flex items-center justify-center bg-black text-white py-32"
     >
       <div className="relative z-10 w-full max-w-2xl mx-auto px-4">
         <div className="text-center mb-16">

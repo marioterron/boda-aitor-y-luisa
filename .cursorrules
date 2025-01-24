@@ -9,7 +9,7 @@
   - Structure files: exported component, subcomponents, helpers, static content, types.
 
   Naming Conventions
-  - Use PascalCase for components (e.g., components/AuthWizard).
+  - Use lowercase with dashes for directories (e.g., components/auth-wizard).
   - Favor named exports for components.
 
   TypeScript Usage
