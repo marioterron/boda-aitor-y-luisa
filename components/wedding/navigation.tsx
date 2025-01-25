@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function Navigation() {
   const scrollToRSVP = () => {
@@ -10,7 +11,6 @@ export default function Navigation() {
     <nav className="fixed top-0 left-0 right-0 bg-white z-50 border-b border-gray-100">
       <div className="max-w-full mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Left menu items */}
           <div className="flex items-center space-x-8">
             <a href="#" className="nav-link">
               OUR STORY
@@ -30,12 +30,14 @@ export default function Navigation() {
 
           {/* Right menu items */}
           <div className="flex items-center space-x-8">
-            <button
+            <Button
               onClick={scrollToRSVP}
-              className="nav-link border border-black px-6 py-2 hover:bg-black hover:text-white transition-colors"
+              variant="outline"
+              size="sm"
+              className="nav-link uppercase"
             >
               RSVP
-            </button>
+            </Button>
           </div>
         </div>
       </div>

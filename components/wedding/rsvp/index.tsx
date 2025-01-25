@@ -55,11 +55,11 @@ export default function Rsvp() {
             handleAttendanceChange={handleAttendanceChange}
             errors={errors}
           />
-
           <Button
             type="submit"
-            className="w-full bg-black text-white border-2 border-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors disabled:opacity-50"
+            variant="white"
             disabled={isSubmitting}
+            className="w-full uppercase text-xs tracking-widest"
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center gap-2">
