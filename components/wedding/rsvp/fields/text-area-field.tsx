@@ -18,7 +18,7 @@ export function TextAreaField({
   placeholder,
 }: TextAreaFieldProps) {
   return (
-    <div>
+    <div className="space-y-2">
       <label htmlFor={name} className="text-white">
         {label}
       </label>
@@ -28,7 +28,6 @@ export function TextAreaField({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="bg-white text-gray-900 border-gray-200 focus:border-gray-400 min-h-[100px]"
       />
       {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
