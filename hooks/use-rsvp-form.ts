@@ -65,6 +65,7 @@ export function useRsvpForm() {
             : "Thank you for letting us know. We'll miss you!",
         variant: "default",
       });
+      console.log("rsvp submitted:", formData);
       setFormData(defaultValues);
     } catch (error) {
       toast({
