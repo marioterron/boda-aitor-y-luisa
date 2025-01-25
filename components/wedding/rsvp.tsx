@@ -39,16 +39,18 @@ export default function Rsvp() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
+  const defaultValues = {
+    fullName: "",
+    email: "",
+    attendance: "attending" as const,
+    guests: 0,
+    dietaryRequirements: "",
+    message: "",
+  };
+
   const form = useForm<RsvpFormValues>({
     resolver: zodResolver(rsvpSchema),
-    defaultValues: {
-      fullName: "",
-      email: "",
-      attendance: "attending",
-      guests: 0,
-      dietaryRequirements: "",
-      message: "",
-    },
+    defaultValues,
   });
 
   // Get current attendance value to conditionally render fields
@@ -69,7 +71,7 @@ export default function Rsvp() {
         className: "bg-white text-black",
       });
 
-      form.reset();
+      form.reset(defaultValues);
     } catch (error) {
       toast({
         title: "Submission Failed",
@@ -153,7 +155,7 @@ export default function Rsvp() {
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      value={field.value}
                       className="flex flex-col space-y-1"
                     >
                       <FormItem className="flex items-center space-x-3 space-y-0">
