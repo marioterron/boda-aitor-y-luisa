@@ -78,8 +78,3 @@ img {
 img:hover {
   filter: grayscale(0);
 }
-
-main {
-  padding-top: 5rem;
-}
-
