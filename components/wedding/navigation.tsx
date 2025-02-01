@@ -2,6 +2,34 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
+const NAV_ITEMS = [
+  { label: "OUR STORY", href: "#" },
+  { label: "DRESS CODE", href: "#" },
+  { label: "FAQS", href: "#" },
+] as const;
+
+interface NavLinksProps {
+  onClick?: () => void;
+  className?: string;
+}
+
+function NavLinks({ onClick, className }: NavLinksProps) {
+  return (
+    <>
+      {NAV_ITEMS.map((item) => (
+        <a
+          key={item.label}
+          href={item.href}
+          onClick={onClick}
+          className="nav-link"
+        >
+          {item.label}
+        </a>
+      ))}
+    </>
+  );
+}
+
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -30,15 +58,7 @@ export default function Navigation() {
 
           {/* Desktop navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            <a href="#" className="nav-link">
-              OUR STORY
-            </a>
-            <a href="#" className="nav-link">
-              DRESS CODE
-            </a>
-            <a href="#" className="nav-link">
-              FAQS
-            </a>
+            <NavLinks />
           </div>
 
           {/* Center logo */}
@@ -63,15 +83,7 @@ export default function Navigation() {
         {isMenuOpen && (
           <div className="lg:hidden py-4 space-y-4">
             <div className="flex flex-col space-y-4">
-              <a href="#" className="nav-link">
-                OUR STORY
-              </a>
-              <a href="#" className="nav-link">
-                DRESS CODE
-              </a>
-              <a href="#" className="nav-link">
-                FAQS
-              </a>
+              <NavLinks onClick={() => setIsMenuOpen(false)} />
               <Button
                 onClick={scrollToRSVP}
                 variant="outline"
