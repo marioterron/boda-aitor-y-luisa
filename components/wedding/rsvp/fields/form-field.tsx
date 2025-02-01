@@ -22,8 +22,8 @@ export function FormField({
   placeholder,
 }: FormFieldProps) {
   return (
-    <div className="space-y-2">
-      <label htmlFor={name} className="text-white block">
+    <div>
+      <label htmlFor={name} className="text-white">
         {label}
       </label>
       <Input
@@ -33,14 +33,9 @@ export function FormField({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        aria-invalid={!!error}
-        aria-describedby={error ? `${name}-error` : undefined}
+        className="bg-white text-gray-900 border-gray-200 focus:border-gray-400"
       />
-      {error && (
-        <p className="text-red-500 text-sm" id={`${name}-error`}>
-          {error}
-        </p>
-      )}
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   );
 }
