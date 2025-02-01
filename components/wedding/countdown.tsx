@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { WEDDING_DATE } from "@/constants/wedding";
 
 export default function Countdown() {
   const [timeLeft, setTimeLeft] = useState({
@@ -11,11 +12,9 @@ export default function Countdown() {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2025-09-06T12:00:00");
-
     const updateCountdown = () => {
       const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
+      const difference = WEDDING_DATE.getTime() - now.getTime();
 
       setTimeLeft({
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
