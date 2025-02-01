@@ -7,3 +7,4 @@ export { default as Navigation } from "./navigation";
 export { default as FAQs } from "./faqs";
 export { default as Rsvp } from "./rsvp";
 export { default as Schedule } from "./schedule";
+export { default as Hero } from "./hero";
