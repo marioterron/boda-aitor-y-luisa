@@ -1,17 +1,35 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 
 export default function Navigation() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const scrollToRSVP = () => {
     const rsvpSection = document.getElementById("rsvp-section");
     rsvpSection?.scrollIntoView({ behavior: "smooth" });
+    setIsMenuOpen(false);
   };
 
   return (
     <nav className="bg-white z-50 border-b border-gray-100">
       <div className="max-w-full mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center space-x-8">
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+
+          {/* Desktop navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
             <a href="#" className="nav-link">
               OUR STORY
             </a>
@@ -24,12 +42,12 @@ export default function Navigation() {
           </div>
 
           {/* Center logo */}
-          <h1 className="font-serif text-2xl absolute left-1/2 -translate-x-1/2">
+          <h1 className="font-serif text-xl md:text-2xl absolute left-1/2 -translate-x-1/2">
             AITOR & LUISA
           </h1>
 
           {/* Right menu items */}
-          <div className="flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             <Button
               onClick={scrollToRSVP}
               variant="outline"
@@ -40,6 +58,31 @@ export default function Navigation() {
             </Button>
           </div>
         </div>
+
+        {/* Mobile menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden py-4 space-y-4">
+            <div className="flex flex-col space-y-4">
+              <a href="#" className="nav-link">
+                OUR STORY
+              </a>
+              <a href="#" className="nav-link">
+                DRESS CODE
+              </a>
+              <a href="#" className="nav-link">
+                FAQS
+              </a>
+              <Button
+                onClick={scrollToRSVP}
+                variant="outline"
+                size="sm"
+                className="nav-link uppercase w-full"
+              >
+                RSVP
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
