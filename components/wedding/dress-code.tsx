@@ -8,7 +8,7 @@ export default function DressCode() {
       </h2>
       <div className="w-[80%]">
         <img
-          src="https://images.squarespace-cdn.com/content/v1/66cb369992e60664dc8a4f5e/1724593821127-0C4A5MTCNUBY65NP5M1I/karolina-grabowska-yH50AWO8ZRo-unsplash.jpg?format=500w"
+          src="/placeholder.svg?height=600&width=500"
           alt="Formal attire inspiration"
           className="w-full aspect-[3/4] object-cover grayscale"
         />

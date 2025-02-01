@@ -17,7 +17,7 @@ export default function Location() {
 
           <div className="w-[80%] mx-auto md:col-span-3 order-1 md:order-2">
             <img
-              src="https://images.squarespace-cdn.com/content/v1/66cb369992e60664dc8a4f5e/1724593821118-MSR4DTJVTSWL03GT16HX/alejandro-luengo-Fm_TvVmuHq4-unsplash+%281%29.jpg"
+              src="/placeholder.svg?height=600&width=500"
               alt="Dunhaven Castle"
               className="w-full aspect-[3/4] object-cover grayscale"
             />
