@@ -1,10 +1,34 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { NavLinks } from "./nav-links";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent | TouchEvent) {
+      if (!isMenuOpen) return;
+
+      const target = event.target as Node;
+      const isMenuClick = menuRef.current?.contains(target);
+      const isButtonClick = buttonRef.current?.contains(target);
+
+      if (!isMenuClick && !isButtonClick) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside, true);
+    document.addEventListener("touchstart", handleClickOutside, true);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside, true);
+      document.removeEventListener("touchstart", handleClickOutside, true);
+    };
+  }, [isMenuOpen]);
 
   const scrollToRSVP = () => {
     const rsvpSection = document.getElementById("rsvp-section");
@@ -18,6 +42,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-20">
           {/* Mobile menu button */}
           <button
+            ref={buttonRef}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden"
             aria-label="Toggle menu"
@@ -54,7 +79,7 @@ export default function Navigation() {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 space-y-4">
+          <div ref={menuRef} className="lg:hidden py-4 space-y-4">
             <div className="flex flex-col space-y-4">
               <NavLinks onClick={() => setIsMenuOpen(false)} />
               <Button
