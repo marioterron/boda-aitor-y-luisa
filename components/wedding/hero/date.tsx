@@ -1,4 +1,6 @@
 import { useIsMobile } from "@/hooks/use-mobile";
+import { formatShortDate } from "@/utils/date";
+import { WEDDING_DATE } from "@/constants/wedding";
 
 export function Date() {
   const isMobile = useIsMobile();
@@ -11,8 +13,7 @@ export function Date() {
           : "text-4xl md:text-8xl absolute w-full text-center z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
       }`}
     >
-      14 <span className="mx-2 md:mx-4">•</span> 07
-      <span className="mx-2 md:mx-4">•</span> 2025
+      {formatShortDate(WEDDING_DATE)}
     </h2>
   );
 }
