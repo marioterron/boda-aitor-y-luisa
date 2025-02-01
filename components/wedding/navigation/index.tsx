@@ -48,9 +48,9 @@ export default function Navigation() {
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-6 w-6 transition-transform duration-200" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6 transition-transform duration-200" />
             )}
           </button>
 
@@ -77,9 +77,14 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div ref={menuRef} className="lg:hidden py-4 space-y-4">
+        {/* Mobile menu with animation */}
+        <div
+          className={`transform transition-all duration-300 ease-in-out lg:hidden ${
+            isMenuOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0"
+          } overflow-hidden`}
+          ref={menuRef}
+        >
+          <div className="py-4 space-y-4">
             <div className="flex flex-col space-y-4">
               <NavLinks onClick={() => setIsMenuOpen(false)} />
               <Button
@@ -92,7 +97,7 @@ export default function Navigation() {
               </Button>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
