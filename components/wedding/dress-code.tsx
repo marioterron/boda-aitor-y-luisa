@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-
 export default function DressCode() {
   return (
     <div className="relative flex flex-col items-center">
@@ -18,9 +16,9 @@ export default function DressCode() {
         the elegance of the occasion by wearing formal attire.
       </p>
       <div className="mt-8">
-        <Button variant="default" className="uppercase text-xs tracking-widest">
+        <button className="bg-black text-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors">
           Details
-        </Button>
+        </button>
       </div>
     </div>
   );
