@@ -37,14 +37,14 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="bg-white z-50 border-b border-gray-100">
-      <div className="max-w-full mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+    <nav className="w-full bg-white/95 backdrop-blur-sm z-50 border-b">
+      <div className="mx-auto px-4">
+        <div className="flex items-center justify-between h-20 relative">
           {/* Mobile menu button */}
           <button
             ref={buttonRef}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden"
+            className="lg:hidden z-50"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
@@ -54,15 +54,15 @@ export default function Navigation() {
             )}
           </button>
 
+          {/* Center logo - adjust for mobile */}
+          <h1 className="font-serif text-xl md:text-2xl absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
+            AITOR & LUISA
+          </h1>
+
           {/* Desktop navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             <NavLinks />
           </div>
-
-          {/* Center logo */}
-          <h1 className="font-serif text-xl md:text-2xl absolute left-1/2 -translate-x-1/2">
-            AITOR & LUISA
-          </h1>
 
           {/* Right menu items */}
           <div className="hidden lg:flex items-center space-x-8">
