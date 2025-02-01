@@ -8,8 +8,8 @@ interface GuestsFieldProps {
 
 export function GuestsField({ value, onChange, error }: GuestsFieldProps) {
   return (
-    <div>
-      <label htmlFor="guests" className="text-white">
+    <div className="space-y-2">
+      <label htmlFor="guests" className="text-white block">
         Number of Additional Guests
       </label>
       <Input
@@ -20,7 +20,6 @@ export function GuestsField({ value, onChange, error }: GuestsFieldProps) {
         onChange={onChange}
         min={0}
         max={4}
-        className="bg-white text-gray-900 border-gray-200 focus:border-gray-400"
       />
       {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
