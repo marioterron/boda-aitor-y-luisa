@@ -20,16 +20,16 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`w-full bg-white/95 backdrop-blur-sm z-50  transition-all duration-300 ${
-        isMenuOpen ? "fixed top-0 left-0 right-0 bottom-0" : "h-20"
+      className={`z-50 w-full bg-white/95 backdrop-blur-sm transition-all duration-300 ${
+        isMenuOpen ? "fixed bottom-0 left-0 right-0 top-0" : "h-20"
       }`}
     >
-      <div className="mx-auto px-4 ">
-        <div className="flex items-center justify-between h-20 relative">
+      <div className="mx-auto px-4">
+        <div className="relative flex h-20 items-center justify-between">
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden z-50"
+            className="z-50 lg:hidden"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
@@ -39,16 +39,16 @@ export default function Navigation() {
             )}
           </button>
 
-          {/* Center logo - adjust for mobile */}
-          <h1 className="font-serif text-xl md:text-2xl absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
+          {/* Center logo */}
+          <h1 className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-serif text-xl md:text-2xl">
             AITOR & LUISA
           </h1>
 
           {/* Desktop navigation */}
-          <NavLinks className="hidden lg:flex items-center space-x-8" />
+          <NavLinks className="hidden items-center space-x-8 lg:flex" />
 
           {/* Right menu items */}
-          <div className="hidden lg:flex items-center">
+          <div className="hidden items-center lg:flex">
             <Button
               onClick={scrollToRSVP}
               variant="outline"
@@ -60,18 +60,18 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Mobile menu with animation */}
+        {/* Mobile menu */}
         <div
-          className={`fixed inset-x-0 top-20 bottom-0 bg-white/95 transition-all duration-300 ease-in-out lg:hidden ${
-            isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          className={`fixed inset-x-0 top-20 bottom-0 bg-white/95 transition-all duration-300 lg:hidden ${
+            isMenuOpen ? "visible opacity-100" : "invisible opacity-0"
           }`}
         >
           <div
-            className={`h-full flex flex-col transition-opacity duration-300 ${
-              isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-            } `}
+            className={`flex h-full flex-col transition-opacity duration-300 ${
+              isMenuOpen ? "visible opacity-100" : "invisible opacity-0"
+            }`}
           >
-            <div className="flex-1 flex items-center justify-center min-h-0">
+            <div className="flex min-h-0 flex-1 items-center justify-center">
               <NavLinks
                 onClick={() => setIsMenuOpen(false)}
                 className="flex flex-col items-center space-y-12 text-2xl"
@@ -82,7 +82,7 @@ export default function Navigation() {
                 onClick={scrollToRSVP}
                 variant="outline"
                 size="sm"
-                className="nav-link uppercase w-full"
+                className="uppercase w-full"
               >
                 RSVP
               </Button>
