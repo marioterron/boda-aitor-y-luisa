@@ -1,12 +1,16 @@
-import { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { NavLinks } from "./nav-links";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useScrollLock(isMenuOpen);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent | TouchEvent) {
@@ -31,9 +35,12 @@ export default function Navigation() {
   }, [isMenuOpen]);
 
   const scrollToRSVP = () => {
-    const rsvpSection = document.getElementById("rsvp-section");
-    rsvpSection?.scrollIntoView({ behavior: "smooth" });
-    setIsMenuOpen(false);
+    setIsMenuOpen(false); // Close menu first
+    // Add small delay to ensure smooth transition
+    setTimeout(() => {
+      const rsvpSection = document.getElementById("rsvp-section");
+      rsvpSection?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
   return (
