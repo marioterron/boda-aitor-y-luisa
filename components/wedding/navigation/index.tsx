@@ -35,8 +35,7 @@ export default function Navigation() {
   }, [isMenuOpen]);
 
   const scrollToRSVP = () => {
-    setIsMenuOpen(false); // Close menu first
-    // Add small delay to ensure smooth transition
+    setIsMenuOpen(false);
     setTimeout(() => {
       const rsvpSection = document.getElementById("rsvp-section");
       rsvpSection?.scrollIntoView({ behavior: "smooth" });
@@ -71,17 +70,15 @@ export default function Navigation() {
           </h1>
 
           {/* Desktop navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <NavLinks />
-          </div>
+          <NavLinks className="hidden lg:flex items-center space-x-8" />
 
           {/* Right menu items */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center">
             <Button
               onClick={scrollToRSVP}
               variant="outline"
               size="sm"
-              className="nav-link uppercase"
+              className="uppercase"
             >
               RSVP
             </Button>
