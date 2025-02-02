@@ -18,6 +18,8 @@
 
 ### Pending Components
 - ❌ Travel & Stay Page
+- ❌ Our Story Page
+- ❌ Dress Code & FAQs Page
 - ❌ Admin Dashboard
 
 ## 2. Features Implementation Status
@@ -93,14 +95,11 @@
 ## 5. Mobile Responsiveness Review
 
 ### High Priority
-- 🟡 Schedule Component
-  - Review layout on small screens
-  - Optimize spacing and grid layout
-  - Check text readability
-- 🟡 Location Component
-  - Review map display on mobile
-  - Adjust spacing and information layout
-  - Ensure address information is clearly visible
+- 📝 Mobile Navigation
+  - Review transition animations
+  - Evaluate menu item spacing
+  - Consider alternative menu layouts
+  - Check contrast and readability
 
 ### Low Priority
 - 📝 Mobile Navigation
@@ -127,5 +126,5 @@
 
 ## 8. Timeline Status
 
-Current Progress: ~70% of MVP features completed
-Estimated Time to MVP: 2 weeks
+Current Progress: ~85% of MVP features completed
+Estimated Time to MVP: 1 week
