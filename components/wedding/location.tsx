@@ -5,8 +5,8 @@ export default function Location() {
         <h2 className="font-serif text-[2.5rem] absolute w-full text-center z-20 -top-8">
           LOCATION
         </h2>
-        <div className="grid grid-cols-3 items-center gap-16">
-          <div className="text-center">
+        <div className="grid grid-cols-1 md:grid-cols-5 items-center gap-8 md:gap-16">
+          <div className="text-center md:col-span-1 order-2 md:order-1">
             <h3 className="uppercase text-sm font-medium tracking-wider">
               DUNHAVEN CASTLE
             </h3>
@@ -15,15 +15,15 @@ export default function Location() {
             </p>
           </div>
 
-          <div className="w-full">
+          <div className="w-[80%] mx-auto md:col-span-3 order-1 md:order-2">
             <img
-              src="https://images.squarespace-cdn.com/content/v1/66cb369992e60664dc8a4f5e/1724593821118-MSR4DTJVTSWL03GT16HX/alejandro-luengo-Fm_TvVmuHq4-unsplash+%281%29.jpg"
+              src="/placeholder.svg?height=600&width=500"
               alt="Dunhaven Castle"
-              className="w-full aspect-[4/5] object-cover grayscale"
+              className="w-full aspect-[3/4] object-cover grayscale"
             />
           </div>
 
-          <div className="text-center">
+          <div className="text-center md:col-span-1 order-3">
             <h3 className="uppercase text-sm font-medium tracking-wider">
               GLENCAIRN ROAD COUNTY
             </h3>

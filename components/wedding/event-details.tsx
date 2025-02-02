@@ -1,21 +1,28 @@
-import { CalendarIcon, MapPinIcon, ClockIcon } from 'lucide-react'
+import { CalendarIcon, MapPinIcon, ClockIcon } from "lucide-react";
+import { WEDDING_DATE, WEDDING_DETAILS } from "@/constants/wedding";
+import { formatDate, formatTime } from "@/utils/date";
 
 export default function EventDetails() {
+  const { venue, schedule } = WEDDING_DETAILS;
+
   return (
     <section className="mb-16 animate-fade-in-up">
       <h2 className="text-3xl font-serif mb-8 text-center">Event Details</h2>
       <div className="space-y-6">
         <div className="flex items-center">
           <CalendarIcon className="mr-4" />
-          <p>Saturday, September 15, 2024</p>
+          <p>{formatDate(WEDDING_DATE)}</p>
         </div>
         <div className="flex items-center">
           <ClockIcon className="mr-4" />
-          <p>Ceremony: 3:00 PM | Reception: 6:00 PM</p>
+          <p>
+            Ceremony: {formatTime(schedule.ceremony)} | Reception:{" "}
+            {formatTime(schedule.cocktail)}
+          </p>
         </div>
         <div className="flex items-center">
           <MapPinIcon className="mr-4" />
-          <p>The Grand Ballroom, 123 Elegant Street, Cityville</p>
+          <p>{`${venue.name}, ${venue.location}, ${venue.city}`}</p>
         </div>
       </div>
       <div className="mt-8">
@@ -30,6 +37,5 @@ export default function EventDetails() {
         ></iframe>
       </div>
     </section>
-  )
+  );
 }
-

@@ -4,6 +4,32 @@
 @tailwind components;
 @tailwind utilities;
 
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ensure all sections are properly contained */
+section {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure all images are properly contained */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 :root {
   --background: 0 0% 100%;
   --foreground: 0 0% 0%;
@@ -78,8 +104,3 @@ img {
 img:hover {
   filter: grayscale(0);
 }
-
-main {
-  padding-top: 5rem;
-}
-

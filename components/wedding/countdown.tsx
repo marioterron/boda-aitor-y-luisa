@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { WEDDING_DATE } from "@/constants/wedding";
 
 export default function Countdown() {
   const [timeLeft, setTimeLeft] = useState({
@@ -11,11 +12,9 @@ export default function Countdown() {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2025-09-06T12:00:00");
-
     const updateCountdown = () => {
       const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
+      const difference = WEDDING_DATE.getTime() - now.getTime();
 
       setTimeLeft({
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -47,22 +46,33 @@ export default function Countdown() {
           LET THE COUNTDOWN BEGIN
         </h3>
 
-        <div className="grid grid-cols-4 gap-8 max-w-4xl mx-auto">
+        <div className="flex flex-col md:grid md:grid-cols-4 gap-8 w-full max-w-screen-lg mx-auto px-4 md:px-24">
           <div className="text-center">
-            <h4 className="font-serif text-7xl mb-4">{timeLeft.days}</h4>
-            <p className="uppercase text-sm tracking-widest">Days</p>
+            <div className="font-serif text-5xl md:text-7xl mb-2">
+              {timeLeft.days}
+            </div>
+            <div className="text-sm tracking-widest">DAYS</div>
           </div>
+
           <div className="text-center">
-            <h4 className="font-serif text-7xl mb-4">{timeLeft.hours}</h4>
-            <p className="uppercase text-sm tracking-widest">Hours</p>
+            <div className="font-serif text-5xl md:text-7xl mb-2">
+              {timeLeft.hours}
+            </div>
+            <div className="text-sm tracking-widest">HOURS</div>
           </div>
+
           <div className="text-center">
-            <h4 className="font-serif text-7xl mb-4">{timeLeft.minutes}</h4>
-            <p className="uppercase text-sm tracking-widest">Minutes</p>
+            <div className="font-serif text-5xl md:text-7xl mb-2">
+              {timeLeft.minutes}
+            </div>
+            <div className="text-sm tracking-widest">MINUTES</div>
           </div>
+
           <div className="text-center">
-            <h4 className="font-serif text-7xl mb-4">{timeLeft.seconds}</h4>
-            <p className="uppercase text-sm tracking-widest">Seconds</p>
+            <div className="font-serif text-5xl md:text-7xl mb-2">
+              {timeLeft.seconds}
+            </div>
+            <div className="text-sm tracking-widest">SECONDS</div>
           </div>
         </div>
       </div>

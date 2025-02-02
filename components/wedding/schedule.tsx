@@ -1,4 +1,16 @@
+import { WEDDING_DETAILS } from "@/constants/wedding";
+import { formatTime } from "@/utils/date";
+
 export default function Schedule() {
+  const { schedule } = WEDDING_DETAILS;
+
+  const scheduleItems = [
+    { time: schedule.ceremony, label: "CEREMONY" },
+    { time: schedule.cocktail, label: "COCKTAIL" },
+    { time: schedule.dinner, label: "DINNER" },
+    { time: schedule.dancing, label: "DANCING & FIREWORKS" },
+  ];
+
   return (
     <section className="relative min-h-[80vh] flex items-center justify-center">
       <div className="absolute inset-0 z-0">
@@ -23,24 +35,12 @@ export default function Schedule() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
-            <div>
-              <h4 className="font-serif text-4xl mb-4">4:00 PM</h4>
-              <p className="uppercase text-sm tracking-[0.2em]">CEREMONY</p>
-            </div>
-            <div>
-              <h4 className="font-serif text-4xl mb-4">5:00 PM</h4>
-              <p className="uppercase text-sm tracking-[0.2em]">COCKTAIL</p>
-            </div>
-            <div>
-              <h4 className="font-serif text-4xl mb-4">6:30 PM</h4>
-              <p className="uppercase text-sm tracking-[0.2em]">DINNER</p>
-            </div>
-            <div>
-              <h4 className="font-serif text-4xl mb-4">10:00 PM</h4>
-              <p className="uppercase text-sm tracking-[0.2em]">
-                DANCING & FIREWORKS
-              </p>
-            </div>
+            {scheduleItems.map(({ time, label }) => (
+              <div key={label}>
+                <h4 className="font-serif text-4xl mb-4">{formatTime(time)}</h4>
+                <p className="uppercase text-sm tracking-[0.2em]">{label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
