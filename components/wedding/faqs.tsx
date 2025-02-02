@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-
 export default function FAQs() {
   return (
     <div className="relative flex flex-col items-center">
@@ -14,13 +12,13 @@ export default function FAQs() {
         />
       </div>
       <p className="text-center text-sm mt-8 max-w-[80%]">
-        Got questions? We've got answers! Check out our FAQs for everything you
+        Got questions? We’ve got answers! Check out our FAQs for everything you
         need to know about our special day.
       </p>
       <div className="mt-8">
-        <Button variant="default" className="uppercase text-xs tracking-widest">
+        <button className="bg-black text-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors">
           FAQs
-        </Button>
+        </button>
       </div>
     </div>
   );
