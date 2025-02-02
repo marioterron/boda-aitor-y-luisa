@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -7,32 +7,8 @@ import { NavLinks } from "./nav-links";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useScrollLock(isMenuOpen);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent | TouchEvent) {
-      if (!isMenuOpen) return;
-
-      const target = event.target as Node;
-      const isMenuClick = menuRef.current?.contains(target);
-      const isButtonClick = buttonRef.current?.contains(target);
-
-      if (!isMenuClick && !isButtonClick) {
-        setIsMenuOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside, true);
-    document.addEventListener("touchstart", handleClickOutside, true);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside, true);
-      document.removeEventListener("touchstart", handleClickOutside, true);
-    };
-  }, [isMenuOpen]);
 
   const scrollToRSVP = () => {
     setIsMenuOpen(false);
@@ -52,7 +28,6 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-20 relative">
           {/* Mobile menu button */}
           <button
-            ref={buttonRef}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden z-50"
             aria-label="Toggle menu"
@@ -90,7 +65,6 @@ export default function Navigation() {
           className={`fixed inset-x-0 top-20 bottom-0 bg-white/95 transition-all duration-300 ease-in-out lg:hidden ${
             isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
-          ref={menuRef}
         >
           <div
             className={`h-full flex flex-col transition-opacity duration-300 ${
