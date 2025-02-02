@@ -1,4 +1,4 @@
-export const WEDDING_DATE = new Date("2025-09-06T12:00:00");
+export const WEDDING_DATE = new Date("2025-06-09T12:00:00");
 
 export const WEDDING_DETAILS = {
   couple: {

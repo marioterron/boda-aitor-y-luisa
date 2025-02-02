@@ -1,9 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { WEDDING_DETAILS } from "@/constants/wedding";
 
 export const metadata: Metadata = {
-  title: "Brian & Megan's Wedding",
-  description: "Join us in celebrating our special day - July 14, 2025",
+  title: `${WEDDING_DETAILS.couple.person1} & ${WEDDING_DETAILS.couple.person2}'s Wedding`,
+  description: `Join us in celebrating our special day - September 06, 2025`,
 };
 
 export default function RootLayout({

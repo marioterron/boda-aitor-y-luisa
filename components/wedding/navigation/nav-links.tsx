@@ -5,19 +5,14 @@ interface NavLinksProps {
   className?: string;
 }
 
-export function NavLinks({ onClick, className }: NavLinksProps) {
+export function NavLinks({ onClick, className = "" }: NavLinksProps) {
   return (
-    <>
+    <div className={className}>
       {NAV_ITEMS.map((item) => (
-        <a
-          key={item.label}
-          href={item.href}
-          onClick={onClick}
-          className="nav-link"
-        >
+        <a key={item.label} href={item.href} onClick={onClick}>
           {item.label}
         </a>
       ))}
-    </>
+    </div>
   );
 }
