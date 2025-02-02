@@ -58,13 +58,6 @@ body {
   text-align: center;
 }
 
-.nav-link {
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  color: #000;
-  transition: color 0.2s;
-}
 
 .nav-link:hover {
   color: #666;

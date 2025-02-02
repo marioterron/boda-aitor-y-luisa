@@ -37,8 +37,12 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="w-full bg-white/95 backdrop-blur-sm z-50 border-b">
-      <div className="mx-auto px-4">
+    <nav
+      className={`w-full bg-white/95 backdrop-blur-sm z-50  transition-all duration-300 ${
+        isMenuOpen ? "fixed top-0 left-0 right-0 bottom-0" : "h-20"
+      }`}
+    >
+      <div className="mx-auto px-4 ">
         <div className="flex items-center justify-between h-20 relative">
           {/* Mobile menu button */}
           <button
@@ -48,9 +52,9 @@ export default function Navigation() {
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6 transition-transform duration-200" />
+              <X className="h-6 w-6 transition-all duration-300" />
             ) : (
-              <Menu className="h-6 w-6 transition-transform duration-200" />
+              <Menu className="h-6 w-6 transition-all duration-300" />
             )}
           </button>
 
@@ -79,14 +83,23 @@ export default function Navigation() {
 
         {/* Mobile menu with animation */}
         <div
-          className={`transform transition-all duration-300 ease-in-out lg:hidden ${
-            isMenuOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0"
-          } overflow-hidden`}
+          className={`fixed inset-x-0 top-20 bottom-0 bg-white/95 transition-all duration-300 ease-in-out lg:hidden ${
+            isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
           ref={menuRef}
         >
-          <div className="py-4 space-y-4">
-            <div className="flex flex-col space-y-4">
-              <NavLinks onClick={() => setIsMenuOpen(false)} />
+          <div
+            className={`h-full flex flex-col transition-opacity duration-300 ${
+              isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+            } `}
+          >
+            <div className="flex-1 flex items-center justify-center min-h-0">
+              <NavLinks
+                onClick={() => setIsMenuOpen(false)}
+                className="flex flex-col items-center space-y-12 text-2xl"
+              />
+            </div>
+            <div className="mt-auto w-full p-8">
               <Button
                 onClick={scrollToRSVP}
                 variant="outline"
