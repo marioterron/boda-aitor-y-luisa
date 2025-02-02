@@ -1,102 +1,44 @@
-import { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import { NavLinks } from "./nav-links";
+import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
+import { MobileLayout } from "./mobile-layout";
+import { DesktopLayout } from "./desktop-layout";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const isMobile = useIsMobile();
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent | TouchEvent) {
-      if (!isMenuOpen) return;
-
-      const target = event.target as Node;
-      const isMenuClick = menuRef.current?.contains(target);
-      const isButtonClick = buttonRef.current?.contains(target);
-
-      if (!isMenuClick && !isButtonClick) {
-        setIsMenuOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside, true);
-    document.addEventListener("touchstart", handleClickOutside, true);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside, true);
-      document.removeEventListener("touchstart", handleClickOutside, true);
-    };
-  }, [isMenuOpen]);
+  useScrollLock(isMenuOpen);
 
   const scrollToRSVP = () => {
-    const rsvpSection = document.getElementById("rsvp-section");
-    rsvpSection?.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
+    setTimeout(() => {
+      const rsvpSection = document.getElementById("rsvp-section");
+      rsvpSection?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
   return (
-    <nav className="w-full bg-white/95 backdrop-blur-sm z-50 border-b">
+    <nav
+      className={`z-50 w-full bg-white/95 backdrop-blur-sm transition-all duration-300 ${
+        isMenuOpen ? "fixed bottom-0 left-0 right-0 top-0" : "h-20"
+      }`}
+    >
       <div className="mx-auto px-4">
-        <div className="flex items-center justify-between h-20 relative">
-          {/* Mobile menu button */}
-          <button
-            ref={buttonRef}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden z-50"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? (
-              <X className="h-6 w-6 transition-transform duration-200" />
-            ) : (
-              <Menu className="h-6 w-6 transition-transform duration-200" />
-            )}
-          </button>
-
-          {/* Center logo - adjust for mobile */}
-          <h1 className="font-serif text-xl md:text-2xl absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
+        <div className="relative flex h-20 items-center justify-between">
+          <h1 className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-serif text-xl md:text-2xl">
             AITOR & LUISA
           </h1>
 
-          {/* Desktop navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <NavLinks />
-          </div>
-
-          {/* Right menu items */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <Button
-              onClick={scrollToRSVP}
-              variant="outline"
-              size="sm"
-              className="nav-link uppercase"
-            >
-              RSVP
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile menu with animation */}
-        <div
-          className={`transform transition-all duration-300 ease-in-out lg:hidden ${
-            isMenuOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0"
-          } overflow-hidden`}
-          ref={menuRef}
-        >
-          <div className="py-4 space-y-4">
-            <div className="flex flex-col space-y-4">
-              <NavLinks onClick={() => setIsMenuOpen(false)} />
-              <Button
-                onClick={scrollToRSVP}
-                variant="outline"
-                size="sm"
-                className="nav-link uppercase w-full"
-              >
-                RSVP
-              </Button>
-            </div>
-          </div>
+          {isMobile ? (
+            <MobileLayout
+              isMenuOpen={isMenuOpen}
+              setIsMenuOpen={setIsMenuOpen}
+              scrollToRSVP={scrollToRSVP}
+            />
+          ) : (
+            <DesktopLayout scrollToRSVP={scrollToRSVP} />
+          )}
         </div>
       </div>
     </nav>
