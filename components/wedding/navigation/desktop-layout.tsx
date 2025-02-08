@@ -8,8 +8,8 @@ interface DesktopLayoutProps {
 export function DesktopLayout({ scrollToRSVP }: DesktopLayoutProps) {
   return (
     <>
-      <NavLinks className="hidden items-center space-x-8 lg:flex" />
-      <div className="hidden items-center lg:flex">
+      <NavLinks className="flex items-center space-x-8 " />
+      <div className="flex items-center">
         <Button
           onClick={scrollToRSVP}
           variant="outline"
