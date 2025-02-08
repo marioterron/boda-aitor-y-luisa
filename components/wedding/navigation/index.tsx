@@ -6,7 +6,7 @@ import { DesktopLayout } from "./desktop-layout";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile(912);
 
   useScrollLock(isMenuOpen);
 
