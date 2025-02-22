@@ -1,22 +1,45 @@
-import { useState } from "react";
+"use client";
+
+import Link from "next/link";
+import { useState, useEffect } from "react";
+
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
-import { MobileLayout } from "./mobile-layout";
+import smoothScrollTo from "@/utils/smoothScrollTo";
 import { DesktopLayout } from "./desktop-layout";
+import { MobileLayout } from "./mobile-layout";
 
-export default function Navigation() {
+export default function Navigation({
+  onScrollToRSVP,
+}: {
+  onScrollToRSVP?: () => void;
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isMobile = useIsMobile();
+  const [mounted, setMounted] = useState(false);
+  const isMobile = useIsMobile(912);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useScrollLock(isMenuOpen);
 
   const scrollToRSVP = () => {
     setIsMenuOpen(false);
-    setTimeout(() => {
-      const rsvpSection = document.getElementById("rsvp-section");
-      rsvpSection?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+
+    if (onScrollToRSVP) {
+      localStorage.setItem("scrollToRSVP", "true");
+      onScrollToRSVP();
+      return;
+    }
+
+    const rsvpSection = document.getElementById("rsvp-section");
+    if (rsvpSection) {
+      smoothScrollTo(rsvpSection);
+    }
   };
+
+  if (!mounted) return null;
 
   return (
     <nav
@@ -27,7 +50,7 @@ export default function Navigation() {
       <div className="mx-auto px-4">
         <div className="relative flex h-20 items-center justify-between">
           <h1 className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-serif text-xl md:text-2xl">
-            AITOR & LUISA
+            <Link href="/">AITOR & LUISA</Link>
           </h1>
 
           {isMobile ? (

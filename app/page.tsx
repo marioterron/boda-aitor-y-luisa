@@ -1,18 +1,36 @@
 "use client";
 
+import { useEffect } from "react";
+
 import {
-  Navigation,
-  Schedule,
-  Location,
   Countdown,
-  FAQs,
   DressCode,
-  Rsvp,
+  FAQs,
   Footer,
   Hero,
+  Location,
+  Navigation,
+  Rsvp,
+  Schedule,
 } from "@/components/wedding";
+import smoothScrollTo from "@/utils/smoothScrollTo";
 
 export default function Home() {
+  useEffect(() => {
+    const shouldScrollToRSVP = localStorage.getItem("scrollToRSVP");
+
+    if (shouldScrollToRSVP) {
+      localStorage.removeItem("scrollToRSVP");
+
+      setTimeout(() => {
+        const rsvpSection = document.getElementById("rsvp-section");
+        if (rsvpSection) {
+          smoothScrollTo(rsvpSection);
+        }
+      }, 1000);
+    }
+  }, []);
+
   return (
     <main className="w-full overflow-x-hidden">
       <Navigation />

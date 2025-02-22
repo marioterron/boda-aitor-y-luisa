@@ -17,7 +17,7 @@ export function MobileLayout({
     <>
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="z-50 lg:hidden"
+        className="z-50"
         aria-label="Toggle menu"
       >
         {isMenuOpen ? (
@@ -28,7 +28,7 @@ export function MobileLayout({
       </button>
 
       <div
-        className={`fixed inset-x-0 top-20 bottom-0 bg-white/95 transition-all duration-300 lg:hidden ${
+        className={`fixed inset-x-0 top-20 bottom-0 bg-white/95 transition-all duration-300 ${
           isMenuOpen ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >

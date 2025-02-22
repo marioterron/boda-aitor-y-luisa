@@ -7,22 +7,12 @@ export function MobileLayout() {
     <div className="space-y-16">
       <Date />
       <div className="w-full">
-        <HeroImage
-          src="/placeholder.svg?height=800&width=600"
-          alt="Main wedding photo"
-          priority
-        />
+        <HeroImage src="/image-center.jpeg" alt="Main wedding photo" priority />
       </div>
       <Tagline />
       <div className="grid grid-cols-2 gap-4">
-        <HeroImage
-          src="/placeholder.svg?height=400&width=300"
-          alt="Wedding moment"
-        />
-        <HeroImage
-          src="/placeholder.svg?height=400&width=300"
-          alt="Wedding moment"
-        />
+        <HeroImage src="/image-left.jpeg" alt="Wedding moment" />
+        <HeroImage src="/image-right.jpeg" alt="Wedding moment" />
       </div>
     </div>
   );
