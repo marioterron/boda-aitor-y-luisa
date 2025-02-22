@@ -3,9 +3,9 @@ import { OurStoryContent } from "./our-story-content";
 
 export function OurStory() {
   return (
-    <main className="min-h-screen w-full">
+    <div className="w-full">
       <OurStoryHero />
       <OurStoryContent />
-    </main>
+    </div>
   );
 }
