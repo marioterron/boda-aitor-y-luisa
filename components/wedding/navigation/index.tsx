@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
@@ -15,7 +15,12 @@ export default function Navigation({
   onScrollToRSVP?: () => void;
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const isMobile = useIsMobile(912);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useScrollLock(isMenuOpen);
 
@@ -33,6 +38,8 @@ export default function Navigation({
       smoothScrollTo(rsvpSection);
     }
   };
+
+  if (!mounted) return null;
 
   return (
     <nav
