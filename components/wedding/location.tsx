@@ -8,16 +8,16 @@ export default function Location() {
         <div className="grid grid-cols-1 md:grid-cols-5 items-center gap-8 md:gap-16">
           <div className="text-center md:col-span-1 order-2 md:order-1">
             <h3 className="uppercase text-sm font-medium tracking-wider">
-              DUNHAVEN CASTLE
+              La Joia
             </h3>
             <p className="uppercase text-xs tracking-wider">
-              HOTEL & RESTAURANT
+              Espai d'esdeveniments
             </p>
           </div>
 
           <div className="w-[80%] mx-auto md:col-span-3 order-1 md:order-2">
             <img
-              src="/placeholder.svg?height=600&width=500"
+              src="/images/location.jpg"
               alt="Dunhaven Castle"
               className="w-full aspect-[3/4] object-cover grayscale"
             />
@@ -25,9 +25,9 @@ export default function Location() {
 
           <div className="text-center md:col-span-1 order-3">
             <h3 className="uppercase text-sm font-medium tracking-wider">
-              GLENCAIRN ROAD COUNTY
+              Llambilles
             </h3>
-            <p className="uppercase text-xs tracking-wider">KERRY, IRELAND</p>
+            <p className="uppercase text-xs tracking-wider">Girona, España</p>
           </div>
         </div>
 
