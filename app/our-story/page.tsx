@@ -17,7 +17,7 @@ export default function OurStoryPage() {
       <main className="min-h-screen">
         <OurStory />
       </main>
-      <Footer />
+      <Footer hideBorder />
     </>
   );
 }
