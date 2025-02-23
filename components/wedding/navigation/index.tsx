@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import smoothScrollTo from "@/utils/smoothScrollTo";
 import { DesktopLayout } from "./desktop-layout";
@@ -15,12 +15,7 @@ export default function Navigation({
   onScrollToRSVP?: () => void;
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const isMobile = useIsMobile(912);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useScrollLock(isMenuOpen);
 
@@ -39,31 +34,21 @@ export default function Navigation({
     }
   };
 
-  if (!mounted) return null;
-
   return (
     <nav
       className={`z-50 w-full bg-white/95 backdrop-blur-sm transition-all duration-300 ${
         isMenuOpen ? "fixed bottom-0 left-0 right-0 top-0" : "h-20"
       }`}
     >
-      <div className="mx-auto px-4">
-        <div className="relative flex h-20 items-center justify-between">
-          <h1 className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-serif text-xl md:text-2xl">
-            <Link href="/">AITOR & LUISA</Link>
-          </h1>
-
-          {isMobile ? (
-            <MobileLayout
-              isMenuOpen={isMenuOpen}
-              setIsMenuOpen={setIsMenuOpen}
-              scrollToRSVP={scrollToRSVP}
-            />
-          ) : (
-            <DesktopLayout scrollToRSVP={scrollToRSVP} />
-          )}
-        </div>
-      </div>
+      {isMobile ? (
+        <MobileLayout
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          scrollToRSVP={scrollToRSVP}
+        />
+      ) : (
+        <DesktopLayout scrollToRSVP={scrollToRSVP} />
+      )}
     </nav>
   );
 }

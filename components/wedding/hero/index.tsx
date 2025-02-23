@@ -1,4 +1,4 @@
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 import { MobileLayout } from "./mobile-layout";
 import { DesktopLayout } from "./desktop-layout";
 

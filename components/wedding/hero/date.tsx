@@ -1,4 +1,4 @@
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 import { formatShortDate } from "@/utils/date";
 import { WEDDING_DATE } from "@/constants/wedding";
 
