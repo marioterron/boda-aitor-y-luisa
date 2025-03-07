@@ -1,15 +1,17 @@
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
+import { cn } from "@/lib/utils";
 import smoothScrollTo from "@/utils/smoothScrollTo";
 import { DesktopLayout } from "./desktop-layout";
 import { MobileLayout } from "./mobile-layout";
 
 export default function Navigation({
+  className,
   onScrollToRSVP,
 }: {
+  className?: string;
   onScrollToRSVP?: () => void;
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,9 +36,11 @@ export default function Navigation({
 
   return (
     <nav
-      className={`z-50 w-full bg-white/95 backdrop-blur-sm transition-all duration-300 ${
-        isMenuOpen ? "fixed bottom-0 left-0 right-0 top-0" : "h-20"
-      }`}
+      className={cn(
+        "z-50 w-full bg-white/95 backdrop-blur-sm transition-all duration-300",
+        isMenuOpen ? "fixed bottom-0 left-0 right-0 top-0" : "h-20",
+        className
+      )}
     >
       {isMobile ? (
         <MobileLayout

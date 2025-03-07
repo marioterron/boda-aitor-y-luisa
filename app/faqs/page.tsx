@@ -13,7 +13,7 @@ export default function FAQsPage() {
 
   return (
     <>
-      <Navigation onScrollToRSVP={redirectToMainPage} />
+      <Navigation className="!bg-white" onScrollToRSVP={redirectToMainPage} />
       <main className="min-h-screen">
         <FAQs />
         <Footer hideBorder />
