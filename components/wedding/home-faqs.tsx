@@ -1,4 +1,8 @@
-export default function FAQs() {
+import { useRouter } from "next/navigation";
+
+export default function HomeFAQs() {
+  const router = useRouter();
+
   return (
     <div className="relative flex flex-col items-center">
       <h2 className="font-serif text-[2.5rem] absolute w-full text-center z-20 -top-8">
@@ -16,7 +20,10 @@ export default function FAQs() {
         need to know about our special day.
       </p>
       <div className="mt-8">
-        <button className="bg-black text-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors">
+        <button
+          className="bg-black text-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors"
+          onClick={() => router.push("/faqs")}
+        >
           FAQs
         </button>
       </div>
