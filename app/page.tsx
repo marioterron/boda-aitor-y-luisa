@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import {
   Countdown,
   DressCode,
-  FAQs,
+  HomeFAQs,
   Footer,
   Hero,
   Location,
@@ -41,7 +41,7 @@ export default function Home() {
       <section className="py-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-32 py-20 px-4 max-w-7xl mx-auto">
           <DressCode />
-          <FAQs />
+          <HomeFAQs />
         </div>
       </section>
       <Rsvp />
