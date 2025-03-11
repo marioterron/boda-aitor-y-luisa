@@ -13,6 +13,7 @@ export default function FAQsPage() {
 
   return (
     <>
+      {/* Fix the background color bug on FAQs navigation bar */}
       <Navigation className="!bg-white" onScrollToRSVP={redirectToMainPage} />
       <main className="min-h-screen">
         <FAQs />
