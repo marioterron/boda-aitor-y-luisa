@@ -10,7 +10,7 @@ export default function HomeFAQs() {
       </h2>
       <div className="w-[80%]">
         <img
-          src="/placeholder.svg?height=600&width=500"
+          src="/images/home-faqs.jpg"
           alt="FAQs"
           className="w-full aspect-[3/4] object-cover grayscale"
         />

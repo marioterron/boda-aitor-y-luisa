@@ -10,7 +10,7 @@ export default function DressCode() {
       </h2>
       <div className="w-[80%]">
         <img
-          src="/placeholder.svg?height=600&width=500"
+          src="/images/dress-code.jpg"
           alt="Formal attire inspiration"
           className="w-full aspect-[3/4] object-cover grayscale"
         />

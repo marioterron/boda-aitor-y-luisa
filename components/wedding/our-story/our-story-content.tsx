@@ -10,7 +10,7 @@ export function OurStoryContent() {
               src="/images/story/main.jpeg"
               alt="Aitor and Luisa with their dogs"
               fill
-              className="object-cover"
+              className="object-cover grayscale"
               priority
             />
           </div>
@@ -27,7 +27,7 @@ export function OurStoryContent() {
                   src="/images/story/couple-1.jpeg"
                   alt="Aitor and Luisa walking"
                   fill
-                  className="object-cover"
+                  className="object-cover grayscale"
                 />
               </div>
               <div className="relative aspect-square w-full">
@@ -35,7 +35,7 @@ export function OurStoryContent() {
                   src="/images/story/couple-2.jpeg"
                   alt="Aitor and Luisa with their dogs"
                   fill
-                  className="object-cover"
+                  className="object-cover grayscale"
                 />
               </div>
             </div>
@@ -60,7 +60,7 @@ export function OurStoryContent() {
               src="/images/story/couple-3.jpeg"
               alt="Black and white photo with dogs"
               fill
-              className="object-cover"
+              className="object-cover grayscale"
             />
           </div>
         </div>
@@ -84,7 +84,7 @@ export function OurStoryContent() {
             src="/images/story/couple-4.jpeg"
             alt="Intimate moment"
             fill
-            className="object-cover rounded-lg"
+            className="object-cover grayscale rounded-lg"
           />
         </div>
       </div>
