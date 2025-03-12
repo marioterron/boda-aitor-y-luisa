@@ -10,15 +10,21 @@ interface RsvpFormFieldsProps {
   readonly handleInputChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  readonly handleEmailBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   readonly handleAttendanceChange: (value: string) => void;
   readonly errors: Partial<Record<keyof RsvpFormValues, string>>;
+  readonly isChecking: boolean;
+  readonly existingRsvp: RsvpFormValues | null;
 }
 
 export function RsvpFormFields({
   formData,
   handleInputChange,
+  handleEmailBlur,
   handleAttendanceChange,
   errors,
+  isChecking,
+  existingRsvp,
 }: RsvpFormFieldsProps) {
   const isAttending = formData.attendance === "attending";
 
@@ -39,8 +45,15 @@ export function RsvpFormFields({
         type="email"
         value={formData.email}
         onChange={handleInputChange}
+        onBlur={handleEmailBlur}
         error={errors.email}
         placeholder="Enter your email"
+        isLoading={isChecking}
+        hint={
+          existingRsvp
+            ? "We found your previous RSVP. You can update it."
+            : undefined
+        }
       />
 
       <AttendanceField
