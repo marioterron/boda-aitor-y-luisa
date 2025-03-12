@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { z } from "zod";
+
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase";
 
 const rsvpSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -56,7 +58,20 @@ export function useRsvpForm() {
 
     setIsSubmitting(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const { error } = await supabase.from("rsvps").insert([
+        {
+          full_name: formData.fullName,
+          email: formData.email,
+          attendance: formData.attendance,
+          guests: formData.guests,
+          dietary_requirements: formData.dietaryRequirements,
+          message: formData.message,
+          created_at: new Date().toISOString(),
+        },
+      ]);
+
+      if (error) throw error;
+
       toast({
         title: "RSVP Submitted Successfully",
         description:
@@ -65,9 +80,10 @@ export function useRsvpForm() {
             : "Thank you for letting us know. We'll miss you!",
         variant: "default",
       });
-      console.log("rsvp submitted:", formData);
+
       setFormData(defaultValues);
     } catch (error) {
+      console.error("Error submitting RSVP:", error);
       toast({
         title: "Submission Failed",
         description:
