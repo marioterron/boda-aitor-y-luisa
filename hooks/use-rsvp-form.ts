@@ -1,24 +1,33 @@
-import { useState } from "react";
-
 import { useToast } from "@/hooks/use-toast";
 import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
 import { createNotificationService } from "@/lib/utils/notifications";
 import { defaultRsvpValues, validateRsvpForm } from "@/lib/utils/validation";
 import { mapFormToApiData } from "@/lib/utils/mappers/rsvp";
 import type { RsvpFormData } from "@/lib/types/rsvp";
+import { useFormState } from "./use-form-state";
+import { useEmailCheck } from "./use-email-check";
 
 export function useRsvpForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isChecking, setIsChecking] = useState(false);
-  const [emailExists, setEmailExists] = useState(false);
-  const [errors, setErrors] = useState<
-    Partial<Record<keyof RsvpFormData, string>>
-  >({});
+  const {
+    formData,
+    errors,
+    isSubmitting,
+    setFormData,
+    setErrors,
+    setIsSubmitting,
+    resetForm,
+  } = useFormState<RsvpFormData>(defaultRsvpValues);
+
+  const {
+    isChecking,
+    emailExists,
+    setIsChecking,
+    setEmailExists,
+    reset: resetEmailCheck,
+  } = useEmailCheck();
 
   const { toast } = useToast();
   const notifications = createNotificationService(toast);
-
-  const [formData, setFormData] = useState<RsvpFormData>(defaultRsvpValues);
 
   const handleEmailBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
     const email = e.target.value;
@@ -62,8 +71,8 @@ export function useRsvpForm() {
         formData.attendance === "attending"
       );
 
-      setFormData(defaultRsvpValues);
-      setEmailExists(false);
+      resetForm();
+      resetEmailCheck();
     } catch (error) {
       console.error("Error submitting RSVP:", error);
       notifications.showRsvpError();
