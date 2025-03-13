@@ -7,8 +7,16 @@ import { RsvpFormFields } from "./formFields";
 import { useRsvpForm } from "@/hooks/use-rsvp-form";
 
 export default function Rsvp() {
-  const { formData, setFormData, errors, isSubmitting, handleSubmit } =
-    useRsvpForm();
+  const {
+    formData,
+    setFormData,
+    errors,
+    isSubmitting,
+    isChecking,
+    emailExists,
+    handleSubmit,
+    handleEmailBlur,
+  } = useRsvpForm();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -52,8 +60,11 @@ export default function Rsvp() {
           <RsvpFormFields
             formData={formData}
             handleInputChange={handleInputChange}
+            handleEmailBlur={handleEmailBlur}
             handleAttendanceChange={handleAttendanceChange}
             errors={errors}
+            isChecking={isChecking}
+            emailExists={emailExists}
           />
 
           <Button
@@ -64,8 +75,12 @@ export default function Rsvp() {
             {isSubmitting ? (
               <div className="flex items-center justify-center gap-2">
                 <Loader2 className="h-4 w-4 animate-spin" />
-                <span>Submitting...</span>
+                <span>
+                  {emailExists ? "Updating RSVP..." : "Submitting..."}
+                </span>
               </div>
+            ) : emailExists ? (
+              "Update RSVP"
             ) : (
               "Submit RSVP"
             )}
