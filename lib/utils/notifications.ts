@@ -1,5 +1,3 @@
-import { ToastProps } from "@/components/ui/toast";
-
 type ToastFunction = {
   (props: {
     title: string;

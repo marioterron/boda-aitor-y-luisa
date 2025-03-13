@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import { useToast } from "@/hooks/use-toast";
 import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
-import { createNotificationService } from "@/lib/services/notifications";
+import { createNotificationService } from "@/lib/utils/notifications";
 import {
   RsvpFormValues,
   defaultRsvpValues,
   validateRsvpForm,
-} from "@/lib/services/validation";
+} from "@/lib/utils/validation";
 
 export function useRsvpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
