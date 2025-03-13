@@ -2,7 +2,7 @@ import { useState } from "react";
 import { z } from "zod";
 
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/lib/supabase";
+import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
 
 const rsvpSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -55,46 +55,32 @@ export function useRsvpForm() {
     }
   };
 
-  const checkExistingEmail = async (email: string) => {
-    setIsChecking(true);
-    try {
-      const { count, error } = await supabase
-        .from("rsvps")
-        .select("*", { count: "exact", head: true })
-        .eq("email", email);
-
-      if (error) throw error;
-
-      const exists = count ? count > 0 : false;
-      setEmailExists(exists);
-
-      if (exists) {
-        toast({
-          title: "Email Already Registered",
-          description:
-            "This email has already submitted an RSVP. Submitting again will update your previous response.",
-          variant: "default",
-        });
-      }
-
-      return exists;
-    } catch (error) {
-      console.error("Error checking email:", error);
-      toast({
-        title: "Error",
-        description: "Failed to check email. Please try again.",
-        variant: "destructive",
-      });
-      return false;
-    } finally {
-      setIsChecking(false);
-    }
-  };
-
   const handleEmailBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
     const email = e.target.value;
     if (email && email.includes("@")) {
-      await checkExistingEmail(email);
+      setIsChecking(true);
+      try {
+        const exists = await checkEmailExists(email);
+        setEmailExists(exists);
+
+        if (exists) {
+          toast({
+            title: "Email Already Registered",
+            description:
+              "This email has already submitted an RSVP. Submitting again will update your previous response.",
+            variant: "default",
+          });
+        }
+      } catch (error) {
+        console.error("Error checking email:", error);
+        toast({
+          title: "Error",
+          description: "Failed to check email. Please try again.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsChecking(false);
+      }
     }
   };
 
@@ -114,24 +100,11 @@ export function useRsvpForm() {
         created_at: new Date().toISOString(),
       };
 
-      let error;
       if (emailExists) {
-        // Update existing RSVP
-        const { error: updateError } = await supabase
-          .from("rsvps")
-          .update(rsvpData)
-          .eq("email", formData.email)
-          .single();
-        error = updateError;
+        await updateRsvp(formData.email, rsvpData);
       } else {
-        // Create new RSVP
-        const { error: insertError } = await supabase
-          .from("rsvps")
-          .insert([rsvpData]);
-        error = insertError;
+        await createRsvp(rsvpData);
       }
-
-      if (error) throw error;
 
       toast({
         title: emailExists
