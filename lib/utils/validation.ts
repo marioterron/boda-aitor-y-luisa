@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { RsvpFormData } from "@/lib/types/rsvp";
 
 export const rsvpSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -11,22 +12,20 @@ export const rsvpSchema = z.object({
   message: z.string().optional(),
 });
 
-export type RsvpFormValues = z.infer<typeof rsvpSchema>;
-
 export interface ValidationResult {
   isValid: boolean;
-  errors: Partial<Record<keyof RsvpFormValues, string>>;
+  errors: Partial<Record<keyof RsvpFormData, string>>;
 }
 
-export function validateRsvpForm(formData: RsvpFormValues): ValidationResult {
+export function validateRsvpForm(formData: RsvpFormData): ValidationResult {
   try {
     rsvpSchema.parse(formData);
     return { isValid: true, errors: {} };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      const errors: Partial<Record<keyof RsvpFormValues, string>> = {};
+      const errors: Partial<Record<keyof RsvpFormData, string>> = {};
       error.errors.forEach((err) => {
-        errors[err.path[0] as keyof RsvpFormValues] = err.message;
+        errors[err.path[0] as keyof RsvpFormData] = err.message;
       });
       return { isValid: false, errors };
     }
@@ -34,7 +33,7 @@ export function validateRsvpForm(formData: RsvpFormValues): ValidationResult {
   }
 }
 
-export const defaultRsvpValues: RsvpFormValues = {
+export const defaultRsvpValues: RsvpFormData = {
   fullName: "",
   email: "",
   attendance: "attending",

@@ -3,24 +3,22 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
 import { createNotificationService } from "@/lib/utils/notifications";
-import {
-  RsvpFormValues,
-  defaultRsvpValues,
-  validateRsvpForm,
-} from "@/lib/utils/validation";
+import { defaultRsvpValues, validateRsvpForm } from "@/lib/utils/validation";
+import { mapFormToApiData } from "@/lib/utils/mappers/rsvp";
+import type { RsvpFormData } from "@/lib/types/rsvp";
 
 export function useRsvpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isChecking, setIsChecking] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
   const [errors, setErrors] = useState<
-    Partial<Record<keyof RsvpFormValues, string>>
+    Partial<Record<keyof RsvpFormData, string>>
   >({});
 
   const { toast } = useToast();
   const notifications = createNotificationService(toast);
 
-  const [formData, setFormData] = useState<RsvpFormValues>(defaultRsvpValues);
+  const [formData, setFormData] = useState<RsvpFormData>(defaultRsvpValues);
 
   const handleEmailBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
     const email = e.target.value;
@@ -51,15 +49,7 @@ export function useRsvpForm() {
 
     setIsSubmitting(true);
     try {
-      const rsvpData = {
-        full_name: formData.fullName,
-        email: formData.email,
-        attendance: formData.attendance,
-        guests: formData.guests,
-        dietary_requirements: formData.dietaryRequirements,
-        message: formData.message,
-        created_at: new Date().toISOString(),
-      };
+      const rsvpData = mapFormToApiData(formData);
 
       if (emailExists) {
         await updateRsvp(formData.email, rsvpData);
