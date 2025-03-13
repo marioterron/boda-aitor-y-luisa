@@ -1,22 +1,13 @@
 import { useState } from "react";
-import { z } from "zod";
 
 import { useToast } from "@/hooks/use-toast";
 import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
 import { createNotificationService } from "@/lib/services/notifications";
-
-const rsvpSchema = z.object({
-  fullName: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  attendance: z.enum(["attending", "not-attending"], {
-    required_error: "Please select your attendance status",
-  }),
-  guests: z.number().min(0).max(4, "Maximum 4 additional guests allowed"),
-  dietaryRequirements: z.string().optional(),
-  message: z.string().optional(),
-});
-
-export type RsvpFormValues = z.infer<typeof rsvpSchema>;
+import {
+  RsvpFormValues,
+  defaultRsvpValues,
+  validateRsvpForm,
+} from "@/lib/services/validation";
 
 export function useRsvpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,33 +20,7 @@ export function useRsvpForm() {
   const { toast } = useToast();
   const notifications = createNotificationService(toast);
 
-  const defaultValues: RsvpFormValues = {
-    fullName: "",
-    email: "",
-    attendance: "attending",
-    guests: 0,
-    dietaryRequirements: "",
-    message: "",
-  };
-
-  const [formData, setFormData] = useState<RsvpFormValues>(defaultValues);
-
-  const validateForm = () => {
-    try {
-      rsvpSchema.parse(formData);
-      setErrors({});
-      return true;
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const newErrors: Partial<Record<keyof RsvpFormValues, string>> = {};
-        error.errors.forEach((err) => {
-          newErrors[err.path[0] as keyof RsvpFormValues] = err.message;
-        });
-        setErrors(newErrors);
-      }
-      return false;
-    }
-  };
+  const [formData, setFormData] = useState<RsvpFormValues>(defaultRsvpValues);
 
   const handleEmailBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
     const email = e.target.value;
@@ -79,7 +44,10 @@ export function useRsvpForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) return;
+
+    const validationResult = validateRsvpForm(formData);
+    setErrors(validationResult.errors);
+    if (!validationResult.isValid) return;
 
     setIsSubmitting(true);
     try {
@@ -104,7 +72,7 @@ export function useRsvpForm() {
         formData.attendance === "attending"
       );
 
-      setFormData(defaultValues);
+      setFormData(defaultRsvpValues);
       setEmailExists(false);
     } catch (error) {
       console.error("Error submitting RSVP:", error);
@@ -123,6 +91,6 @@ export function useRsvpForm() {
     emailExists,
     handleSubmit,
     handleEmailBlur,
-    defaultValues,
+    defaultValues: defaultRsvpValues,
   };
 }
