@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { useToast } from "@/hooks/use-toast";
 import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
+import { createNotificationService } from "@/lib/services/notifications";
 
 const rsvpSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -26,6 +27,7 @@ export function useRsvpForm() {
   >({});
 
   const { toast } = useToast();
+  const notifications = createNotificationService(toast);
 
   const defaultValues: RsvpFormValues = {
     fullName: "",
@@ -64,20 +66,11 @@ export function useRsvpForm() {
         setEmailExists(exists);
 
         if (exists) {
-          toast({
-            title: "Email Already Registered",
-            description:
-              "This email has already submitted an RSVP. Submitting again will update your previous response.",
-            variant: "default",
-          });
+          notifications.showEmailExistsNotification();
         }
       } catch (error) {
         console.error("Error checking email:", error);
-        toast({
-          title: "Error",
-          description: "Failed to check email. Please try again.",
-          variant: "destructive",
-        });
+        notifications.showEmailCheckError();
       } finally {
         setIsChecking(false);
       }
@@ -106,27 +99,16 @@ export function useRsvpForm() {
         await createRsvp(rsvpData);
       }
 
-      toast({
-        title: emailExists
-          ? "RSVP Updated Successfully"
-          : "RSVP Submitted Successfully",
-        description:
-          formData.attendance === "attending"
-            ? "Thank you for accepting our invitation! We look forward to celebrating with you."
-            : "Thank you for letting us know. We'll miss you!",
-        variant: "default",
-      });
+      notifications.showRsvpSuccess(
+        emailExists,
+        formData.attendance === "attending"
+      );
 
       setFormData(defaultValues);
       setEmailExists(false);
     } catch (error) {
       console.error("Error submitting RSVP:", error);
-      toast({
-        title: "Submission Failed",
-        description:
-          "There was a problem submitting your RSVP. Please try again.",
-        variant: "destructive",
-      });
+      notifications.showRsvpError();
     } finally {
       setIsSubmitting(false);
     }
