@@ -20,10 +20,11 @@ export type RsvpFormValues = z.infer<typeof rsvpSchema>;
 export function useRsvpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isChecking, setIsChecking] = useState(false);
-  const [existingRsvp, setExistingRsvp] = useState<RsvpFormValues | null>(null);
+  const [emailExists, setEmailExists] = useState(false);
   const [errors, setErrors] = useState<
     Partial<Record<keyof RsvpFormValues, string>>
   >({});
+
   const { toast } = useToast();
 
   const defaultValues: RsvpFormValues = {
@@ -54,43 +55,37 @@ export function useRsvpForm() {
     }
   };
 
-  const checkExistingRsvp = async (email: string) => {
+  const checkExistingEmail = async (email: string) => {
     setIsChecking(true);
     try {
-      const { data, error } = await supabase
+      const { count, error } = await supabase
         .from("rsvps")
-        .select("*")
-        .eq("email", email)
-        .single();
+        .select("*", { count: "exact", head: true })
+        .eq("email", email);
 
-      if (error) {
-        if (error.code === "PGRST116") {
-          // No data found
-          setExistingRsvp(null);
-          return null;
-        }
-        throw error;
+      if (error) throw error;
+
+      const exists = count ? count > 0 : false;
+      setEmailExists(exists);
+
+      if (exists) {
+        toast({
+          title: "Email Already Registered",
+          description:
+            "This email has already submitted an RSVP. Submitting again will update your previous response.",
+          variant: "default",
+        });
       }
 
-      const rsvp: RsvpFormValues = {
-        fullName: data.full_name,
-        email: data.email,
-        attendance: data.attendance,
-        guests: data.guests,
-        dietaryRequirements: data.dietary_requirements || "",
-        message: data.message || "",
-      };
-
-      setExistingRsvp(rsvp);
-      return rsvp;
+      return exists;
     } catch (error) {
-      console.error("Error checking RSVP:", error);
+      console.error("Error checking email:", error);
       toast({
         title: "Error",
-        description: "Failed to check existing RSVP. Please try again.",
+        description: "Failed to check email. Please try again.",
         variant: "destructive",
       });
-      return null;
+      return false;
     } finally {
       setIsChecking(false);
     }
@@ -99,15 +94,7 @@ export function useRsvpForm() {
   const handleEmailBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
     const email = e.target.value;
     if (email && email.includes("@")) {
-      const existingRsvp = await checkExistingRsvp(email);
-      if (existingRsvp) {
-        toast({
-          title: "Existing RSVP Found",
-          description: "We found your previous RSVP. You can update it now.",
-          variant: "default",
-        });
-        setFormData(existingRsvp);
-      }
+      await checkExistingEmail(email);
     }
   };
 
@@ -128,12 +115,13 @@ export function useRsvpForm() {
       };
 
       let error;
-      if (existingRsvp) {
+      if (emailExists) {
         // Update existing RSVP
         const { error: updateError } = await supabase
           .from("rsvps")
           .update(rsvpData)
-          .eq("email", formData.email);
+          .eq("email", formData.email)
+          .single();
         error = updateError;
       } else {
         // Create new RSVP
@@ -146,7 +134,7 @@ export function useRsvpForm() {
       if (error) throw error;
 
       toast({
-        title: existingRsvp
+        title: emailExists
           ? "RSVP Updated Successfully"
           : "RSVP Submitted Successfully",
         description:
@@ -156,10 +144,8 @@ export function useRsvpForm() {
         variant: "default",
       });
 
-      if (!existingRsvp) {
-        setFormData(defaultValues);
-      }
-      setExistingRsvp(null);
+      setFormData(defaultValues);
+      setEmailExists(false);
     } catch (error) {
       console.error("Error submitting RSVP:", error);
       toast({
@@ -179,7 +165,7 @@ export function useRsvpForm() {
     errors,
     isSubmitting,
     isChecking,
-    existingRsvp,
+    emailExists,
     handleSubmit,
     handleEmailBlur,
     defaultValues,

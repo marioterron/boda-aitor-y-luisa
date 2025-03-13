@@ -14,7 +14,7 @@ interface RsvpFormFieldsProps {
   readonly handleAttendanceChange: (value: string) => void;
   readonly errors: Partial<Record<keyof RsvpFormValues, string>>;
   readonly isChecking: boolean;
-  readonly existingRsvp: RsvpFormValues | null;
+  readonly emailExists: boolean;
 }
 
 export function RsvpFormFields({
@@ -24,7 +24,7 @@ export function RsvpFormFields({
   handleAttendanceChange,
   errors,
   isChecking,
-  existingRsvp,
+  emailExists,
 }: RsvpFormFieldsProps) {
   const isAttending = formData.attendance === "attending";
 
@@ -50,8 +50,8 @@ export function RsvpFormFields({
         placeholder="Enter your email"
         isLoading={isChecking}
         hint={
-          existingRsvp
-            ? "We found your previous RSVP. You can update it."
+          emailExists
+            ? "This email has already submitted an RSVP. Submitting again will update your previous response."
             : undefined
         }
       />

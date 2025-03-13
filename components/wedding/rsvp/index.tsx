@@ -13,7 +13,7 @@ export default function Rsvp() {
     errors,
     isSubmitting,
     isChecking,
-    existingRsvp,
+    emailExists,
     handleSubmit,
     handleEmailBlur,
   } = useRsvpForm();
@@ -64,7 +64,7 @@ export default function Rsvp() {
             handleAttendanceChange={handleAttendanceChange}
             errors={errors}
             isChecking={isChecking}
-            existingRsvp={existingRsvp}
+            emailExists={emailExists}
           />
 
           <Button
@@ -76,10 +76,10 @@ export default function Rsvp() {
               <div className="flex items-center justify-center gap-2">
                 <Loader2 className="h-4 w-4 animate-spin" />
                 <span>
-                  {existingRsvp ? "Updating RSVP..." : "Submitting..."}
+                  {emailExists ? "Updating RSVP..." : "Submitting..."}
                 </span>
               </div>
-            ) : existingRsvp ? (
+            ) : emailExists ? (
               "Update RSVP"
             ) : (
               "Submit RSVP"
