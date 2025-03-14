@@ -72,11 +72,13 @@ describe("RSVP Service", () => {
 
   describe("createRsvp", () => {
     const mockRsvpData = {
+      full_name: "Test User",
       email: "test@example.com",
-      name: "Test User",
-      attending: true,
+      attendance: "attending" as const,
       guests: 2,
-      dietaryRestrictions: "None",
+      dietary_requirements: "None",
+      message: "",
+      created_at: new Date().toISOString(),
     };
 
     it("should create RSVP successfully", async () => {
@@ -99,11 +101,13 @@ describe("RSVP Service", () => {
 
   describe("updateRsvp", () => {
     const mockRsvpData = {
+      full_name: "Test User",
       email: "test@example.com",
-      name: "Test User",
-      attending: false,
+      attendance: "not-attending" as const,
       guests: 0,
-      dietaryRestrictions: "None",
+      dietary_requirements: "None",
+      message: "",
+      created_at: new Date().toISOString(),
     };
 
     it("should update RSVP successfully", async () => {
