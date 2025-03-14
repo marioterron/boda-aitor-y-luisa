@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { act } from "react";
 import Rsvp from "@/components/wedding/rsvp";
 import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
 import { useToast } from "@/hooks/use-toast";
@@ -36,13 +35,14 @@ describe("RSVP Form Integration", () => {
     });
 
     it("successfully submits a new RSVP for attending guest", async () => {
+      const user = userEvent.setup();
       render(<Rsvp />);
 
       // Fill out the form
-      await userEvent.type(screen.getByLabelText(/full name/i), "John Doe");
+      await user.type(screen.getByLabelText(/full name/i), "John Doe");
       const emailInput = screen.getByLabelText(/email/i);
-      await userEvent.type(emailInput, "john@example.com");
-      await userEvent.tab(); // Trigger blur event to validate email
+      await user.type(emailInput, "john@example.com");
+      await user.tab(); // Trigger blur event to validate email
 
       // Wait for email check
       await waitFor(() => {
@@ -50,23 +50,21 @@ describe("RSVP Form Integration", () => {
       });
 
       // Select attendance
-      await userEvent.click(screen.getByLabelText(/joyfully accepts/i));
+      await user.click(screen.getByLabelText(/joyfully accepts/i));
 
       // Additional fields appear
       const guestsInput = screen.getByLabelText(/number of additional guests/i);
       const dietaryInput = screen.getByLabelText(/dietary requirements/i);
 
-      await userEvent.type(guestsInput, "2");
-      await userEvent.type(dietaryInput, "No nuts please");
-      await userEvent.type(
+      await user.type(guestsInput, "2");
+      await user.type(dietaryInput, "No nuts please");
+      await user.type(
         screen.getByLabelText(/message/i),
         "Looking forward to it!"
       );
 
       // Submit form
-      await userEvent.click(
-        screen.getByRole("button", { name: /submit rsvp/i })
-      );
+      await user.click(screen.getByRole("button", { name: /submit rsvp/i }));
 
       // Verify API calls
       expect(createRsvp).toHaveBeenCalledWith({
@@ -89,13 +87,14 @@ describe("RSVP Form Integration", () => {
     });
 
     it("successfully submits a new RSVP for non-attending guest", async () => {
+      const user = userEvent.setup();
       render(<Rsvp />);
 
       // Fill out the form
-      await userEvent.type(screen.getByLabelText(/full name/i), "Jane Doe");
+      await user.type(screen.getByLabelText(/full name/i), "Jane Doe");
       const emailInput = screen.getByLabelText(/email/i);
-      await userEvent.type(emailInput, "jane@example.com");
-      await userEvent.tab(); // Trigger blur event
+      await user.type(emailInput, "jane@example.com");
+      await user.tab(); // Trigger blur event
 
       // Wait for email check
       await waitFor(() => {
@@ -103,16 +102,14 @@ describe("RSVP Form Integration", () => {
       });
 
       // Select attendance
-      await userEvent.click(screen.getByLabelText(/regretfully declines/i));
+      await user.click(screen.getByLabelText(/regretfully declines/i));
 
       // Submit form with message
-      await userEvent.type(
+      await user.type(
         screen.getByLabelText(/message/i),
         "Sorry I can't make it"
       );
-      await userEvent.click(
-        screen.getByRole("button", { name: /submit rsvp/i })
-      );
+      await user.click(screen.getByRole("button", { name: /submit rsvp/i }));
 
       // Verify API calls
       expect(createRsvp).toHaveBeenCalledWith({
@@ -134,12 +131,11 @@ describe("RSVP Form Integration", () => {
     });
 
     it("handles validation errors appropriately", async () => {
+      const user = userEvent.setup();
       render(<Rsvp />);
 
       // Submit without filling form
-      await userEvent.click(
-        screen.getByRole("button", { name: /submit rsvp/i })
-      );
+      await user.click(screen.getByRole("button", { name: /submit rsvp/i }));
 
       // Check validation errors
       expect(
@@ -161,13 +157,14 @@ describe("RSVP Form Integration", () => {
     });
 
     it("successfully updates an existing RSVP", async () => {
+      const user = userEvent.setup();
       render(<Rsvp />);
 
       // Fill out the form
-      await userEvent.type(screen.getByLabelText(/full name/i), "John Doe");
+      await user.type(screen.getByLabelText(/full name/i), "John Doe");
       const emailInput = screen.getByLabelText(/email/i);
-      await userEvent.type(emailInput, "john@example.com");
-      await userEvent.tab(); // Trigger blur event
+      await user.type(emailInput, "john@example.com");
+      await user.tab(); // Trigger blur event
 
       // Wait for email check and notification
       await waitFor(() => {
@@ -181,16 +178,14 @@ describe("RSVP Form Integration", () => {
       });
 
       // Update attendance
-      await userEvent.click(screen.getByLabelText(/regretfully declines/i));
-      await userEvent.type(
+      await user.click(screen.getByLabelText(/regretfully declines/i));
+      await user.type(
         screen.getByLabelText(/would you like to send a message/i),
         "Plans changed, sorry!"
       );
 
       // Submit update
-      await userEvent.click(
-        screen.getByRole("button", { name: /update rsvp/i })
-      );
+      await user.click(screen.getByRole("button", { name: /update rsvp/i }));
 
       // Verify API calls
       expect(updateRsvp).toHaveBeenCalledWith("john@example.com", {
@@ -214,18 +209,15 @@ describe("RSVP Form Integration", () => {
 
   describe("Error Handling", () => {
     it("handles API errors gracefully", async () => {
+      const user = userEvent.setup();
       (checkEmailExists as jest.Mock).mockRejectedValue(new Error("API Error"));
 
-      await act(async () => {
-        render(<Rsvp />);
-      });
+      render(<Rsvp />);
 
       // Fill out email and trigger check
-      await act(async () => {
-        const emailInput = screen.getByLabelText(/email/i);
-        await userEvent.type(emailInput, "error@example.com");
-        await userEvent.tab(); // Trigger blur event
-      });
+      const emailInput = screen.getByLabelText(/email/i);
+      await user.type(emailInput, "error@example.com");
+      await user.tab(); // Trigger blur event
 
       // Wait for error notification
       await waitFor(() => {
@@ -238,32 +230,22 @@ describe("RSVP Form Integration", () => {
     });
 
     it("handles submission errors gracefully", async () => {
+      const user = userEvent.setup();
       (checkEmailExists as jest.Mock).mockResolvedValue(false);
       (createRsvp as jest.Mock).mockRejectedValue(
         new Error("Submission Error")
       );
 
-      await act(async () => {
-        render(<Rsvp />);
-      });
+      render(<Rsvp />);
 
       // Fill out form
-      await act(async () => {
-        await userEvent.type(screen.getByLabelText(/full name/i), "John Doe");
-        const emailInput = screen.getByLabelText(/email/i);
-        await userEvent.type(emailInput, "john@example.com");
-        await userEvent.tab(); // Trigger blur event
-      });
+      await user.type(screen.getByLabelText(/full name/i), "John Doe");
+      const emailInput = screen.getByLabelText(/email/i);
+      await user.type(emailInput, "john@example.com");
+      await user.tab(); // Trigger blur event
 
-      await act(async () => {
-        await userEvent.click(screen.getByLabelText(/joyfully accepts/i));
-      });
-
-      await act(async () => {
-        await userEvent.click(
-          screen.getByRole("button", { name: /submit rsvp/i })
-        );
-      });
+      await user.click(screen.getByLabelText(/joyfully accepts/i));
+      await user.click(screen.getByRole("button", { name: /submit rsvp/i }));
 
       // Verify error notification
       await waitFor(() => {

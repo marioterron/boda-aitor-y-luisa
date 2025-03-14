@@ -1,8 +1,5 @@
-// Ensure React is in development mode
-process.env.NODE_ENV = 'development'
-
-// Configure React act warnings
-global.IS_REACT_ACT_ENVIRONMENT = true
+// Increase timeout for async operations
+jest.setTimeout(10000)
 
 import '@testing-library/jest-dom'
 import { TextDecoder, TextEncoder } from 'util'
