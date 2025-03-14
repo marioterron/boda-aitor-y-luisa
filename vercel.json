@@ -1,0 +1,5 @@
+
+{
+    "buildCommand": "npm run test && next build",
+    "framework": "nextjs"
+  }
