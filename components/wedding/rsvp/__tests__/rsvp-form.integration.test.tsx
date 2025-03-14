@@ -216,12 +216,16 @@ describe("RSVP Form Integration", () => {
     it("handles API errors gracefully", async () => {
       (checkEmailExists as jest.Mock).mockRejectedValue(new Error("API Error"));
 
-      render(<Rsvp />);
+      await act(async () => {
+        render(<Rsvp />);
+      });
 
       // Fill out email and trigger check
-      const emailInput = screen.getByLabelText(/email/i);
-      await userEvent.type(emailInput, "error@example.com");
-      await userEvent.tab(); // Trigger blur event
+      await act(async () => {
+        const emailInput = screen.getByLabelText(/email/i);
+        await userEvent.type(emailInput, "error@example.com");
+        await userEvent.tab(); // Trigger blur event
+      });
 
       // Wait for error notification
       await waitFor(() => {
@@ -239,18 +243,27 @@ describe("RSVP Form Integration", () => {
         new Error("Submission Error")
       );
 
-      render(<Rsvp />);
+      await act(async () => {
+        render(<Rsvp />);
+      });
 
       // Fill out form
-      await userEvent.type(screen.getByLabelText(/full name/i), "John Doe");
-      const emailInput = screen.getByLabelText(/email/i);
-      await userEvent.type(emailInput, "john@example.com");
-      await userEvent.tab(); // Trigger blur event
+      await act(async () => {
+        await userEvent.type(screen.getByLabelText(/full name/i), "John Doe");
+        const emailInput = screen.getByLabelText(/email/i);
+        await userEvent.type(emailInput, "john@example.com");
+        await userEvent.tab(); // Trigger blur event
+      });
 
-      await userEvent.click(screen.getByLabelText(/joyfully accepts/i));
-      await userEvent.click(
-        screen.getByRole("button", { name: /submit rsvp/i })
-      );
+      await act(async () => {
+        await userEvent.click(screen.getByLabelText(/joyfully accepts/i));
+      });
+
+      await act(async () => {
+        await userEvent.click(
+          screen.getByRole("button", { name: /submit rsvp/i })
+        );
+      });
 
       // Verify error notification
       await waitFor(() => {

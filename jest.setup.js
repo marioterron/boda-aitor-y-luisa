@@ -1,6 +1,9 @@
 // Ensure React is in development mode
 process.env.NODE_ENV = 'development'
 
+// Configure React act warnings
+global.IS_REACT_ACT_ENVIRONMENT = true
+
 import '@testing-library/jest-dom'
 import { TextDecoder, TextEncoder } from 'util'
 
