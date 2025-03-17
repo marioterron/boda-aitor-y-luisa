@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/services/supabase/client";
 import type { RsvpApiData } from "@/lib/types/rsvp";
+import { sendRsvpConfirmation } from "@/lib/services/email";
 
 export async function checkEmailExists(email: string): Promise<boolean> {
   const { count, error } = await supabase
@@ -16,6 +17,8 @@ export async function createRsvp(rsvpData: RsvpApiData): Promise<void> {
   const { error } = await supabase.from("rsvps").insert([rsvpData]);
 
   if (error) throw error;
+
+  await sendRsvpConfirmation(rsvpData);
 }
 
 export async function updateRsvp(
@@ -29,4 +32,6 @@ export async function updateRsvp(
     .single();
 
   if (error) throw error;
+
+  await sendRsvpConfirmation(rsvpData);
 }
