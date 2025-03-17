@@ -1,6 +1,14 @@
 import type { RsvpApiData } from "@/lib/types/rsvp";
 
-export async function sendRsvpConfirmation(rsvpData: RsvpApiData) {
+interface EmailResponse {
+  success: boolean;
+  messageId?: string;
+  error?: string;
+}
+
+export async function sendRsvpConfirmation(
+  rsvpData: RsvpApiData
+): Promise<EmailResponse> {
   try {
     const response = await fetch("/api/rsvp/email", {
       method: "POST",
@@ -10,13 +18,19 @@ export async function sendRsvpConfirmation(rsvpData: RsvpApiData) {
       body: JSON.stringify(rsvpData),
     });
 
-    if (!response.ok) {
-      throw new Error("Failed to send email");
+    const data: EmailResponse = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || "Failed to send email");
     }
 
-    return await response.json();
+    return data;
   } catch (error) {
     console.error("Error sending email:", error);
-    throw error;
+    return {
+      success: false,
+      error:
+        error instanceof Error ? error.message : "An unexpected error occurred",
+    };
   }
 }
