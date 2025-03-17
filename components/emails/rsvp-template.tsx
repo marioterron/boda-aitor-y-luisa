@@ -5,7 +5,6 @@ import {
   Body,
   Container,
   Text,
-  Link,
   Hr,
 } from "@react-email/components";
 
