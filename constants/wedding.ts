@@ -13,10 +13,10 @@ export const WEDDING_DETAILS = {
   },
 
   venue: {
-    name: "Dunhaven Castle",
-    type: "Hotel & Restaurant",
-    location: "Glencairn Road County",
-    city: "Kerry",
-    country: "Ireland",
+    name: "La Joia",
+    type: "Espai d'esdeveniments",
+    location: "Llambilles",
+    city: "Girona",
+    country: "España",
   },
 } as const;
