@@ -58,7 +58,8 @@ export async function POST(request: Request) {
         : "Thank you for your RSVP";
 
     const data = await resend.emails.send({
-      from: "Aitor & Luisa <wedding@resend.dev>",
+      from:
+        process.env.NEXT_PUBLIC_RESEND_FROM_EMAIL || "onboarding@resend.dev",
       replyTo: "aitorluisa@gmail.com",
       to: email,
       subject,
