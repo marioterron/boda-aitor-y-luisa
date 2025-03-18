@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-
 import Footer from "@/components/wedding/footer";
 import Navigation from "@/components/wedding/navigation";
 import OurStory from "@/components/wedding/our-story";
