@@ -12,7 +12,7 @@ export function DesktopLayout() {
         <div className="relative w-full">
           <Date />
           <HeroImage
-            src="/images/image-center.jpg"
+            src="/images/image-center.jpeg"
             alt="Main wedding photo"
             priority
           />
