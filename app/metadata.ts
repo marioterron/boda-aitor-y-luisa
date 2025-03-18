@@ -9,7 +9,7 @@ export const homeMetadata: Metadata = {
     description: `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on September 6th, 2025 at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.city}, ${WEDDING_DETAILS.venue.country}.`,
     images: [
       {
-        url: "/images/image-center.jpeg",
+        url: "/images/image-center.jpg",
         width: 1200,
         height: 630,
         alt: `${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2}'s Wedding Invitation`,
