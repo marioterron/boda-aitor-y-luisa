@@ -30,12 +30,6 @@ export default function Location() {
             <p className="uppercase text-xs tracking-wider">Girona, España</p>
           </div>
         </div>
-
-        <div className="mt-8 flex justify-center">
-          <button className="bg-black text-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors">
-            Travel & Stay
-          </button>
-        </div>
       </div>
     </section>
   );
