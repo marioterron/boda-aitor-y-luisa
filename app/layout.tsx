@@ -1,9 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { WEDDING_DETAILS } from "@/constants/wedding";
+import { formatWeddingDate } from "@/utils/date";
 
-const weddingDate = "2025-09-06";
-const weddingDescription = `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on September 6th, 2025 at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.city}, ${WEDDING_DETAILS.venue.country}.`;
+const weddingDate = formatWeddingDate("ISO");
+const weddingDescription = `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on ${formatWeddingDate()} at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.location}, ${WEDDING_DETAILS.venue.city}.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aitoryluisa.com"),
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/image-center.jpg",
         width: 1200,
         height: 630,
         alt: `${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2}'s Wedding Invitation`,
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${WEDDING_DETAILS.couple.person1} & ${WEDDING_DETAILS.couple.person2}'s Wedding`,
     description: weddingDescription,
-    images: ["/images/og-image.jpg"],
+    images: ["/images/image-center.jpg"],
   },
   alternates: {
     canonical: "/",

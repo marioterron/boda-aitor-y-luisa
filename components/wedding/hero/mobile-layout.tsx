@@ -8,7 +8,7 @@ export function MobileLayout() {
       <Date />
       <div className="w-full">
         <HeroImage
-          src="/images/image-center.jpeg"
+          src="/images/image-center.jpg"
           alt="Main wedding photo"
           priority
         />
