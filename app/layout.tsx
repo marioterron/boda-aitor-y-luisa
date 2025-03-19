@@ -1,9 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { WEDDING_DETAILS } from "@/constants/wedding";
+import { formatWeddingDate } from "@/utils/date";
 
-const weddingDate = "2025-09-06";
-const weddingDescription = `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on September 6th, 2025 at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.city}, ${WEDDING_DETAILS.venue.country}.`;
+const weddingDate = formatWeddingDate("ISO");
+const weddingDescription = `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on ${formatWeddingDate()} at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.city}, ${WEDDING_DETAILS.venue.country}.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aitoryluisa.com"),

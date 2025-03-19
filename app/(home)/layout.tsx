@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import { WEDDING_DETAILS } from "@/constants/wedding";
+import { formatWeddingDate } from "@/utils/date";
 
 export const metadata: Metadata = {
-  title: `${WEDDING_DETAILS.couple.person1} & ${WEDDING_DETAILS.couple.person2}'s Wedding - September 6th, 2025`,
-  description: `You're invited to celebrate the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on September 6th, 2025 at ${WEDDING_DETAILS.venue.name}. Join us for this special celebration of love in ${WEDDING_DETAILS.venue.city}, ${WEDDING_DETAILS.venue.country}.`,
+  title: `${WEDDING_DETAILS.couple.person1} & ${WEDDING_DETAILS.couple.person2}'s Wedding - ${formatWeddingDate()}`,
+  description: `You're invited to celebrate the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on ${formatWeddingDate()} at ${WEDDING_DETAILS.venue.name}. Join us for this special celebration of love in ${WEDDING_DETAILS.venue.city}, ${WEDDING_DETAILS.venue.country}.`,
   openGraph: {
     title: `${WEDDING_DETAILS.couple.person1} & ${WEDDING_DETAILS.couple.person2}'s Wedding`,
     description: `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on September 6th, 2025 at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.city}, ${WEDDING_DETAILS.venue.country}.`,
