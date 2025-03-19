@@ -6,10 +6,10 @@ export const WEDDING_DETAILS = {
     person2: "Luisa",
   },
   schedule: {
-    ceremony: "12:00",
-    cocktail: "13:00",
-    dinner: "14:00",
-    dancing: "18:00",
+    ceremony: "17:00",
+    cocktail: "18:00",
+    dinner: "20:30",
+    dancing: "23:00",
   },
 
   venue: {

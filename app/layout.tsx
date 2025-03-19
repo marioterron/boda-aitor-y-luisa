@@ -4,7 +4,7 @@ import { WEDDING_DETAILS } from "@/constants/wedding";
 import { formatWeddingDate } from "@/utils/date";
 
 const weddingDate = formatWeddingDate("ISO");
-const weddingDescription = `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on ${formatWeddingDate()} at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.city}, ${WEDDING_DETAILS.venue.country}.`;
+const weddingDescription = `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on ${formatWeddingDate()} at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.location}, ${WEDDING_DETAILS.venue.city}.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aitoryluisa.com"),
