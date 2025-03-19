@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on ${formatWeddingDate()} at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.location}, ${WEDDING_DETAILS.venue.city}.`,
     images: [
       {
-        url: "/images/image-center.jpeg",
+        url: "/images/image-center.jpg",
         width: 1200,
         height: 630,
         alt: `${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2}'s Wedding Invitation`,
