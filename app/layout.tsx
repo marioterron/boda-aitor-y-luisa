@@ -1,5 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { WEDDING_DETAILS } from "@/constants/wedding";
 import { formatWeddingDate } from "@/utils/date";
 
@@ -119,6 +121,8 @@ export default function RootLayout({
         />
       </head>
       <body>{children}</body>
+      <Analytics />
+      <SpeedInsights />
     </html>
   );
 }
