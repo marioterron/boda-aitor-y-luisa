@@ -6,7 +6,7 @@ const weddingDate = "2025-09-06";
 const weddingDescription = `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on September 6th, 2025 at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.city}, ${WEDDING_DETAILS.venue.country}.`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://boda-aitor-y-luisa.vercel.app"),
+  metadataBase: new URL("https://aitoryluisa.com"),
   title: {
     default: `${WEDDING_DETAILS.couple.person1} & ${WEDDING_DETAILS.couple.person2}'s Wedding`,
     template: `%s | ${WEDDING_DETAILS.couple.person1} & ${WEDDING_DETAILS.couple.person2}'s Wedding`,
