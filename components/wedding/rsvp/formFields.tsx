@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import type { RsvpFormValues } from "@/hooks/use-rsvp-form";
 
 import { AttendanceField } from "./fields/attendance-field";
@@ -26,34 +27,31 @@ export function RsvpFormFields({
   isChecking,
   emailExists,
 }: RsvpFormFieldsProps) {
+  const t = useTranslations("rsvp.form");
   const isAttending = formData.attendance === "attending";
 
   return (
     <>
       <FormField
-        label="Full Name"
+        label={t("fullName.label")}
         name="fullName"
         value={formData.fullName}
         onChange={handleInputChange}
         error={errors.fullName}
-        placeholder="Enter your full name"
+        placeholder={t("fullName.placeholder")}
       />
 
       <FormField
-        label="Email"
+        label={t("email.label")}
         name="email"
         type="email"
         value={formData.email}
         onChange={handleInputChange}
         onBlur={handleEmailBlur}
         error={errors.email}
-        placeholder="Enter your email"
+        placeholder={t("email.placeholder")}
         isLoading={isChecking}
-        hint={
-          emailExists
-            ? "This email has already submitted an RSVP. Submitting again will update your previous response."
-            : undefined
-        }
+        hint={emailExists ? t("email.exists") : undefined}
       />
 
       <AttendanceField
@@ -70,12 +68,12 @@ export function RsvpFormFields({
             error={errors.guests}
           />
           <TextAreaField
-            label="Dietary Requirements"
+            label={t("dietary.label")}
             name="dietaryRequirements"
             value={formData.dietaryRequirements ?? ""}
             onChange={handleInputChange}
             error={errors.dietaryRequirements}
-            placeholder="Please let us know of any dietary requirements"
+            placeholder={t("dietary.placeholder")}
           />
         </>
       )}
@@ -83,8 +81,8 @@ export function RsvpFormFields({
       <TextAreaField
         label={
           isAttending
-            ? "Message (Optional)"
-            : "Would you like to send a message?"
+            ? t("message.attending.label")
+            : t("message.notAttending.label")
         }
         name="message"
         value={formData.message ?? ""}
@@ -92,8 +90,8 @@ export function RsvpFormFields({
         error={errors.message}
         placeholder={
           isAttending
-            ? "Leave a message for the couple"
-            : "We'll miss you! Feel free to leave a message for the couple"
+            ? t("message.attending.placeholder")
+            : t("message.notAttending.placeholder")
         }
       />
     </>

@@ -40,11 +40,34 @@
     },
     "description": "We would be honored to have you join us in celebrating our wedding. Please let us know if you'll be able to attend by filling out the form below.",
     "form": {
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email",
+        "exists": "This email has already submitted an RSVP. Submitting again will update your previous response."
+      },
       "attendance": {
         "label": "Will you be attending?",
         "options": {
           "attending": "Joyfully Accepts",
           "notAttending": "Regretfully Declines"
+        }
+      },
+      "dietary": {
+        "label": "Dietary Requirements",
+        "placeholder": "Please let us know of any dietary requirements"
+      },
+      "message": {
+        "attending": {
+          "label": "Message (Optional)",
+          "placeholder": "Leave a message for the couple"
+        },
+        "notAttending": {
+          "label": "Would you like to send a message?",
+          "placeholder": "We'll miss you! Feel free to leave a message for the couple"
         }
       },
       "submit": {
