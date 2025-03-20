@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { WEDDING_DETAILS } from "@/constants/wedding";
 import { formatWeddingDate } from "@/utils/date";
+import { NextIntlClientProvider } from "next-intl";
+import messages from "@/messages/es.json";
 
 const weddingDate = formatWeddingDate("ISO");
 const weddingDescription = `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.person1} and ${WEDDING_DETAILS.couple.person2} on ${formatWeddingDate()} at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.location}, ${WEDDING_DETAILS.venue.city}.`;
@@ -90,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script
@@ -120,9 +122,17 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>{children}</body>
-      <Analytics />
-      <SpeedInsights />
+      <body>
+        <NextIntlClientProvider
+          locale="es"
+          messages={messages}
+          timeZone="Europe/Madrid"
+        >
+          {children}
+        </NextIntlClientProvider>
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
