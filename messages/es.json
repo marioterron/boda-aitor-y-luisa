@@ -81,40 +81,40 @@
   "faqs": {
     "categories": {
       "dressCode": {
-        "title": "DRESS CODE",
+        "title": "Dress Code",
         "questions": {
           "meaning": {
-            "question": "WHAT DOES 'FORMAL ATTIRE' MEAN?",
+            "question": "What does 'formal attire' mean?",
             "answer": "Formal attire typically includes elegant gowns, suits, tuxedos, or cocktail dresses. Think of it as dressing for a special occasion, similar to what you might wear to a sophisticated evening event."
           },
           "colors": {
-            "question": "ARE SPECIFIC COLORS REQUIRED FOR THE DRESS CODE?",
+            "question": "Are specific colors required for the dress code?",
             "answer": "No, there are no specific color requirements. Feel free to express your personal style and wear colors that make you feel comfortable and confident."
           }
         }
       },
       "children": {
-        "title": "CHILDREN",
+        "title": "Children",
         "questions": {
           "welcome": {
-            "question": "ARE CHILDREN WELCOME AT THE WEDDING?",
+            "question": "Are children welcome at the wedding?",
             "answer": "Absolutely! We welcome children and have arranged for a designated kids' area with entertainment to ensure they have a great time during the celebration."
           },
           "ageLimit": {
-            "question": "IS THERE A SPECIFIC AGE LIMIT FOR CHILDREN ATTENDING?",
+            "question": "Is there a specific age limit for children attending?",
             "answer": "There's no age limit for children. We want the whole family to be a part of our special day, from the littlest ones to the oldest."
           }
         }
       },
       "foodOptions": {
-        "title": "FOOD OPTIONS",
+        "title": "Food Options",
         "questions": {
           "dietary": {
-            "question": "DO YOU ACCOMMODATE DIETARY RESTRICTIONS?",
+            "question": "Do you accommodate dietary restrictions?",
             "answer": "Yes, we're committed to ensuring that all our guests have a delightful dining experience. We offer vegan, vegetarian, and gluten-free food options. Please indicate your dietary preferences in your RSVP, and we'll make sure you're catered to accordingly."
           },
           "requests": {
-            "question": "CAN WE REQUEST SPECIFIC DISHES FOR DIETARY RESTRICTIONS?",
+            "question": "Can we request specific dishes for dietary restrictions?",
             "answer": "While we'll have a variety of dishes to accommodate different dietary needs, if you have specific requests or severe allergies, please let us know in advance, and we'll do our best to accommodate them."
           }
         }
