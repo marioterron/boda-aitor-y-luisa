@@ -4,6 +4,7 @@ import { WEDDING_DETAILS } from "@/constants/wedding";
 
 export function OurStoryContent() {
   const t = useTranslations("ourStory.content");
+  const commonT = useTranslations("common.images");
 
   return (
     <section className="container mx-auto px-4 pb-16 max-w-7xl">
@@ -12,7 +13,7 @@ export function OurStoryContent() {
           <div className="relative aspect-[4/5] w-full">
             <Image
               src="/images/story/main.jpeg"
-              alt="Aitor and Luisa with their dogs"
+              alt={commonT("couple.mainImage")}
               fill
               className="object-cover grayscale"
               priority
@@ -26,7 +27,7 @@ export function OurStoryContent() {
               <div className="relative aspect-square w-full">
                 <Image
                   src="/images/story/couple-1.jpeg"
-                  alt="Aitor and Luisa walking"
+                  alt={commonT("couple.firstImage")}
                   fill
                   className="object-cover grayscale"
                 />
@@ -34,7 +35,7 @@ export function OurStoryContent() {
               <div className="relative aspect-square w-full">
                 <Image
                   src="/images/story/couple-2.jpeg"
-                  alt="Aitor and Luisa with their dogs"
+                  alt={commonT("couple.secondImage")}
                   fill
                   className="object-cover grayscale"
                 />
@@ -58,7 +59,7 @@ export function OurStoryContent() {
           <div className="relative aspect-[16/9] w-full mt-24">
             <Image
               src="/images/story/couple-3.jpeg"
-              alt="Black and white photo with dogs"
+              alt={commonT("couple.thirdImage")}
               fill
               className="object-cover grayscale"
             />
@@ -78,7 +79,7 @@ export function OurStoryContent() {
         <div className="relative aspect-square w-full">
           <Image
             src="/images/story/couple-4.jpeg"
-            alt="Intimate moment"
+            alt={commonT("couple.fourthImage")}
             fill
             className="object-cover grayscale rounded-lg"
           />

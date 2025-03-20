@@ -138,14 +138,15 @@
     "images": {
       "wedding": {
         "fabric": "Wedding fabric background",
-        "moment": "Wedding moment",
-        "main": "Main wedding photo"
+        "moment": "Aitor and Luisa kissing each other",
+        "main": "Luisa kissing Aitor and showing her engagement ring"
       },
       "couple": {
-        "withDogs": "Aitor and Luisa with their dogs",
-        "walking": "Aitor and Luisa walking",
-        "blackAndWhite": "Black and white photo with dogs",
-        "intimate": "Intimate moment"
+        "mainImage": "Luisa holding Aitor's face and kissing him",
+        "firstImage": "Aitor hugging Luisa",
+        "secondImage": "Aitor kissing Luisa",
+        "thirdImage": "Aitor hand holding Luisa's hand with a ring",
+        "fourthImage": "Luisa holding Aitor's hand"
       },
       "dressCode": "Formal attire inspiration",
       "faqs": "FAQs section image",
