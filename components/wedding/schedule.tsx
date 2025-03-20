@@ -1,14 +1,16 @@
+import { useTranslations } from "next-intl";
 import { WEDDING_DETAILS } from "@/constants/wedding";
 import { formatTime } from "@/utils/date";
 
 export default function Schedule() {
+  const t = useTranslations("schedule");
   const { schedule } = WEDDING_DETAILS;
 
   const scheduleItems = [
-    { time: schedule.ceremony, label: "CEREMONY" },
-    { time: schedule.cocktail, label: "COCKTAIL" },
-    { time: schedule.dinner, label: "DINNER" },
-    { time: schedule.dancing, label: "DANCING & FIREWORKS" },
+    { time: schedule.ceremony, key: "ceremony" },
+    { time: schedule.cocktail, key: "cocktail" },
+    { time: schedule.dinner, key: "dinner" },
+    { time: schedule.dancing, key: "dancing" },
   ];
 
   return (
@@ -25,20 +27,20 @@ export default function Schedule() {
       <div className="relative z-10 text-white py-32 px-4 w-full">
         <div className="max-w-6xl mx-auto text-center">
           <h3 className="text-sm uppercase tracking-[0.2em] mb-8">
-            HERE'S A SNEAK PEEK OF
+            {t("title.preHeading")}
           </h3>
 
-          <h2 className="font-serif text-5xl md:text-6xl mb-24 leading-tight">
-            OUR SPECIAL DAY'S
-            <br />
-            SCHEDULE
+          <h2 className="font-serif text-5xl md:text-6xl mb-24 leading-tight uppercase">
+            {t("title.heading")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
-            {scheduleItems.map(({ time, label }) => (
-              <div key={label}>
+            {scheduleItems.map(({ time, key }) => (
+              <div key={key}>
                 <h4 className="font-serif text-4xl mb-4">{formatTime(time)}</h4>
-                <p className="uppercase text-sm tracking-[0.2em]">{label}</p>
+                <p className="uppercase text-sm tracking-[0.2em]">
+                  {t(`events.${key}`)}
+                </p>
               </div>
             ))}
           </div>
