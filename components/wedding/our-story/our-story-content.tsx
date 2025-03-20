@@ -1,6 +1,10 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { WEDDING_DETAILS } from "@/constants/wedding";
 
 export function OurStoryContent() {
+  const t = useTranslations("ourStory.content");
+
   return (
     <section className="container mx-auto px-4 pb-16 max-w-7xl">
       <div className="relative max-w-7xl mx-auto px-4">
@@ -16,10 +20,7 @@ export function OurStoryContent() {
           </div>
           <div className="space-y-12 flex flex-col justify-center h-full">
             <p className="text-gray-700 leading-relaxed text-md md:text-lg">
-              Our journey began like any other day. Two paths converging at the
-              crossroads of life. In a city filled with countless faces, it was
-              a seemingly ordinary moment that sparked our extraordinary love
-              story.
+              {t("text1")}
             </p>
             <div className="grid grid-cols-2 gap-6">
               <div className="relative aspect-square w-full">
@@ -41,18 +42,17 @@ export function OurStoryContent() {
             </div>
           </div>
         </div>
-        <h2 className="font-serif text-[40px] sm:text-[60px] md:text-[100px] lg:text-[120px] text-gray-200 tracking-wider text-center leading-none md:absolute w-full z-20 md:-bottom-14">
-          AITOR & LUISA
+        <h2 className="uppercase font-serif text-[40px] sm:text-[60px] md:text-[100px] lg:text-[120px] text-gray-200 tracking-wider text-center leading-none md:absolute w-full z-20 md:-bottom-14">
+          {t("coupleNames", {
+            couple: `${WEDDING_DETAILS.couple.person1} & ${WEDDING_DETAILS.couple.person2}`,
+          })}
         </h2>
       </div>
       <div className="max-w-7xl mx-auto px-4 mt-16 md:mt-32">
         <div className="max-w-5xl mx-auto mb-24">
           <div className="max-w-3xl mx-auto space-y-8">
             <p className="text-gray-700 leading-relaxed text-md md:text-lg text-center">
-              Our love story wouldn't be complete without mentioning our two
-              loyal Dalmatian dogs, Max and Bella. They've been with us through
-              thick and thin, bringing joy and laughter to our lives with their
-              spots and wagging tails.
+              {t("text2")}
             </p>
           </div>
           <div className="relative aspect-[16/9] w-full mt-24">
@@ -67,15 +67,11 @@ export function OurStoryContent() {
       </div>
       <div className="max-w-3xl mx-auto space-y-8">
         <p className="text-gray-700 leading-relaxed text-md md:text-lg text-center">
-          Together, we faced life's challenges head-on, learning from each
-          obstacle and celebrating each triumph. Our love and bond only grew
-          stronger with time.
+          {t("text3")}
         </p>
 
         <p className="text-gray-700 leading-relaxed text-md md:text-lg text-center">
-          Today, as we stand on the precipice of our new chapter, we are excited
-          to write the rest of our story together. Our love has deepened, our
-          adventures have multiplied, and our hearts are forever entwined.
+          {t("text4")}
         </p>
       </div>
       <div className="max-w-xl mx-auto mt-16 md:mt-24">
