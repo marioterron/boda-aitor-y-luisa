@@ -11,9 +11,7 @@ export default function FAQs() {
           <div className="absolute inset-0 bg-black/20" />
           <div className="container mx-auto px-4 h-full flex items-center justify-center relative">
             <h1 className="text-5xl md:text-6xl font-serif text-white text-center uppercase">
-              FREQUENTLY ASKED
-              <br />
-              QUESTIONS
+              {t("title")}
             </h1>
           </div>
         </div>

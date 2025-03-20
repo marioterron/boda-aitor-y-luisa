@@ -79,6 +79,12 @@
     }
   },
   "faqs": {
+    "title": "Frequently Asked Questions",
+    "home": {
+      "title": "FAQs",
+      "description": "Got questions? We've got answers! Check out our FAQs for everything you need to know about our special day.",
+      "button": "FAQs"
+    },
     "categories": {
       "dressCode": {
         "title": "Dress Code",
@@ -119,6 +125,13 @@
           }
         }
       }
+    }
+  },
+  "dressCode": {
+    "home": {
+      "title": "Dress Code",
+      "description": "For this grand celebration of love, we kindly request that you embrace the elegance of the occasion by wearing formal attire.",
+      "button": "Details"
     }
   }
 }
