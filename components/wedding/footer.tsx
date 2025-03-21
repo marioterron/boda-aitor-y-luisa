@@ -1,4 +1,6 @@
 import { Heart, ArrowUp } from "lucide-react";
+import { useTranslations } from "next-intl";
+
 import { Button } from "@/components/ui/button";
 
 export default function Footer({
@@ -6,6 +8,7 @@ export default function Footer({
 }: {
   hideBorder?: boolean;
 }) {
+  const t = useTranslations("footer");
   const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
@@ -24,18 +27,18 @@ export default function Footer({
           }`}
         >
           <p className="flex items-center text-sm">
-            © {currentYear} • Made with{" "}
-            <Heart className="mx-2 w-4 h-4 text-white/60 animate-pulse" /> for
-            Aitor & Luisa
+            © {currentYear} • {t("madeWith")}
+            <Heart className="mx-2 h-4 w-4 animate-pulse text-white/60" /> for
+            {t("couple")}
           </p>
           <Button
             variant="ghost"
             size="sm"
             onClick={scrollToTop}
-            className="hidden md:flex text-white/60 hover:text-white hover:bg-transparent group"
+            className="group hidden text-white/60 hover:bg-transparent hover:text-white md:flex"
           >
-            Back to Top
-            <ArrowUp className="ml-2 w-4 h-4 group-hover:animate-bounce" />
+            {t("backToTop")}
+            <ArrowUp className="ml-2 h-4 w-4 group-hover:animate-bounce" />
           </Button>
         </div>
       </div>
