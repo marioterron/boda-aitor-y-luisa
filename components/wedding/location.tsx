@@ -18,7 +18,6 @@ export default function Location() {
               {t("venue.type")}
             </p>
           </div>
-
           <div className="w-[80%] mx-auto md:col-span-3 order-1 md:order-2">
             <img
               src="/images/location.jpg"
@@ -26,7 +25,6 @@ export default function Location() {
               className="w-full aspect-[3/4] object-cover grayscale"
             />
           </div>
-
           <div className="text-center md:col-span-1 order-3">
             <h3 className="uppercase text-sm font-medium tracking-wider">
               {t("address.city")}

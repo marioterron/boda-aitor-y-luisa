@@ -23,17 +23,14 @@ export default function Schedule() {
         />
         <div className="absolute inset-0 bg-black opacity-70"></div>
       </div>
-
       <div className="relative z-10 text-white py-32 px-4 w-full">
         <div className="max-w-6xl mx-auto text-center">
           <h3 className="text-sm uppercase tracking-[0.2em] mb-8">
             {t("title.preHeading")}
           </h3>
-
           <h2 className="font-serif text-5xl md:text-6xl mb-24 leading-tight uppercase">
             {t("title.heading")}
           </h2>
-
           <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
             {scheduleItems.map(({ time, key }) => (
               <div key={key}>

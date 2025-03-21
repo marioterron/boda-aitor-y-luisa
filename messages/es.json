@@ -24,6 +24,13 @@
       "dancing": "DANCING & FIREWORKS"
     }
   },
+  "countdown": {
+    "title": "Let the countdown begin",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
+  },
   "location": {
     "title": "Location",
     "venue": {
