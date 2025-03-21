@@ -230,5 +230,15 @@
       "heading": "OUR SPECIAL DAY'S SCHEDULE",
       "preHeading": "HERE'S A SNEAK PEEK OF"
     }
+  },
+  "validation": {
+    "rsvp": {
+      "errors": {
+        "nameLength": "Name must be at least 2 characters",
+        "invalidEmail": "Please enter a valid email address",
+        "attendanceRequired": "Please select your attendance status",
+        "maxGuests": "Maximum 4 additional guests allowed"
+      }
+    }
   }
 }
