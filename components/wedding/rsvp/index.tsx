@@ -40,18 +40,18 @@ export default function Rsvp() {
   return (
     <section
       id="rsvp-section"
-      className="relative min-h-[80vh] flex items-center justify-center bg-black text-white py-32"
+      className="relative flex min-h-[80vh] items-center justify-center bg-black py-32 text-white"
     >
       <Toaster />
-      <div className="relative z-10 w-full max-w-2xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h3 className="text-sm uppercase tracking-[0.2em] mb-4">
+      <div className="relative z-10 mx-auto w-full max-w-2xl px-4">
+        <div className="mb-16 text-center">
+          <h3 className="mb-4 text-sm uppercase tracking-[0.2em]">
             {t("title.preHeading")}
           </h3>
-          <h2 className="font-serif text-5xl md:text-6xl mb-6 uppercase">
+          <h2 className="mb-6 font-serif text-5xl uppercase md:text-6xl">
             {t("title.heading")}
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">{t("description")}</p>
+          <p className="mx-auto max-w-2xl text-gray-300">{t("description")}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -67,7 +67,7 @@ export default function Rsvp() {
 
           <Button
             type="submit"
-            className="w-full bg-black text-white border-2 border-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors disabled:opacity-50"
+            className="w-full border-2 border-white bg-black px-8 py-3 text-xs uppercase tracking-widest text-white transition-colors hover:bg-gray-900 disabled:opacity-50"
             disabled={isSubmitting}
           >
             {isSubmitting ? (

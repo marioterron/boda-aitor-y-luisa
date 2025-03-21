@@ -5,31 +5,31 @@ export default function Location() {
 
   return (
     <section className="py-32">
-      <div className="relative max-w-7xl mx-auto px-4">
-        <h2 className="uppercase font-serif text-[2.5rem] absolute w-full text-center z-20 -top-8">
+      <div className="relative mx-auto max-w-7xl px-4">
+        <h2 className="absolute -top-8 z-20 w-full text-center font-serif text-[2.5rem] uppercase">
           {t("title")}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-5 items-center gap-8 md:gap-16">
-          <div className="text-center md:col-span-1 order-2 md:order-1">
-            <h3 className="uppercase text-sm font-medium tracking-wider">
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-5 md:gap-16">
+          <div className="order-2 text-center md:order-1 md:col-span-1">
+            <h3 className="text-sm font-medium uppercase tracking-wider">
               {t("venue.name")}
             </h3>
-            <p className="uppercase text-xs tracking-wider">
+            <p className="text-xs uppercase tracking-wider">
               {t("venue.type")}
             </p>
           </div>
-          <div className="w-[80%] mx-auto md:col-span-3 order-1 md:order-2">
+          <div className="order-1 mx-auto w-[80%] md:order-2 md:col-span-3">
             <img
               src="/images/location.jpg"
               alt={t("venue.name")}
-              className="w-full aspect-[3/4] object-cover grayscale"
+              className="aspect-[3/4] w-full object-cover grayscale"
             />
           </div>
-          <div className="text-center md:col-span-1 order-3">
-            <h3 className="uppercase text-sm font-medium tracking-wider">
+          <div className="order-3 text-center md:col-span-1">
+            <h3 className="text-sm font-medium uppercase tracking-wider">
               {t("address.city")}
             </h3>
-            <p className="uppercase text-xs tracking-wider">
+            <p className="text-xs uppercase tracking-wider">
               {t("address.region")}
             </p>
           </div>

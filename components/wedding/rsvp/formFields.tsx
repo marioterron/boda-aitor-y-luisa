@@ -1,21 +1,21 @@
 import { useTranslations } from "next-intl";
-import type { RsvpFormValues } from "@/hooks/use-rsvp-form";
 
+import type { RsvpFormData } from "@/lib/types/rsvp";
 import { AttendanceField } from "./fields/attendance-field";
 import { FormField } from "./fields/form-field";
 import { GuestsField } from "./fields/guests-field";
 import { TextAreaField } from "./fields/text-area-field";
 
 interface RsvpFormFieldsProps {
-  readonly formData: RsvpFormValues;
-  readonly handleInputChange: (
+  formData: RsvpFormData;
+  handleInputChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  readonly handleEmailBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  readonly handleAttendanceChange: (value: string) => void;
-  readonly errors: Partial<Record<keyof RsvpFormValues, string>>;
-  readonly isChecking: boolean;
-  readonly emailExists: boolean;
+  handleEmailBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleAttendanceChange: (value: string) => void;
+  errors: Partial<Record<keyof RsvpFormData, string>>;
+  isChecking: boolean;
+  emailExists: boolean;
 }
 
 export function RsvpFormFields({

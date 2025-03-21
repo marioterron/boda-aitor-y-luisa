@@ -1,12 +1,12 @@
 import { Textarea } from "@/components/ui/textarea";
 
 interface TextAreaFieldProps {
-  readonly label: string;
-  readonly name: string;
-  readonly value: string;
-  readonly onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  readonly error?: string;
-  readonly placeholder?: string;
+  label: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  error?: string;
+  placeholder?: string;
 }
 
 export function TextAreaField({
@@ -28,9 +28,9 @@ export function TextAreaField({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="bg-white text-gray-900 border-gray-200 focus:border-gray-400 min-h-[100px]"
+        className="min-h-[100px] border-gray-200 bg-white text-gray-900 focus:border-gray-400"
       />
-      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
     </div>
   );
 }
