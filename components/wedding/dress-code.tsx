@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 export default function DressCode() {
   const router = useRouter();
   const t = useTranslations("dressCode.home");
+  const commonT = useTranslations("common.images");
 
   return (
     <div className="relative flex flex-col items-center">
@@ -13,7 +14,7 @@ export default function DressCode() {
       <div className="w-[80%]">
         <img
           src="/images/dress-code.jpg"
-          alt="Formal attire inspiration"
+          alt={commonT("dressCode")}
           className="aspect-[3/4] w-full object-cover grayscale"
         />
       </div>

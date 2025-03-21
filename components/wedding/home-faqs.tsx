@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 export default function HomeFAQs() {
   const router = useRouter();
   const t = useTranslations("faqs.home");
+  const commonT = useTranslations("common.images");
 
   return (
     <div className="relative flex flex-col items-center">
@@ -13,7 +14,7 @@ export default function HomeFAQs() {
       <div className="w-[80%]">
         <img
           src="/images/home-faqs.jpg"
-          alt="FAQs"
+          alt={commonT("faqs")}
           className="aspect-[3/4] w-full object-cover grayscale"
         />
       </div>

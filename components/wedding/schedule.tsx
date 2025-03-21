@@ -4,6 +4,7 @@ import { formatTime } from "@/utils/date";
 
 export default function Schedule() {
   const t = useTranslations("schedule");
+  const commonT = useTranslations("common.images");
   const { schedule } = WEDDING_DETAILS;
 
   const scheduleItems = [
@@ -18,7 +19,7 @@ export default function Schedule() {
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.squarespace-cdn.com/content/v1/66cb369992e60664dc8a4f5e/1724593821114-P83HW8YAAWROPH7G1KBQ/andres-molina-wIfDI58tCuU-unsplash.jpg"
-          alt="Wedding fabric background"
+          alt={commonT("wedding.fabric")}
           className="h-full w-full object-cover grayscale"
         />
         <div className="absolute inset-0 bg-black opacity-70"></div>
