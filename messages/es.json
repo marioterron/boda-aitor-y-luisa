@@ -109,7 +109,7 @@
   },
   "metadata": {
     "faqs": {
-      "description": "Important information about ${couple} wedding including dress code, venue details, and frequently asked questions.",
+      "description": "Important information about {couple} wedding including dress code, venue details, and frequently asked questions.",
       "title": "FAQs"
     },
     "home": {
@@ -117,7 +117,7 @@
       "title": "${couple} Wedding - ${date}"
     },
     "ourStory": {
-      "description": "The story of how ${couple} met and fell in love. Join us in celebrating our wedding journey.",
+      "description": "The story of how {couple} met and fell in love. Join us in celebrating our wedding journey.",
       "title": "Our Story"
     }
   },
