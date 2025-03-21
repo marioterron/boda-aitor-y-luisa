@@ -1,8 +1,10 @@
 {
   "navigation": {
-    "ourStory": "OUR STORY",
-    "dressCode": "DRESS CODE",
-    "faqs": "FAQS"
+    "home": "{groom} & {bride}",
+    "ourStory": "Our Story  ",
+    "dressCode": "Dress Code",
+    "faqs": "FAQs",
+    "rsvp": "RSVP"
   },
   "hero": {
     "tagline": {
