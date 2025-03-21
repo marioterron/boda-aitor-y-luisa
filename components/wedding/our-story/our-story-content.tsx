@@ -45,7 +45,7 @@ export function OurStoryContent() {
         </div>
         <h2 className="uppercase font-serif text-[40px] sm:text-[60px] md:text-[100px] lg:text-[120px] text-gray-200 tracking-wider text-center leading-none md:absolute w-full z-20 md:-bottom-14">
           {t("coupleNames", {
-            couple: `${WEDDING_DETAILS.couple.person1} & ${WEDDING_DETAILS.couple.person2}`,
+            couple: `${WEDDING_DETAILS.couple.groom} & ${WEDDING_DETAILS.couple.bride}`,
           })}
         </h2>
       </div>
