@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 import { Input } from "@/components/ui/input";
 
 interface GuestsFieldProps {
@@ -7,10 +9,12 @@ interface GuestsFieldProps {
 }
 
 export function GuestsField({ value, onChange, error }: GuestsFieldProps) {
+  const t = useTranslations("rsvp.form.guests");
+
   return (
     <div>
       <label htmlFor="guests" className="text-white">
-        Number of Additional Guests
+        {t("label")}
       </label>
       <Input
         type="number"

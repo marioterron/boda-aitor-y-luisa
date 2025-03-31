@@ -201,6 +201,9 @@
         "label": "Full Name",
         "placeholder": "Enter your full name"
       },
+      "guests": {
+        "label": "Number of Additional Guests"
+      },
       "message": {
         "attending": {
           "label": "Message (Optional)",
