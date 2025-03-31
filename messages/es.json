@@ -113,8 +113,12 @@
       "title": "FAQs"
     },
     "home": {
-      "description": "You're invited to celebrate the wedding of ${couple} on ${date} at ${venue}. Join us for this special celebration of love.",
-      "title": "${couple} Wedding - ${date}"
+      "fullDescription": "You're invited to celebrate the wedding of {couple} on {date} at {venue}. Join us for this special celebration of love in {location}.",
+      "shortDescription": "Join us in celebrating the wedding of {couple} on {date} at {venue}, {location}.",
+      "titleWithDate": "{couple}'s Wedding - {date}",
+      "titleWithoutDate": "{couple}'s Wedding",
+      "imageAlt": "{couple}'s Wedding Invitation",
+      "venueImageAlt": "{venue} - Wedding Venue"
     },
     "ourStory": {
       "description": "The story of how {couple} met and fell in love. Join us in celebrating our wedding journey.",
