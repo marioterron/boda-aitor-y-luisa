@@ -1,30 +1,30 @@
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function HomeFAQs() {
   const router = useRouter();
+  const t = useTranslations("faqs.home");
+  const commonT = useTranslations("common.images");
 
   return (
     <div className="relative flex flex-col items-center">
-      <h2 className="font-serif text-[2.5rem] absolute w-full text-center z-20 -top-8">
-        FAQs
+      <h2 className="absolute -top-8 z-20 w-full text-center font-serif text-[2.5rem] uppercase">
+        {t("title")}
       </h2>
       <div className="w-[80%]">
         <img
           src="/images/home-faqs.jpg"
-          alt="FAQs"
-          className="w-full aspect-[3/4] object-cover grayscale"
+          alt={commonT("faqs")}
+          className="aspect-[3/4] w-full object-cover grayscale"
         />
       </div>
-      <p className="text-center text-sm mt-8 max-w-[80%]">
-        Got questions? We’ve got answers! Check out our FAQs for everything you
-        need to know about our special day.
-      </p>
+      <p className="mt-8 max-w-[80%] text-center text-sm">{t("description")}</p>
       <div className="mt-8">
         <button
-          className="bg-black text-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors"
+          className="bg-black px-8 py-3 text-xs uppercase tracking-widest text-white transition-colors hover:bg-gray-900"
           onClick={() => router.push("/faqs")}
         >
-          FAQs
+          {t("button")}
         </button>
       </div>
     </div>

@@ -2,8 +2,8 @@ export const WEDDING_DATE = new Date("2025-09-06T12:00:00");
 
 export const WEDDING_DETAILS = {
   couple: {
-    person1: "Aitor",
-    person2: "Luisa",
+    groom: "Aitor",
+    bride: "Luisa",
   },
   schedule: {
     ceremony: "17:00",

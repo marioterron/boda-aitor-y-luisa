@@ -9,9 +9,9 @@ const SELECTORS = {
   TOGGLE_MENU_BUTTON: { role: "button", name: /toggle menu/i },
   RSVP_BUTTON: { role: "button", name: /rsvp/i },
   NAV_ITEMS: {
-    OUR_STORY: "OUR STORY",
-    DRESS_CODE: "DRESS CODE",
-    FAQS: "FAQS",
+    OUR_STORY: "Our Story",
+    DRESS_CODE: "Dress Code",
+    FAQS: "FAQs",
   },
 } as const;
 

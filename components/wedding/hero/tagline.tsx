@@ -1,9 +1,13 @@
+import { useTranslations } from "next-intl";
+
 export function Tagline() {
+  const t = useTranslations("hero.tagline");
+
   return (
     <p className="text-center uppercase tracking-widest text-sm mt-16">
-      JOIN US AS WE EMBARK ON A JOURNEY OF LOVE,
+      {t("line1")}
       <br />
-      JOY, AND ETERNAL HAPPINESS
+      {t("line2")}
     </p>
   );
 }

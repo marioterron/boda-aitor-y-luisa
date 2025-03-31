@@ -1,9 +1,10 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useTranslations } from "next-intl";
 
 interface AttendanceFieldProps {
-  readonly value: string;
-  readonly onChange: (value: string) => void;
-  readonly error?: string;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
 }
 
 export function AttendanceField({
@@ -11,30 +12,32 @@ export function AttendanceField({
   onChange,
   error,
 }: AttendanceFieldProps) {
+  const t = useTranslations("rsvp.form.attendance");
+
   return (
     <div>
-      <label htmlFor="attendance" className="text-white mb-2 block">
-        Will you be attending?
+      <label htmlFor="attendance" className="mb-2 block text-white">
+        {t("label")}
       </label>
       <RadioGroup
         value={value}
         onValueChange={onChange}
-        className="flex flex-col space-y-2 mt-1"
+        className="mt-1 flex flex-col space-y-2"
       >
         <div className="flex items-center space-x-3">
           <RadioGroupItem value="attending" id="attending" />
           <label htmlFor="attending" className="font-normal text-white">
-            Joyfully Accepts
+            {t("options.attending")}
           </label>
         </div>
         <div className="flex items-center space-x-3">
           <RadioGroupItem value="not-attending" id="not-attending" />
           <label htmlFor="not-attending" className="font-normal text-white">
-            Regretfully Declines
+            {t("options.notAttending")}
           </label>
         </div>
       </RadioGroup>
-      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
     </div>
   );
 }

@@ -1,20 +1,21 @@
-import type { RsvpFormValues } from "@/hooks/use-rsvp-form";
+import { useTranslations } from "next-intl";
 
+import type { RsvpFormData } from "@/lib/types/rsvp";
 import { AttendanceField } from "./fields/attendance-field";
 import { FormField } from "./fields/form-field";
 import { GuestsField } from "./fields/guests-field";
 import { TextAreaField } from "./fields/text-area-field";
 
 interface RsvpFormFieldsProps {
-  readonly formData: RsvpFormValues;
-  readonly handleInputChange: (
+  formData: RsvpFormData;
+  handleInputChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  readonly handleEmailBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  readonly handleAttendanceChange: (value: string) => void;
-  readonly errors: Partial<Record<keyof RsvpFormValues, string>>;
-  readonly isChecking: boolean;
-  readonly emailExists: boolean;
+  handleEmailBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleAttendanceChange: (value: string) => void;
+  errors: Partial<Record<keyof RsvpFormData, string>>;
+  isChecking: boolean;
+  emailExists: boolean;
 }
 
 export function RsvpFormFields({
@@ -26,34 +27,31 @@ export function RsvpFormFields({
   isChecking,
   emailExists,
 }: RsvpFormFieldsProps) {
+  const t = useTranslations("rsvp.form");
   const isAttending = formData.attendance === "attending";
 
   return (
     <>
       <FormField
-        label="Full Name"
+        label={t("fullName.label")}
         name="fullName"
         value={formData.fullName}
         onChange={handleInputChange}
         error={errors.fullName}
-        placeholder="Enter your full name"
+        placeholder={t("fullName.placeholder")}
       />
 
       <FormField
-        label="Email"
+        label={t("email.label")}
         name="email"
         type="email"
         value={formData.email}
         onChange={handleInputChange}
         onBlur={handleEmailBlur}
         error={errors.email}
-        placeholder="Enter your email"
+        placeholder={t("email.placeholder")}
         isLoading={isChecking}
-        hint={
-          emailExists
-            ? "This email has already submitted an RSVP. Submitting again will update your previous response."
-            : undefined
-        }
+        hint={emailExists ? t("email.exists") : undefined}
       />
 
       <AttendanceField
@@ -70,12 +68,12 @@ export function RsvpFormFields({
             error={errors.guests}
           />
           <TextAreaField
-            label="Dietary Requirements"
+            label={t("dietary.label")}
             name="dietaryRequirements"
             value={formData.dietaryRequirements ?? ""}
             onChange={handleInputChange}
             error={errors.dietaryRequirements}
-            placeholder="Please let us know of any dietary requirements"
+            placeholder={t("dietary.placeholder")}
           />
         </>
       )}
@@ -83,8 +81,8 @@ export function RsvpFormFields({
       <TextAreaField
         label={
           isAttending
-            ? "Message (Optional)"
-            : "Would you like to send a message?"
+            ? t("message.attending.label")
+            : t("message.notAttending.label")
         }
         name="message"
         value={formData.message ?? ""}
@@ -92,8 +90,8 @@ export function RsvpFormFields({
         error={errors.message}
         placeholder={
           isAttending
-            ? "Leave a message for the couple"
-            : "We'll miss you! Feel free to leave a message for the couple"
+            ? t("message.attending.placeholder")
+            : t("message.notAttending.placeholder")
         }
       />
     </>

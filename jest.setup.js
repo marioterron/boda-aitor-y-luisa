@@ -3,6 +3,7 @@ jest.setTimeout(10000)
 
 import '@testing-library/jest-dom'
 import { TextDecoder, TextEncoder } from 'util'
+import messages from './messages/es.json'
 
 global.TextEncoder = TextEncoder
 global.TextDecoder = TextDecoder
@@ -25,6 +26,33 @@ class IntersectionObserver {
 
 global.IntersectionObserver = IntersectionObserver
 
+// Helper function to get nested value from object using dot notation
+function getNestedValue(obj, path) {
+  return path.split('.').reduce((current, key) => {
+    return current && current[key] !== undefined ? current[key] : undefined;
+  }, obj);
+}
+
+// Mock next-intl hooks
+jest.mock('next-intl', () => ({
+  useTranslations: (namespace) => (key, params = {}) => {
+    const fullKey = namespace ? `${namespace}.${key}` : key;
+    const value = getNestedValue(messages, fullKey);
+
+    if (typeof value === 'string') {
+      return Object.entries(params).reduce((str, [param, value]) => {
+        return str.replace(`{${param}}`, value);
+      }, value);
+    }
+
+    return fullKey;
+  },
+  useFormatter: () => ({
+    dateTime: () => 'mocked date',
+    number: () => 'mocked number',
+  }),
+}))
+
 // Mock next/navigation
 jest.mock('next/navigation', () => ({
   useRouter() {
@@ -34,10 +62,8 @@ jest.mock('next/navigation', () => ({
       prefetch: jest.fn(),
     }
   },
-  useSearchParams() {
-    return {
-      get: jest.fn(),
-    }
+  usePathname() {
+    return '';
   },
 }))
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/toaster";
@@ -7,6 +8,7 @@ import { RsvpFormFields } from "./formFields";
 import { useRsvpForm } from "@/hooks/use-rsvp-form";
 
 export default function Rsvp() {
+  const t = useTranslations("rsvp");
   const {
     formData,
     setFormData,
@@ -38,22 +40,18 @@ export default function Rsvp() {
   return (
     <section
       id="rsvp-section"
-      className="relative min-h-[80vh] flex items-center justify-center bg-black text-white py-32"
+      className="relative flex min-h-[80vh] items-center justify-center bg-black py-32 text-white"
     >
       <Toaster />
-      <div className="relative z-10 w-full max-w-2xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h3 className="text-sm uppercase tracking-[0.2em] mb-4">
-            WE INVITE YOU TO
+      <div className="relative z-10 mx-auto w-full max-w-2xl px-4">
+        <div className="mb-16 text-center">
+          <h3 className="mb-4 text-sm uppercase tracking-[0.2em]">
+            {t("title.preHeading")}
           </h3>
-          <h2 className="font-serif text-5xl md:text-6xl mb-6">
-            CELEBRATE WITH US
+          <h2 className="mb-6 font-serif text-5xl uppercase md:text-6xl">
+            {t("title.heading")}
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            We would be honored to have you join us in celebrating our wedding.
-            Please let us know if you'll be able to attend by filling out the
-            form below.
-          </p>
+          <p className="mx-auto max-w-2xl text-gray-300">{t("description")}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -69,20 +67,22 @@ export default function Rsvp() {
 
           <Button
             type="submit"
-            className="w-full bg-black text-white border-2 border-white px-8 py-3 uppercase text-xs tracking-widest hover:bg-gray-900 transition-colors disabled:opacity-50"
+            className="w-full border-2 border-white bg-black px-8 py-3 text-xs uppercase tracking-widest text-white transition-colors hover:bg-gray-900 disabled:opacity-50"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center gap-2">
                 <Loader2 className="h-4 w-4 animate-spin" />
                 <span>
-                  {emailExists ? "Updating RSVP..." : "Submitting..."}
+                  {emailExists
+                    ? t("form.submit.updating")
+                    : t("form.submit.submitting")}
                 </span>
               </div>
             ) : emailExists ? (
-              "Update RSVP"
+              t("form.submit.update")
             ) : (
-              "Submit RSVP"
+              t("form.submit.new")
             )}
           </Button>
         </form>

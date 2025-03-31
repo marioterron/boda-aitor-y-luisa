@@ -2,18 +2,18 @@ import { Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 interface FormFieldProps {
-  readonly label: string;
-  readonly name: string;
-  readonly value: string | number;
-  readonly onChange: (
+  label: string;
+  name: string;
+  value: string | number;
+  onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  readonly onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  readonly error?: string;
-  readonly type?: string;
-  readonly placeholder?: string;
-  readonly isLoading?: boolean;
-  readonly hint?: string;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  error?: string;
+  type?: string;
+  placeholder?: string;
+  isLoading?: boolean;
+  hint?: string;
 }
 
 export function FormField({
@@ -42,7 +42,7 @@ export function FormField({
           onChange={onChange}
           onBlur={onBlur}
           placeholder={placeholder}
-          className="bg-white text-gray-900 border-gray-200 focus:border-gray-400"
+          className="border-gray-200 bg-white text-gray-900 focus:border-gray-400"
           disabled={isLoading}
         />
         {isLoading && (
@@ -51,8 +51,8 @@ export function FormField({
           </div>
         )}
       </div>
-      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
-      {hint && <p className="text-blue-300 text-sm mt-1">{hint}</p>}
+      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+      {hint && <p className="mt-1 text-sm text-blue-300">{hint}</p>}
     </div>
   );
 }

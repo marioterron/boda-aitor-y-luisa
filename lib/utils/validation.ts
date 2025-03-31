@@ -1,13 +1,16 @@
 import { z } from "zod";
 import type { RsvpFormData } from "@/lib/types/rsvp";
+import messages from "@/messages/es.json";
+
+const validationMessages = messages.validation.rsvp;
 
 export const rsvpSchema = z.object({
-  fullName: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
+  fullName: z.string().min(2, validationMessages.errors.nameLength),
+  email: z.string().email(validationMessages.errors.invalidEmail),
   attendance: z.enum(["attending", "not-attending"], {
-    required_error: "Please select your attendance status",
+    required_error: validationMessages.errors.attendanceRequired,
   }),
-  guests: z.number().min(0).max(4, "Maximum 4 additional guests allowed"),
+  guests: z.number().min(0).max(4, validationMessages.errors.maxGuests),
   dietaryRequirements: z.string().optional(),
   message: z.string().optional(),
 });

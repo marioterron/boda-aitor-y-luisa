@@ -6,8 +6,8 @@ export default function EventDetails() {
   const { venue, schedule } = WEDDING_DETAILS;
 
   return (
-    <section className="mb-16 animate-fade-in-up">
-      <h2 className="text-3xl font-serif mb-8 text-center">Event Details</h2>
+    <section className="animate-fade-in-up mb-16">
+      <h2 className="mb-8 text-center font-serif text-3xl">Event Details</h2>
       <div className="space-y-6">
         <div className="flex items-center">
           <CalendarIcon className="mr-4" />
