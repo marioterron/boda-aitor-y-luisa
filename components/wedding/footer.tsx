@@ -2,6 +2,7 @@ import { Heart, ArrowUp } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
+import { WEDDING_DETAILS } from "@/constants/wedding";
 
 export default function Footer({
   hideBorder = false,
@@ -28,8 +29,11 @@ export default function Footer({
         >
           <p className="flex items-center text-sm">
             © {currentYear} • {t("madeWith")}
-            <Heart className="mx-2 h-4 w-4 animate-pulse text-white/60" /> for
-            {t("couple")}
+            <Heart className="mx-2 h-4 w-4 animate-pulse text-white/60" /> for{" "}
+            {t("couple", {
+              groom: WEDDING_DETAILS.couple.groom,
+              bride: WEDDING_DETAILS.couple.bride,
+            })}
           </p>
           <Button
             variant="ghost"
