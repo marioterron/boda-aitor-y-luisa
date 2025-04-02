@@ -11,7 +11,7 @@ export function formatDate(date: Date): string {
 
 export function formatShortDate(date: Date): string {
   return date
-    .toLocaleDateString("en-US", {
+    .toLocaleDateString("es-ES", {
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
