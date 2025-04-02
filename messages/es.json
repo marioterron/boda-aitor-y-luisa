@@ -1,99 +1,75 @@
 {
   "common": {
     "aria": {
-      "breadcrumb": "Breadcrumb navigation",
-      "nextPage": "Go to next page",
-      "pagination": "Pagination navigation",
-      "prevPage": "Go to previous page",
-      "toggleMenu": "Toggle menu",
-      "toggleSidebar": "Toggle Sidebar",
-      "weddingAnnouncement": "Wedding announcement"
+      "weddingAnnouncement": "Invitación de boda"
     },
     "images": {
       "couple": {
-        "firstImage": "Aitor hugging Luisa",
-        "fourthImage": "Luisa holding Aitor's hand",
-        "mainImage": "Luisa holding Aitor's face and kissing him",
-        "secondImage": "Aitor kissing Luisa",
-        "thirdImage": "Aitor hand holding Luisa's hand with a ring"
+        "firstImage": "Aitor abrazando a Luisa",
+        "fourthImage": "Luisa tomando la mano de Aitor",
+        "mainImage": "Luisa sujetando la cara de Aitor y besándolo",
+        "secondImage": "Aitor besando a Luisa",
+        "thirdImage": "Aitor sosteniendo la mano de Luisa con un anillo"
       },
-      "dressCode": "A hand buttoning the groom's dress",
-      "faqs": "A wedding table with the menu on it",
-      "floral": "Floral background",
+      "dressCode": "Una mano abrochando el traje del novio",
+      "faqs": "Una mesa de boda con el menú sobre ella",
+      "floral": "Fondo floral",
       "wedding": {
-        "fabric": "Wedding fabric background",
-        "main": "Luisa kissing Aitor and showing her engagement ring",
-        "moment": "Aitor and Luisa kissing each other"
+        "fabric": "Fondo de tela de boda",
+        "main": "Luisa besando a Aitor y mostrando su anillo de compromiso",
+        "moment": "Aitor y Luisa besándose"
       }
     }
   },
   "countdown": {
-    "days": "Days",
-    "hours": "Hours",
-    "minutes": "Minutes",
-    "seconds": "Seconds",
-    "title": "Let the countdown begin"
+    "days": "Días",
+    "hours": "Horas",
+    "minutes": "Minutos",
+    "seconds": "Segundos",
+    "title": "La cuenta atrás ha comenzado"
   },
   "dressCode": {
     "home": {
-      "button": "Details",
-      "description": "For this grand celebration of love, we kindly request that you embrace the elegance of the occasion by wearing formal attire.",
+      "button": "Detalles",
+      "description": "Para celebrar este día tan especial nos gustaría que vinierais con vuestro mejor look, elegante y formal.",
       "title": "Dress Code"
     }
   },
   "faqs": {
     "categories": {
       "children": {
-        "questions": {
-          "ageLimit": {
-            "answer": "There's no age limit for children. We want the whole family to be a part of our special day, from the littlest ones to the oldest.",
-            "question": "Is there a specific age limit for children attending?"
-          },
-          "welcome": {
-            "answer": "Absolutely! We welcome children and have arranged for a designated kids' area with entertainment to ensure they have a great time during the celebration.",
-            "question": "Are children welcome at the wedding?"
-          }
-        },
-        "title": "Children"
+        "answer": "Sí que pueden asistir aunque cabe recalcar que el espacio no dispone de animación o lugares específicos para ellos.",
+        "question": "¿Los niños y niñas pueden asistir?",
+
+        "title": "Niños y niñas"
       },
       "dressCode": {
-        "questions": {
-          "colors": {
-            "answer": "No, there are no specific color requirements. Feel free to express your personal style and wear colors that make you feel comfortable and confident.",
-            "question": "Are specific colors required for the dress code?"
-          },
-          "meaning": {
-            "answer": "Formal attire typically includes elegant gowns, suits, tuxedos, or cocktail dresses. Think of it as dressing for a special occasion, similar to what you might wear to a sophisticated evening event.",
-            "question": "What does 'formal attire' mean?"
-          }
-        },
+        "answer": "El código de vestimenta es elegante y formal. Evita el uso de ropa demasiado casual, como vaqueros o zapatillas deportivas. ¡Queremos que todos os sintáis cómodos y guapos para celebrar este día tan especial! Por supuesto, evitad el blanco o similares.",
+        "question": "¿Cuál es el código de vestimenta o dress code de la boda?",
         "title": "Dress Code"
       },
       "foodOptions": {
-        "questions": {
-          "dietary": {
-            "answer": "Yes, we're committed to ensuring that all our guests have a delightful dining experience. We offer vegan, vegetarian, and gluten-free food options. Please indicate your dietary preferences in your RSVP, and we'll make sure you're catered to accordingly.",
-            "question": "Do you accommodate dietary restrictions?"
-          },
-          "requests": {
-            "answer": "While we'll have a variety of dishes to accommodate different dietary needs, if you have specific requests or severe allergies, please let us know in advance, and we'll do our best to accommodate them.",
-            "question": "Can we request specific dishes for dietary restrictions?"
-          }
-        },
-        "title": "Food Options"
+        "answer": "Sí. Cuando respondáis el formulario deberéis indicar toda esta información en el apartado correspondiente.",
+        "question": "¿Habrá opciones para vegetarianos, veganos o personas con alergias?",
+        "title": "Opciones de comida"
+      },
+      "others": {
+        "answer": "Sí, el lugar dispone de un amplio espacio para aparcar vuestros vehículos.",
+        "question": "¿Hay aparcamiento disponible en el sitio?",
+        "title": "Otras preguntas"
       }
     },
     "home": {
-      "button": "FAQs",
-      "description": "Got questions? We've got answers! Check out our FAQs for everything you need to know about our special day.",
-      "title": "FAQs"
+      "button": "Preguntas frecuentes",
+      "description": "¿Tienes preguntas? Encuentra aquí toda la información sobre nuestro gran día.",
+      "title": "Preguntas frecuentes"
     },
-    "title": "Frequently Asked Questions"
+    "title": "Preguntas frecuentes"
   },
   "hero": {
     "tagline": {
-      "line1": "JOIN US AS WE EMBARK ON A JOURNEY OF LOVE",
-      "line2": "JOY, AND ETERNAL HAPPINESS"
+      "line1": "Nos haría muy felices que nos acompañarais en este día ",
+      "line2": "para celebrar y compartir nuestro amor con todos vosotros."
     }
   },
   "location": {
@@ -101,7 +77,7 @@
       "city": "Llambilles",
       "region": "Girona, España"
     },
-    "title": "Location",
+    "title": "Ubicación",
     "venue": {
       "name": "La Joia",
       "type": "Espai d'esdeveniments"
@@ -109,142 +85,142 @@
   },
   "metadata": {
     "faqs": {
-      "description": "Important information about {couple} wedding including dress code, venue details, and frequently asked questions.",
-      "title": "FAQs"
+      "description": "Información importante sobre la boda de {couple}, incluyendo el dress code, opciones de comida y otras preguntas frecuentes.",
+      "title": "Preguntas frecuentes"
     },
     "home": {
-      "fullDescription": "You're invited to celebrate the wedding of {couple} on {date} at {venue}. Join us for this special celebration of love in {location}.",
-      "shortDescription": "Join us in celebrating the wedding of {couple} on {date} at {venue}, {location}.",
-      "titleWithDate": "{couple}'s Wedding - {date}",
-      "titleWithoutDate": "{couple}'s Wedding",
-      "imageAlt": "{couple}'s Wedding Invitation",
-      "venueImageAlt": "{venue} - Wedding Venue"
+      "fullDescription": "Estás invitado a celebrar la boda de {couple} el {date} en {venue}. Acompáñanos en este día tan especial en {location}.",
+      "shortDescription": "Únete a nosotros para celebrar la boda de {couple} el {date} en {venue}, {location}.",
+      "titleWithDate": "Boda de {couple} - {date}",
+      "titleWithoutDate": "Boda de {couple}",
+      "imageAlt": "Invitación de boda de {couple}",
+      "venueImageAlt": "{venue} - Lugar de la boda"
     },
     "ourStory": {
-      "description": "The story of how {couple} met and fell in love. Join us in celebrating our wedding journey.",
-      "title": "Our Story"
+      "description": "La historia de cómo {couple} se conocieron y se enamoraron. Acompáñanos en este día tan especial.",
+      "title": "Nuestra historia"
     }
   },
   "footer": {
     "couple": "{groom} & {bride}",
     "madeWith": "Made with",
-    "backToTop": "Back to Top"
+    "backToTop": "Volver arriba"
   },
   "navigation": {
-    "dressCode": "Dress Code",
-    "faqs": "FAQs",
-    "home": "{groom} & {bride}",
-    "ourStory": "Our Story  ",
-    "rsvp": "RSVP"
+    "dressCode": "Dress code",
+    "faqs": "Preguntas frecuentes",
+    "home": "{groom} y {bride}",
+    "ourStory": "Nuestra historia",
+    "rsvp": "Confirmar asistencia"
   },
   "notifications": {
     "rsvp": {
       "decline": {
-        "description": "Thank you for letting us know. We'll miss you!",
-        "title": "RSVP Submitted Successfully"
+        "description": "Gracias por avisarnos. Te vamos a echar de menos.",
+        "title": "Confirmación enviada"
       },
       "error": {
         "emailCheck": {
-          "description": "Failed to check email. Please try again.",
-          "title": "Email Check Failed"
+          "description": "No hemos podido verificar tu correo. Por favor, inténtalo de nuevo.",
+          "title": "Error al verificar el correo"
         },
         "submission": {
-          "description": "Failed to submit RSVP. Please try again.",
-          "title": "Submission Failed"
+          "description": "Hubo un problema al enviar tu confirmación. Vuelve a intentarlo.",
+          "title": "Error al enviar"
         },
-        "title": "Error"
+        "title": "Ups, algo salió mal"
       },
       "exists": {
-        "description": "This email has already submitted an RSVP. You can update your response.",
-        "title": "Email Already Registered"
+        "description": "Este correo ya ha enviado una confirmación. Si quieres hacer cambios, actualízala.",
+        "title": "Confirmación ya enviada"
       },
       "success": {
-        "description": "Thank you for letting us know. We look forward to celebrating with you!",
-        "title": "RSVP Submitted Successfully"
+        "description": "Gracias por avisarnos. ¡Estamos deseando celebrar contigo!",
+        "title": "Confirmación enviada con éxito"
       },
       "update": {
-        "description": "Your RSVP has been updated successfully.",
-        "title": "RSVP Updated Successfully"
+        "description": "Tu confirmación se ha actualizado correctamente.",
+        "title": "Confirmación actualizada"
       }
     }
   },
   "ourStory": {
     "content": {
       "coupleNames": "{couple}",
-      "text1": "Our journey began like any other day. Two paths converging at the crossroads of life. In a city filled with countless faces, it was a seemingly ordinary moment that sparked our extraordinary love story.",
-      "text2": "Our love story wouldn't be complete without mentioning our two loyal Dalmatian dogs, Max and Bella. They've been with us through thick and thin, bringing joy and laughter to our lives with their spots and wagging tails.",
-      "text3": "Together, we faced life's challenges head-on, learning from each obstacle and celebrating each triumph. Our love and bond only grew stronger with time.",
-      "text4": "Today, as we stand on the precipice of our new chapter, we are excited to write the rest of our story together. Our love has deepened, our adventures have multiplied, and our hearts are forever entwined."
+      "text1": "Escribir sobre nosotros no es nuestro fuerte, aunque seamos profesores de lengua… Así que redactar esto será todo un reto.",
+      "text2": "Para nadie es un secreto que nos conocimos en la carrera. Empezamos siendo compañeros de clase que, poco a poco, se fueron haciendo amigos. Dos muy buenos amigos que, aunque eran muy distintos, encontraron puntos en común. Pasó el tiempo y un viaje a Colombia nos abrió los ojos; no podíamos estar ni un día sin hablar. Entonces nos dimos cuenta de que esos dos amigos eran más que eso: se querían y se echaban de menos.",
+      "text3": "Y así empezó nuestra historia. Durante casi ocho años hemos compartido infinitos momentos. Las alegrías de conseguir nuestros títulos, el primer coche, el primer trabajo de nuestros sueños, nuestro primer piso, los viajes… Y también el dolor de las pérdidas que hemos sufrido, y el miedo a que nuestra relación no fuera lo suficientemente fuerte. Pero siempre juntos, haciéndonos fuertes solo por estar el uno en la vida del otro.",
+      "text4": "Si algo nos caracteriza es la complicidad, el amor profundo, la paz que hay en esta relación. Así que decidimos dar el paso y formalizarlo (aún más) y celebrar nuestro amor con todos vosotros."
     },
-    "title": "Our Story"
+    "title": "Nuestra historia"
   },
   "rsvp": {
-    "description": "We would be honored to have you join us in celebrating our wedding. Please let us know if you'll be able to attend by filling out the form below.",
+    "description": "Nos haría mucha ilusión que nos acompañaras en nuestra boda. Por favor, confírmanos si podrás asistir completando el formulario abajo.",
     "form": {
       "attendance": {
-        "label": "Will you be attending?",
+        "label": "¿Podrás asistir?",
         "options": {
-          "attending": "Joyfully Accepts",
-          "notAttending": "Regretfully Declines"
+          "attending": "¡Por supuesto!",
+          "notAttending": "Me encantaría, pero no podré ir"
         }
       },
       "dietary": {
-        "label": "Dietary Requirements",
-        "placeholder": "Please let us know of any dietary requirements"
+        "label": "Preferencias o restricciones alimentarias",
+        "placeholder": "Cuéntanos si tienes alguna necesidad alimentaria"
       },
       "email": {
-        "exists": "This email has already submitted an RSVP. Submitting again will update your previous response.",
-        "label": "Email",
-        "placeholder": "Enter your email"
+        "exists": "Este correo ya ha enviado una confirmación. Si envías otra vez, actualizarás tu respuesta anterior.",
+        "label": "Correo electrónico",
+        "placeholder": "Introduce tu correo"
       },
       "fullName": {
-        "label": "Full Name",
-        "placeholder": "Enter your full name"
+        "label": "Nombre completo",
+        "placeholder": "Escribe tu nombre completo"
       },
       "guests": {
-        "label": "Number of Additional Guests"
+        "label": "Número de acompañantes"
       },
       "message": {
         "attending": {
-          "label": "Message (Optional)",
-          "placeholder": "Leave a message for the couple"
+          "label": "Mensaje (Opcional)",
+          "placeholder": "Déjanos unas palabras si te apetece"
         },
         "notAttending": {
-          "label": "Would you like to send a message?",
-          "placeholder": "We'll miss you! Feel free to leave a message for the couple"
+          "label": "¿Quieres dejar un mensaje?",
+          "placeholder": "¡Te echaremos de menos! Dinos algo si te apetece"
         }
       },
       "submit": {
-        "new": "Submit RSVP",
-        "submitting": "Submitting...",
-        "update": "Update RSVP",
-        "updating": "Updating RSVP..."
+        "new": "Enviar confirmación",
+        "submitting": "Enviando...",
+        "update": "Actualizar confirmación",
+        "updating": "Actualizando..."
       }
     },
     "title": {
-      "heading": "CELEBRATE WITH US",
-      "preHeading": "WE INVITE YOU TO"
+      "heading": "Celebrar con nosotros",
+      "preHeading": "Te invitamos a"
     }
   },
   "schedule": {
     "events": {
-      "ceremony": "CEREMONY",
-      "cocktail": "COCKTAIL",
-      "dancing": "DANCING & FIREWORKS",
-      "dinner": "DINNER"
+      "ceremony": "Ceremonia",
+      "cocktail": "Cóctel",
+      "dancing": "Fiesta",
+      "dinner": "Cena"
     },
     "title": {
-      "heading": "OUR SPECIAL DAY'S SCHEDULE",
-      "preHeading": "HERE'S A SNEAK PEEK OF"
+      "heading": "Plan de nuestro gran día",
+      "preHeading": "Lo que nos espera"
     }
   },
   "validation": {
     "rsvp": {
       "errors": {
-        "nameLength": "Name must be at least 2 characters",
-        "invalidEmail": "Please enter a valid email address",
-        "attendanceRequired": "Please select your attendance status",
-        "maxGuests": "Maximum 4 additional guests allowed"
+        "nameLength": "El nombre debe tener al menos 2 letras",
+        "invalidEmail": "Introduce un correo válido",
+        "attendanceRequired": "Selecciona si podrás venir",
+        "maxGuests": "Puedes traer hasta 4 acompañantes"
       }
     }
   }
