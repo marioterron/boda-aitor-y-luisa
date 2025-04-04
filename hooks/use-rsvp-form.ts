@@ -52,6 +52,17 @@ export function useRsvpForm() {
     }
   };
 
+  const checkEmailSilently = async (email: string): Promise<boolean> => {
+    try {
+      const exists = await checkEmailExists(email);
+      setEmailExists(exists);
+      return exists;
+    } catch (error) {
+      console.error("Error checking email silently:", error);
+      return false;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -61,16 +72,18 @@ export function useRsvpForm() {
 
     setIsSubmitting(true);
     try {
+      // Silently check email existence before submission
+      const exists = await checkEmailSilently(formData.email);
       const rsvpData = mapFormToApiData(formData);
 
-      if (emailExists) {
+      if (exists) {
         await updateRsvp(formData.email, rsvpData);
       } else {
         await createRsvp(rsvpData);
       }
 
       notifications.showRsvpSuccess(
-        emailExists,
+        exists,
         formData.attendance === "attending"
       );
 

@@ -5,6 +5,7 @@ import { AttendanceField } from "./fields/attendance-field";
 import { FormField } from "./fields/form-field";
 import { GuestsField } from "./fields/guests-field";
 import { TextAreaField } from "./fields/text-area-field";
+import { GuestNamesField } from "./fields/guest-names-field";
 
 interface RsvpFormFieldsProps {
   formData: RsvpFormData;
@@ -13,6 +14,7 @@ interface RsvpFormFieldsProps {
   ) => void;
   handleEmailBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleAttendanceChange: (value: string) => void;
+  handleGuestNamesChange: (guestNames: string[]) => void;
   errors: Partial<Record<keyof RsvpFormData, string>>;
   isChecking: boolean;
   emailExists: boolean;
@@ -23,6 +25,7 @@ export function RsvpFormFields({
   handleInputChange,
   handleEmailBlur,
   handleAttendanceChange,
+  handleGuestNamesChange,
   errors,
   isChecking,
   emailExists,
@@ -67,6 +70,14 @@ export function RsvpFormFields({
             onChange={handleInputChange}
             error={errors.guests}
           />
+          {formData.guests > 0 && (
+            <GuestNamesField
+              guestCount={formData.guests}
+              guestNames={formData.guestNames}
+              onChange={handleGuestNamesChange}
+              errors={errors.guestNames ? { 0: errors.guestNames } : {}}
+            />
+          )}
           <TextAreaField
             label={t("dietary.label")}
             name="dietaryRequirements"
