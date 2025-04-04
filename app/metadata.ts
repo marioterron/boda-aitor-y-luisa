@@ -56,9 +56,9 @@ export const metadata: Metadata = {
     locale: "es_ES",
     images: [
       {
-        url: "/images/image-center.jpg",
-        width: 5962,
-        height: 3889,
+        url: "/images/open-graph.jpg",
+        width: 1200,
+        height: 783,
         alt: `Invitación a la boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
       },
     ],
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
     description: weddingDescription,
-    images: ["/images/image-center.jpg"],
+    images: ["/images/open-graph.jpg"],
   },
   alternates: {
     canonical: "/",

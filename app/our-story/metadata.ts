@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "{couple}",
       couple
     ),
-    images: ["/images/story/main.jpg"],
+    images: ["/images/story/main.jpeg"],
   },
 };
 

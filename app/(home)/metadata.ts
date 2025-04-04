@@ -25,9 +25,9 @@ const metadata: Metadata = {
       .replace("{location}", WEDDING_DETAILS.venue.location),
     images: [
       {
-        url: "/images/image-center.jpg",
-        width: 5962,
-        height: 3889,
+        url: "/images/open-graph.jpg",
+        width: 1200,
+        height: 783,
         alt: metadataMessages.home.imageAlt.replace("{couple}", couple),
       },
       {
