@@ -185,9 +185,9 @@ describe("RSVP Form", () => {
       },
       setFormData: mockSetFormData,
       errors: {
-        fullName: "Full name is required",
-        email: "Please enter a valid email address",
-        attendance: "Please select whether you will attend",
+        fullName: messages.validation.rsvp.errors.nameLength,
+        email: messages.validation.rsvp.errors.invalidEmail,
+        attendance: messages.validation.rsvp.errors.attendanceRequired,
       },
       isSubmitting: false,
       isChecking: false,
