@@ -3,6 +3,7 @@ import { render } from "@/lib/utils/test-utils";
 import userEvent from "@testing-library/user-event";
 import Rsvp from "@/components/wedding/rsvp";
 import { useRsvpForm } from "@/hooks/use-rsvp-form";
+import messages from "@/messages/es.json";
 import "@testing-library/jest-dom";
 
 // Mock the useRsvpForm hook
@@ -43,11 +44,17 @@ describe("RSVP Form", () => {
     render(<Rsvp />);
 
     // Check for required form fields
-    expect(screen.getByLabelText(/full name/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    expect(screen.getByText(/will you be attending\?/i)).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /submit rsvp/i })
+      screen.getByLabelText(messages.rsvp.form.fullName.label)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(messages.rsvp.form.email.label)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(messages.rsvp.form.attendance.label)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: messages.rsvp.form.submit.new })
     ).toBeInTheDocument();
   });
 
@@ -75,23 +82,35 @@ describe("RSVP Form", () => {
 
     // Additional fields should be visible since attendance is "attending"
     expect(
-      screen.getByLabelText(/number of additional guests/i)
+      screen.getByLabelText(messages.rsvp.form.guests.label)
     ).toBeInTheDocument();
-    expect(screen.getByLabelText(/dietary requirements/i)).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(messages.rsvp.form.dietary.label)
+    ).toBeInTheDocument();
   });
 
   it("handles form submission correctly", async () => {
     render(<Rsvp />);
 
     // Fill out the form
-    await userEvent.type(screen.getByLabelText(/full name/i), "John Doe");
-    await userEvent.type(screen.getByLabelText(/email/i), "john@example.com");
+    await userEvent.type(
+      screen.getByLabelText(messages.rsvp.form.fullName.label),
+      "John Doe"
+    );
+    await userEvent.type(
+      screen.getByLabelText(messages.rsvp.form.email.label),
+      "john@example.com"
+    );
     await userEvent.click(
-      screen.getByRole("radio", { name: /joyfully accepts/i })
+      screen.getByRole("radio", {
+        name: messages.rsvp.form.attendance.options.attending,
+      })
     );
 
     // Submit the form
-    await userEvent.click(screen.getByRole("button", { name: /submit rsvp/i }));
+    await userEvent.click(
+      screen.getByRole("button", { name: messages.rsvp.form.submit.new })
+    );
 
     expect(mockHandleSubmit).toHaveBeenCalled();
   });
@@ -117,8 +136,12 @@ describe("RSVP Form", () => {
 
     render(<Rsvp />);
 
-    expect(screen.getByText(/submitting/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /submitting/i })).toBeDisabled();
+    expect(
+      screen.getByText(messages.rsvp.form.submit.submitting)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: messages.rsvp.form.submit.submitting })
+    ).toBeDisabled();
   });
 
   it("shows email exists message when email is already registered", async () => {
@@ -143,10 +166,10 @@ describe("RSVP Form", () => {
     render(<Rsvp />);
 
     expect(
-      screen.getByText(/this email has already submitted an rsvp/i)
+      screen.getByText(messages.rsvp.form.email.exists)
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /update rsvp/i })
+      screen.getByRole("button", { name: messages.rsvp.form.submit.update })
     ).toBeInTheDocument();
   });
 
@@ -162,9 +185,9 @@ describe("RSVP Form", () => {
       },
       setFormData: mockSetFormData,
       errors: {
-        fullName: "Full name is required",
-        email: "Please enter a valid email address",
-        attendance: "Please select whether you will attend",
+        fullName: messages.validation.rsvp.errors.nameLength,
+        email: messages.validation.rsvp.errors.invalidEmail,
+        attendance: messages.validation.rsvp.errors.attendanceRequired,
       },
       isSubmitting: false,
       isChecking: false,
@@ -175,12 +198,14 @@ describe("RSVP Form", () => {
 
     render(<Rsvp />);
 
-    expect(screen.getByText(/full name is required/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/please enter a valid email address/i)
+      screen.getByText(messages.validation.rsvp.errors.nameLength)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/please select whether you will attend/i)
+      screen.getByText(messages.validation.rsvp.errors.invalidEmail)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(messages.validation.rsvp.errors.attendanceRequired)
     ).toBeInTheDocument();
   });
 });

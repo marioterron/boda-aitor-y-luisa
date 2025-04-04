@@ -2,10 +2,11 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Rsvp from "@/components/wedding/rsvp";
-import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
 import { useToast } from "@/hooks/use-toast";
+import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
+import type { RsvpFormData } from "@/lib/types/rsvp";
+import messages from "@/messages/es.json";
 
-// Mock the services
 jest.mock("@/lib/services/rsvp", () => ({
   checkEmailExists: jest.fn(),
   createRsvp: jest.fn(),
@@ -15,6 +16,44 @@ jest.mock("@/lib/services/rsvp", () => ({
 // Mock the toast hook
 jest.mock("@/hooks/use-toast", () => ({
   useToast: jest.fn(),
+}));
+
+// Mock the notification service
+jest.mock("@/lib/utils/notifications", () => ({
+  createNotificationService: jest.fn().mockImplementation((toast) => ({
+    showEmailExistsNotification: () => {
+      toast({
+        title: messages.notifications.rsvp.exists.title,
+        description: messages.notifications.rsvp.exists.description,
+        variant: "default",
+      });
+    },
+    showEmailCheckError: () => {
+      toast({
+        title: messages.notifications.rsvp.error.title,
+        description: messages.notifications.rsvp.error.emailCheck.description,
+        variant: "destructive",
+      });
+    },
+    showRsvpSuccess: (isUpdate: boolean, isAttending: boolean) => {
+      toast({
+        title: isUpdate
+          ? messages.notifications.rsvp.update.title
+          : messages.notifications.rsvp.success.title,
+        description: isAttending
+          ? messages.notifications.rsvp.success.description
+          : messages.notifications.rsvp.decline.description,
+        variant: "default",
+      });
+    },
+    showRsvpError: () => {
+      toast({
+        title: messages.notifications.rsvp.error.title,
+        description: messages.notifications.rsvp.error.submission.description,
+        variant: "destructive",
+      });
+    },
+  })),
 }));
 
 describe("RSVP Form Integration", () => {
@@ -39,8 +78,11 @@ describe("RSVP Form Integration", () => {
       render(<Rsvp />);
 
       // Fill out the form
-      await userEvent.type(screen.getByLabelText(/full name/i), "John Doe");
-      const emailInput = screen.getByLabelText(/email/i);
+      await userEvent.type(
+        screen.getByLabelText(messages.rsvp.form.fullName.label),
+        "John Doe"
+      );
+      const emailInput = screen.getByLabelText(messages.rsvp.form.email.label);
       await userEvent.type(emailInput, "john@example.com");
       await userEvent.tab(); // Trigger blur event to validate email
 
@@ -50,22 +92,28 @@ describe("RSVP Form Integration", () => {
       });
 
       // Select attendance
-      await userEvent.click(screen.getByLabelText(/joyfully accepts/i));
+      await userEvent.click(
+        screen.getByLabelText(messages.rsvp.form.attendance.options.attending)
+      );
 
       // Additional fields appear
-      const guestsInput = screen.getByLabelText(/number of additional guests/i);
-      const dietaryInput = screen.getByLabelText(/dietary requirements/i);
+      const guestsInput = screen.getByLabelText(
+        messages.rsvp.form.guests.label
+      );
+      const dietaryInput = screen.getByLabelText(
+        messages.rsvp.form.dietary.label
+      );
 
       await userEvent.type(guestsInput, "2");
       await userEvent.type(dietaryInput, "No nuts please");
       await userEvent.type(
-        screen.getByLabelText(/message/i),
+        screen.getByLabelText(messages.rsvp.form.message.attending.label),
         "Looking forward to it!"
       );
 
       // Submit form
       await userEvent.click(
-        screen.getByRole("button", { name: /submit rsvp/i })
+        screen.getByRole("button", { name: messages.rsvp.form.submit.new })
       );
 
       // Verify API calls
@@ -81,9 +129,8 @@ describe("RSVP Form Integration", () => {
 
       // Verify success notification
       expect(mockToast).toHaveBeenCalledWith({
-        title: "RSVP Submitted Successfully",
-        description:
-          "Thank you for accepting our invitation! We look forward to celebrating with you.",
+        title: messages.notifications.rsvp.success.title,
+        description: messages.notifications.rsvp.success.description,
         variant: "default",
       });
     });
@@ -92,8 +139,11 @@ describe("RSVP Form Integration", () => {
       render(<Rsvp />);
 
       // Fill out the form
-      await userEvent.type(screen.getByLabelText(/full name/i), "Jane Doe");
-      const emailInput = screen.getByLabelText(/email/i);
+      await userEvent.type(
+        screen.getByLabelText(messages.rsvp.form.fullName.label),
+        "Jane Doe"
+      );
+      const emailInput = screen.getByLabelText(messages.rsvp.form.email.label);
       await userEvent.type(emailInput, "jane@example.com");
       await userEvent.tab(); // Trigger blur event
 
@@ -103,15 +153,19 @@ describe("RSVP Form Integration", () => {
       });
 
       // Select attendance
-      await userEvent.click(screen.getByLabelText(/regretfully declines/i));
+      await userEvent.click(
+        screen.getByLabelText(
+          messages.rsvp.form.attendance.options.notAttending
+        )
+      );
 
       // Submit form with message
       await userEvent.type(
-        screen.getByLabelText(/message/i),
+        screen.getByLabelText(messages.rsvp.form.message.notAttending.label),
         "Sorry I can't make it"
       );
       await userEvent.click(
-        screen.getByRole("button", { name: /submit rsvp/i })
+        screen.getByRole("button", { name: messages.rsvp.form.submit.new })
       );
 
       // Verify API calls
@@ -127,8 +181,8 @@ describe("RSVP Form Integration", () => {
 
       // Verify success notification
       expect(mockToast).toHaveBeenCalledWith({
-        title: "RSVP Submitted Successfully",
-        description: "Thank you for letting us know. We'll miss you!",
+        title: messages.notifications.rsvp.decline.title,
+        description: messages.notifications.rsvp.decline.description,
         variant: "default",
       });
     });
@@ -138,15 +192,15 @@ describe("RSVP Form Integration", () => {
 
       // Submit without filling form
       await userEvent.click(
-        screen.getByRole("button", { name: /submit rsvp/i })
+        screen.getByRole("button", { name: messages.rsvp.form.submit.new })
       );
 
       // Check validation errors
       expect(
-        screen.getByText(/name must be at least 2 characters/i)
+        screen.getByText(messages.validation.rsvp.errors.nameLength)
       ).toBeInTheDocument();
       expect(
-        screen.getByText(/please enter a valid email address/i)
+        screen.getByText(messages.validation.rsvp.errors.invalidEmail)
       ).toBeInTheDocument();
 
       // API should not be called
@@ -164,8 +218,11 @@ describe("RSVP Form Integration", () => {
       render(<Rsvp />);
 
       // Fill out the form
-      await userEvent.type(screen.getByLabelText(/full name/i), "John Doe");
-      const emailInput = screen.getByLabelText(/email/i);
+      await userEvent.type(
+        screen.getByLabelText(messages.rsvp.form.fullName.label),
+        "John Doe"
+      );
+      const emailInput = screen.getByLabelText(messages.rsvp.form.email.label);
       await userEvent.type(emailInput, "john@example.com");
       await userEvent.tab(); // Trigger blur event
 
@@ -173,30 +230,33 @@ describe("RSVP Form Integration", () => {
       await waitFor(() => {
         expect(checkEmailExists).toHaveBeenCalledWith("john@example.com");
         expect(mockToast).toHaveBeenCalledWith({
-          title: "Email Already Registered",
-          description:
-            "This email has already submitted an RSVP. Submitting again will update your previous response.",
+          title: messages.notifications.rsvp.exists.title,
+          description: messages.notifications.rsvp.exists.description,
           variant: "default",
         });
       });
 
       // Update attendance
-      await userEvent.click(screen.getByLabelText(/regretfully declines/i));
+      await userEvent.click(
+        screen.getByLabelText(
+          messages.rsvp.form.attendance.options.notAttending
+        )
+      );
       await userEvent.type(
-        screen.getByLabelText(/would you like to send a message/i),
+        screen.getByLabelText(messages.rsvp.form.message.notAttending.label),
         "Plans changed, sorry!"
       );
 
       // Submit update
       await userEvent.click(
-        screen.getByRole("button", { name: /update rsvp/i })
+        screen.getByRole("button", { name: messages.rsvp.form.submit.update })
       );
 
-      // Verify API calls
+      const attendance = "not-attending";
       expect(updateRsvp).toHaveBeenCalledWith("john@example.com", {
         full_name: "John Doe",
         email: "john@example.com",
-        attendance: "not-attending",
+        attendance: attendance,
         guests: 0,
         dietary_requirements: "",
         message: "Plans changed, sorry!",
@@ -205,8 +265,11 @@ describe("RSVP Form Integration", () => {
 
       // Verify success notification
       expect(mockToast).toHaveBeenLastCalledWith({
-        title: "RSVP Updated Successfully",
-        description: "Thank you for letting us know. We'll miss you!",
+        title: messages.notifications.rsvp.update.title,
+        description:
+          attendance === "not-attending"
+            ? messages.notifications.rsvp.decline.description
+            : messages.notifications.rsvp.success.description,
         variant: "default",
       });
     });
@@ -220,15 +283,15 @@ describe("RSVP Form Integration", () => {
       render(<Rsvp />);
 
       // Fill out email and trigger check
-      const emailInput = screen.getByLabelText(/email/i);
+      const emailInput = screen.getByLabelText(messages.rsvp.form.email.label);
       await user.type(emailInput, "error@example.com");
       await user.tab(); // Trigger blur event
 
       // Wait for error notification
       await waitFor(() => {
         expect(mockToast).toHaveBeenCalledWith({
-          title: "Error",
-          description: "Failed to check email. Please try again.",
+          title: messages.notifications.rsvp.error.title,
+          description: messages.notifications.rsvp.error.emailCheck.description,
           variant: "destructive",
         });
       });
@@ -244,20 +307,26 @@ describe("RSVP Form Integration", () => {
       render(<Rsvp />);
 
       // Fill out form
-      await user.type(screen.getByLabelText(/full name/i), "John Doe");
-      const emailInput = screen.getByLabelText(/email/i);
+      await user.type(
+        screen.getByLabelText(messages.rsvp.form.fullName.label),
+        "John Doe"
+      );
+      const emailInput = screen.getByLabelText(messages.rsvp.form.email.label);
       await user.type(emailInput, "john@example.com");
       await user.tab(); // Trigger blur event
 
-      await user.click(screen.getByLabelText(/joyfully accepts/i));
-      await user.click(screen.getByRole("button", { name: /submit rsvp/i }));
+      await user.click(
+        screen.getByLabelText(messages.rsvp.form.attendance.options.attending)
+      );
+      await user.click(
+        screen.getByRole("button", { name: messages.rsvp.form.submit.new })
+      );
 
       // Verify error notification
       await waitFor(() => {
         expect(mockToast).toHaveBeenCalledWith({
-          title: "Submission Failed",
-          description:
-            "There was a problem submitting your RSVP. Please try again.",
+          title: messages.notifications.rsvp.error.title,
+          description: messages.notifications.rsvp.error.submission.description,
           variant: "destructive",
         });
       });

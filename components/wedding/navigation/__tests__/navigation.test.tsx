@@ -2,16 +2,17 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Navigation from "@/components/wedding/navigation";
 import { useIsMobile } from "@/hooks/use-is-mobile";
+import messages from "@/messages/es.json";
 
 // Test selectors
 const SELECTORS = {
   MOBILE_MENU: '[class*="fixed inset-x-0"]', // Mobile menu overlay container
   TOGGLE_MENU_BUTTON: { role: "button", name: /toggle menu/i },
-  RSVP_BUTTON: { role: "button", name: /rsvp/i },
+  RSVP_BUTTON: { role: "button", name: /confirmar asistencia/i },
   NAV_ITEMS: {
-    OUR_STORY: "Our Story",
-    DRESS_CODE: "Dress Code",
-    FAQS: "FAQs",
+    OUR_STORY: messages.navigation.ourStory,
+    DRESS_CODE: messages.navigation.dressCode,
+    FAQS: messages.navigation.faqs,
   },
 } as const;
 
