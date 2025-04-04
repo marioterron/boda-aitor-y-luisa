@@ -1,7 +1,7 @@
 import { WEDDING_DATE } from "@/constants/wedding";
 
 export function formatDate(date: Date): string {
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("es-ES", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -31,7 +31,7 @@ export function formatWeddingDate(
     return WEDDING_DATE.toISOString().split("T")[0];
   }
 
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat("es-ES", {
     month: "long",
     day: "numeric",
     year: "numeric",
