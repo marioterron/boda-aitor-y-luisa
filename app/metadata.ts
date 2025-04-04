@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import { WEDDING_DETAILS } from "@/constants/wedding";
 import { formatWeddingDate } from "@/utils/date";
 
-const weddingDescription = `Join us in celebrating the wedding of ${WEDDING_DETAILS.couple.groom} and ${WEDDING_DETAILS.couple.bride} on ${formatWeddingDate()} at ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.location}, ${WEDDING_DETAILS.venue.city}.`;
+const weddingDescription = `Únete a nosotros en la celebración de la boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride} el ${formatWeddingDate()} en ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.location}, ${WEDDING_DETAILS.venue.city}.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aitoryluisa.com"),
   title: {
-    default: `${WEDDING_DETAILS.couple.groom} & ${WEDDING_DETAILS.couple.bride}'s Wedding`,
-    template: `%s | ${WEDDING_DETAILS.couple.groom} & ${WEDDING_DETAILS.couple.bride}'s Wedding`,
+    default: `Boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
+    template: `%s | Boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
   },
   description: weddingDescription,
   icons: {
@@ -42,29 +42,29 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: `${WEDDING_DETAILS.couple.groom} and ${WEDDING_DETAILS.couple.bride}`,
+      name: `${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
     },
   ],
-  creator: `${WEDDING_DETAILS.couple.groom} and ${WEDDING_DETAILS.couple.bride}`,
-  publisher: `${WEDDING_DETAILS.couple.groom} and ${WEDDING_DETAILS.couple.bride}`,
+  creator: `${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
+  publisher: `${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
   openGraph: {
     type: "website",
-    title: `${WEDDING_DETAILS.couple.groom} & ${WEDDING_DETAILS.couple.bride}'s Wedding`,
+    title: `Boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
     description: weddingDescription,
-    siteName: `${WEDDING_DETAILS.couple.groom} & ${WEDDING_DETAILS.couple.bride}'s Wedding`,
-    locale: "en_US",
+    siteName: `Boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
+    locale: "es_ES",
     images: [
       {
         url: "/images/image-center.jpg",
         width: 1200,
         height: 630,
-        alt: `${WEDDING_DETAILS.couple.groom} and ${WEDDING_DETAILS.couple.bride}'s Wedding Invitation`,
+        alt: `Invitación a la boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${WEDDING_DETAILS.couple.groom} & ${WEDDING_DETAILS.couple.bride}'s Wedding`,
+    title: `Boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
     description: weddingDescription,
     images: ["/images/image-center.jpg"],
   },

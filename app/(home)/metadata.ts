@@ -42,16 +42,16 @@ const metadata: Metadata = {
     ],
   },
   keywords: [
-    "wedding invitation",
-    "wedding celebration",
-    "wedding ceremony",
+    "invitación boda",
+    "celebración boda",
+    "ceremonia boda",
     WEDDING_DETAILS.venue.name,
     WEDDING_DETAILS.venue.city,
     WEDDING_DETAILS.venue.country,
     WEDDING_DETAILS.couple.groom,
     WEDDING_DETAILS.couple.bride,
-    "wedding venue",
-    "wedding details",
+    "ubicación boda",
+    "detalles boda",
   ],
 };
 
