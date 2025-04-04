@@ -11,7 +11,7 @@ export const rsvpSchema = z
     attendance: z.enum(["attending", "not-attending"], {
       required_error: validationMessages.errors.attendanceRequired,
     }),
-    guests: z.number().min(0).max(4, validationMessages.errors.maxGuests),
+    guests: z.number().min(0).max(5, validationMessages.errors.maxGuests),
     guestNames: z.array(z.string()).optional(),
     dietaryRequirements: z.string().optional(),
     message: z.string().optional(),

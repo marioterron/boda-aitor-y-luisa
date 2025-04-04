@@ -224,7 +224,7 @@
         "nameLength": "El nombre debe tener al menos 2 letras",
         "invalidEmail": "Introduce un correo válido",
         "attendanceRequired": "Selecciona si podrás venir",
-        "maxGuests": "Puedes traer hasta 4 acompañantes",
+        "maxGuests": "Puedes traer hasta 5 acompañantes",
         "guestNamesRequired": "Por favor, introduce el nombre de todos los acompañantes"
       }
     }
