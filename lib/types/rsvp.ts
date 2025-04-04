@@ -6,6 +6,7 @@ export interface RsvpFormData {
   email: string;
   attendance: "attending" | "not-attending";
   guests: number;
+  guestNames: string[];
   dietaryRequirements?: string;
   message?: string;
 }
@@ -18,6 +19,7 @@ export interface RsvpApiData {
   email: string;
   attendance: "attending" | "not-attending";
   guests: number;
+  guest_names: string[];
   dietary_requirements?: string;
   message?: string;
   created_at: string;

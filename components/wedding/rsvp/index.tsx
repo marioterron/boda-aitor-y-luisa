@@ -28,12 +28,34 @@ export default function Rsvp() {
       ...prev,
       [name]: name === "guests" ? Number(value) : value,
     }));
+
+    // Reset guest names when guest count changes
+    if (name === "guests") {
+      const guestCount = Number(value);
+      setFormData((prev) => ({
+        ...prev,
+        guests: guestCount,
+        guestNames: Array(guestCount).fill(""),
+      }));
+    }
   };
 
   const handleAttendanceChange = (value: string) => {
     setFormData((prev) => ({
       ...prev,
       attendance: value as "attending" | "not-attending",
+      // Reset guests and guest names when changing attendance
+      ...(value === "not-attending" && {
+        guests: 0,
+        guestNames: [],
+      }),
+    }));
+  };
+
+  const handleGuestNamesChange = (guestNames: string[]) => {
+    setFormData((prev) => ({
+      ...prev,
+      guestNames,
     }));
   };
 
@@ -60,6 +82,7 @@ export default function Rsvp() {
             handleInputChange={handleInputChange}
             handleEmailBlur={handleEmailBlur}
             handleAttendanceChange={handleAttendanceChange}
+            handleGuestNamesChange={handleGuestNamesChange}
             errors={errors}
             isChecking={isChecking}
             emailExists={emailExists}

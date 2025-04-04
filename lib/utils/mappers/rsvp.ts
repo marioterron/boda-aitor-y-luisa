@@ -9,6 +9,7 @@ export function mapFormToApiData(formData: RsvpFormData): RsvpApiData {
     email: formData.email,
     attendance: formData.attendance,
     guests: formData.guests,
+    guest_names: formData.guestNames,
     dietary_requirements: formData.dietaryRequirements,
     message: formData.message,
     created_at: new Date().toISOString(),
@@ -24,6 +25,7 @@ export function mapApiToFormData(apiData: RsvpApiData): RsvpFormData {
     email: apiData.email,
     attendance: apiData.attendance,
     guests: apiData.guests,
+    guestNames: apiData.guest_names,
     dietaryRequirements: apiData.dietary_requirements,
     message: apiData.message,
   };
