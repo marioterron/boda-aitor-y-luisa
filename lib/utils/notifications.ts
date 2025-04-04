@@ -14,43 +14,40 @@ interface NotificationService {
 }
 
 export function createNotificationService(
-  toast: ToastFunction
+  toast: ToastFunction,
+  t: (key: string) => string
 ): NotificationService {
   return {
     showEmailExistsNotification: () => {
       toast({
-        title: "Email Already Registered",
-        description:
-          "This email has already submitted an RSVP. Submitting again will update your previous response.",
+        title: t("exists.title"),
+        description: t("exists.description"),
         variant: "default",
       });
     },
 
     showEmailCheckError: () => {
       toast({
-        title: "Error",
-        description: "Failed to check email. Please try again.",
+        title: t("error.emailCheck.title"),
+        description: t("error.emailCheck.description"),
         variant: "destructive",
       });
     },
 
     showRsvpSuccess: (isUpdate: boolean, isAttending: boolean) => {
       toast({
-        title: isUpdate
-          ? "RSVP Updated Successfully"
-          : "RSVP Submitted Successfully",
+        title: isUpdate ? t("update.title") : t("success.title"),
         description: isAttending
-          ? "Thank you for accepting our invitation! We look forward to celebrating with you."
-          : "Thank you for letting us know. We'll miss you!",
+          ? t("success.description")
+          : t("decline.description"),
         variant: "default",
       });
     },
 
     showRsvpError: () => {
       toast({
-        title: "Submission Failed",
-        description:
-          "There was a problem submitting your RSVP. Please try again.",
+        title: t("error.submission.title"),
+        description: t("error.submission.description"),
         variant: "destructive",
       });
     },

@@ -5,6 +5,7 @@ import Rsvp from "@/components/wedding/rsvp";
 import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
 import { useToast } from "@/hooks/use-toast";
 import messages from "@/messages/es.json";
+import { createNotificationService } from "@/lib/utils/notifications";
 
 // Mock the services
 jest.mock("@/lib/services/rsvp", () => ({
@@ -16,6 +17,44 @@ jest.mock("@/lib/services/rsvp", () => ({
 // Mock the toast hook
 jest.mock("@/hooks/use-toast", () => ({
   useToast: jest.fn(),
+}));
+
+// Mock the notification service
+jest.mock("@/lib/utils/notifications", () => ({
+  createNotificationService: jest.fn().mockImplementation((toast) => ({
+    showEmailExistsNotification: () => {
+      toast({
+        title: messages.notifications.rsvp.exists.title,
+        description: messages.notifications.rsvp.exists.description,
+        variant: "default",
+      });
+    },
+    showEmailCheckError: () => {
+      toast({
+        title: messages.notifications.rsvp.error.title,
+        description: messages.notifications.rsvp.error.emailCheck.description,
+        variant: "destructive",
+      });
+    },
+    showRsvpSuccess: (isUpdate: boolean, isAttending: boolean) => {
+      toast({
+        title: isUpdate
+          ? messages.notifications.rsvp.update.title
+          : messages.notifications.rsvp.success.title,
+        description: isAttending
+          ? messages.notifications.rsvp.success.description
+          : messages.notifications.rsvp.decline.description,
+        variant: "default",
+      });
+    },
+    showRsvpError: () => {
+      toast({
+        title: messages.notifications.rsvp.error.title,
+        description: messages.notifications.rsvp.error.submission.description,
+        variant: "destructive",
+      });
+    },
+  })),
 }));
 
 describe("RSVP Form Integration", () => {

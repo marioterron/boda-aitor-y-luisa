@@ -1,11 +1,13 @@
+import { useTranslations } from "next-intl";
+
 import { useToast } from "@/hooks/use-toast";
 import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
+import type { RsvpFormData } from "@/lib/types/rsvp";
+import { mapFormToApiData } from "@/lib/utils/mappers/rsvp";
 import { createNotificationService } from "@/lib/utils/notifications";
 import { defaultRsvpValues, validateRsvpForm } from "@/lib/utils/validation";
-import { mapFormToApiData } from "@/lib/utils/mappers/rsvp";
-import type { RsvpFormData } from "@/lib/types/rsvp";
-import { useFormState } from "./use-form-state";
 import { useEmailCheck } from "./use-email-check";
+import { useFormState } from "./use-form-state";
 
 export function useRsvpForm() {
   const {
@@ -27,7 +29,8 @@ export function useRsvpForm() {
   } = useEmailCheck();
 
   const { toast } = useToast();
-  const notifications = createNotificationService(toast);
+  const t = useTranslations("notifications.rsvp");
+  const notifications = createNotificationService(toast, t);
 
   const handleEmailBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
     const email = e.target.value;
