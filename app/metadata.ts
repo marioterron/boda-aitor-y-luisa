@@ -42,11 +42,12 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: `${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
+      name: "Mario Terron",
+      url: "https://github.com/marioterron",
     },
   ],
-  creator: `${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
-  publisher: `${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
+  creator: "Mario Terron",
+  publisher: "Mario Terron",
   openGraph: {
     type: "website",
     title: `Boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
@@ -56,8 +57,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/image-center.jpg",
-        width: 1200,
-        height: 630,
+        width: 5962,
+        height: 3889,
         alt: `Invitación a la boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`,
       },
     ],
