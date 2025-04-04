@@ -60,7 +60,7 @@ export async function POST(request: Request) {
     const data = await resend.emails.send({
       from:
         process.env.NEXT_PUBLIC_RESEND_FROM_EMAIL || "onboarding@resend.dev",
-      replyTo: "aitorluisa@gmail.com",
+      replyTo: "bodaaitoryluisa@gmail.com",
       to: email,
       subject,
       react: RsvpEmailTemplate({
