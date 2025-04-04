@@ -2,12 +2,11 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Rsvp from "@/components/wedding/rsvp";
-import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
 import { useToast } from "@/hooks/use-toast";
+import { checkEmailExists, createRsvp, updateRsvp } from "@/lib/services/rsvp";
+import type { RsvpFormData } from "@/lib/types/rsvp";
 import messages from "@/messages/es.json";
-import { createNotificationService } from "@/lib/utils/notifications";
 
-// Mock the services
 jest.mock("@/lib/services/rsvp", () => ({
   checkEmailExists: jest.fn(),
   createRsvp: jest.fn(),
@@ -253,11 +252,11 @@ describe("RSVP Form Integration", () => {
         screen.getByRole("button", { name: messages.rsvp.form.submit.update })
       );
 
-      // Verify API calls
+      const attendance = "not-attending";
       expect(updateRsvp).toHaveBeenCalledWith("john@example.com", {
         full_name: "John Doe",
         email: "john@example.com",
-        attendance: "not-attending",
+        attendance: attendance,
         guests: 0,
         dietary_requirements: "",
         message: "Plans changed, sorry!",
@@ -267,7 +266,10 @@ describe("RSVP Form Integration", () => {
       // Verify success notification
       expect(mockToast).toHaveBeenLastCalledWith({
         title: messages.notifications.rsvp.update.title,
-        description: messages.notifications.rsvp.update.description,
+        description:
+          attendance === "not-attending"
+            ? messages.notifications.rsvp.decline.description
+            : messages.notifications.rsvp.success.description,
         variant: "default",
       });
     });

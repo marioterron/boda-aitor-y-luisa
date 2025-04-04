@@ -117,7 +117,7 @@
     "rsvp": {
       "decline": {
         "description": "Gracias por avisarnos. Te vamos a echar de menos.",
-        "title": "Confirmación enviada"
+        "title": "Confirmación enviada con éxito"
       },
       "error": {
         "emailCheck": {
@@ -139,7 +139,6 @@
         "title": "Confirmación enviada con éxito"
       },
       "update": {
-        "description": "Tu confirmación se ha actualizado correctamente.",
         "title": "Confirmación actualizada"
       }
     }
