@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { WEDDING_DETAILS } from "@/constants/wedding";
 import messages from "@/messages/es.json";
 
-const couple = `${WEDDING_DETAILS.couple.groom} and ${WEDDING_DETAILS.couple.bride}`;
+const couple = `${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`;
 const metadataMessages = messages.metadata;
 const commonMessages = messages.common;
 
