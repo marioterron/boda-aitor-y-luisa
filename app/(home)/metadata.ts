@@ -25,13 +25,13 @@ const metadata: Metadata = {
       .replace("{location}", WEDDING_DETAILS.venue.location),
     images: [
       {
-        url: "/images/open-graph.jpg",
+        url: "/images/open-graph/main.jpg",
         width: 1200,
         height: 783,
         alt: metadataMessages.home.imageAlt.replace("{couple}", couple),
       },
       {
-        url: "/images/location.jpg",
+        url: "/images/open-graph/location.jpg",
         width: 1140,
         height: 1720,
         alt: metadataMessages.home.venueImageAlt.replace(
