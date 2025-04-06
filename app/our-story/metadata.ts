@@ -5,6 +5,7 @@ import messages from "@/messages/es.json";
 
 const couple = `${WEDDING_DETAILS.couple.groom} and ${WEDDING_DETAILS.couple.bride}`;
 const metadataMessages = messages.metadata;
+const commonMessages = messages.common;
 
 export const metadata: Metadata = {
   title: metadataMessages.ourStory.title,
@@ -18,7 +19,14 @@ export const metadata: Metadata = {
       "{couple}",
       couple
     ),
-    images: ["/images/story/main.jpeg"],
+    images: [
+      {
+        url: "/images/open-graph/our-story.jpg",
+        width: 1200,
+        height: 800,
+        alt: commonMessages.images.couple.mainImage,
+      },
+    ],
   },
 };
 
