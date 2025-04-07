@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export default function HomeFAQs() {
   const router = useRouter();
@@ -12,10 +13,12 @@ export default function HomeFAQs() {
         {t("title")}
       </h2>
       <div className="w-[80%]">
-        <img
+        <OptimizedImage
           src="/images/home-faqs.jpg"
           alt={commonT("faqs")}
           className="aspect-[3/4] w-full object-cover grayscale"
+          width={800}
+          height={1200}
         />
       </div>
       <p className="mt-8 max-w-[80%] text-center text-sm">{t("description")}</p>

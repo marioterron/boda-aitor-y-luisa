@@ -26,7 +26,7 @@ export default function RsvpEmailTemplate({
       <Head />
       <Preview>
         {isAttending
-          ? "Gracias por aceptar nuestra invitación a la boda!"
+          ? "¡Gracias por aceptar nuestra invitación a la boda!"
           : "Gracias por contestar a nuestra invitación"}
       </Preview>
       <Body style={mainStyle}>
@@ -36,7 +36,7 @@ export default function RsvpEmailTemplate({
           {isAttending ? (
             <>
               <Text style={textStyle}>
-                Gracias por aceptar nuestra invitación a la boda! Estamos muy
+                ¡Gracias por aceptar nuestra invitación a la boda! Estamos muy
                 emocionados de que puedas estar con nosotros en este día tan
                 especial.
               </Text>

@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { WEDDING_DETAILS } from "@/constants/wedding";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export function OurStoryContent() {
   const t = useTranslations("ourStory.content");
@@ -11,12 +11,15 @@ export function OurStoryContent() {
       <div className="relative mx-auto max-w-7xl px-4">
         <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-2">
           <div className="relative aspect-[4/5] w-full">
-            <Image
+            <OptimizedImage
               src="/images/story/main.jpeg"
               alt={commonT("couple.mainImage")}
-              fill
-              className="object-cover grayscale"
+              width={800}
+              height={1000}
+              className="h-full w-full object-cover grayscale"
               priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              isBackground
             />
           </div>
           <div className="flex h-full flex-col justify-center space-y-12">
@@ -25,19 +28,25 @@ export function OurStoryContent() {
             </p>
             <div className="grid grid-cols-2 gap-6">
               <div className="relative aspect-square w-full">
-                <Image
+                <OptimizedImage
                   src="/images/story/couple-1.jpeg"
                   alt={commonT("couple.firstImage")}
-                  fill
-                  className="object-cover grayscale"
+                  width={400}
+                  height={400}
+                  className="h-full w-full object-cover grayscale"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  isBackground
                 />
               </div>
               <div className="relative aspect-square w-full">
-                <Image
+                <OptimizedImage
                   src="/images/story/couple-2.jpeg"
                   alt={commonT("couple.secondImage")}
-                  fill
-                  className="object-cover grayscale"
+                  width={400}
+                  height={400}
+                  className="h-full w-full object-cover grayscale"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  isBackground
                 />
               </div>
             </div>
@@ -57,11 +66,14 @@ export function OurStoryContent() {
             </p>
           </div>
           <div className="relative mt-24 aspect-[16/9] w-full">
-            <Image
+            <OptimizedImage
               src="/images/story/couple-3.jpeg"
               alt={commonT("couple.thirdImage")}
-              fill
-              className="object-cover grayscale"
+              width={1200}
+              height={675}
+              className="h-full w-full object-cover grayscale"
+              sizes="100vw"
+              isBackground
             />
           </div>
         </div>
@@ -77,11 +89,14 @@ export function OurStoryContent() {
       </div>
       <div className="mx-auto mt-16 max-w-xl md:mt-24">
         <div className="relative aspect-square w-full">
-          <Image
+          <OptimizedImage
             src="/images/story/couple-4.jpeg"
             alt={commonT("couple.fourthImage")}
-            fill
-            className="rounded-lg object-cover grayscale"
+            width={800}
+            height={800}
+            className="h-full w-full rounded-lg object-cover grayscale"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            isBackground
           />
         </div>
       </div>

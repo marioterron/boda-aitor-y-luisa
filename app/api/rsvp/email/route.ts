@@ -54,8 +54,8 @@ export async function POST(request: Request) {
 
     const subject =
       attendance === "attending"
-        ? "Thank you for accepting our wedding invitation!"
-        : "Thank you for your RSVP";
+        ? "¡Gracias por aceptar nuestra invitación a la boda!"
+        : "Gracias por contestar a nuestra invitación";
 
     const data = await resend.emails.send({
       from:

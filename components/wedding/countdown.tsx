@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 
 import { WEDDING_DATE } from "@/constants/wedding";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export default function Countdown() {
   const t = useTranslations("countdown");
+  const commonT = useTranslations("common.images");
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -37,10 +39,13 @@ export default function Countdown() {
   return (
     <section className="relative flex min-h-[80vh] items-center justify-center">
       <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/66cb369992e60664dc8a4f5e/1724593821123-2CHHZ2626ZJW67045DK3/tasha-marie-kCdjXEsCm2I-unsplash.jpg"
-          alt="Floral background"
+        <OptimizedImage
+          src="/images/countdown.jpg"
+          alt={commonT("countdown")}
           className="h-full w-full object-cover grayscale"
+          width={800}
+          height={1200}
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-black opacity-70"></div>
       </div>
