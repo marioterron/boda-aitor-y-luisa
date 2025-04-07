@@ -26,46 +26,47 @@ export default function RsvpEmailTemplate({
       <Head />
       <Preview>
         {isAttending
-          ? "Thank you for accepting our wedding invitation!"
-          : "Thank you for your RSVP"}
+          ? "Gracias por aceptar nuestra invitación a la boda!"
+          : "Gracias por contestar a nuestra invitación"}
       </Preview>
       <Body style={mainStyle}>
         <Container style={containerStyle}>
-          <Text style={headerStyle}>Dear {name},</Text>
+          <Text style={headerStyle}>Hola {name},</Text>
 
           {isAttending ? (
             <>
               <Text style={textStyle}>
-                Thank you for accepting our wedding invitation! We're delighted
-                that you'll be joining us on our special day.
+                Gracias por aceptar nuestra invitación a la boda! Estamos muy
+                emocionados de que puedas estar con nosotros en este día tan
+                especial.
               </Text>
               {guestCount > 0 && (
                 <Text style={textStyle}>
-                  We've noted that you'll be bringing {guestCount} additional{" "}
-                  {guestCount === 1 ? "guest" : "guests"}.
+                  Hemos apuntado que vas a traer {guestCount}{" "}
+                  {guestCount === 1 ? "invitado" : "invitados"} adicionales.
                 </Text>
               )}
               {dietaryRequirements && (
                 <Text style={textStyle}>
-                  We've recorded your dietary requirements:{" "}
+                  Hemos anotado tus preferencias alimentarias:{" "}
                   {dietaryRequirements}
                 </Text>
               )}
             </>
           ) : (
             <Text style={textStyle}>
-              Thank you for letting us know that you won't be able to join us.
-              While we'll miss your presence, we appreciate you taking the time
-              to respond.
+              Gracias por avisarnos de que no podrás venir. Te echaremos de
+              menos, pero agradecemos mucho que te hayas tomado el tiempo para
+              responder
             </Text>
           )}
 
           <Hr style={hrStyle} />
 
           <Text style={footerStyle}>
-            Best wishes,
+            Saludos,
             <br />
-            Aitor & Luisa
+            Aitor y Luisa
           </Text>
         </Container>
       </Body>
