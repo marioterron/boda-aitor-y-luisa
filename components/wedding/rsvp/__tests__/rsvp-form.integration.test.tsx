@@ -111,6 +111,13 @@ describe("RSVP Form Integration", () => {
         "Looking forward to it!"
       );
 
+      // Add guest names
+      const guestNameInputs = screen.getAllByLabelText(
+        /Nombre del acompañante/
+      );
+      await userEvent.type(guestNameInputs[0], "Jane Smith");
+      await userEvent.type(guestNameInputs[1], "John Smith");
+
       // Submit form
       await userEvent.click(
         screen.getByRole("button", { name: messages.rsvp.form.submit.new })
@@ -122,6 +129,7 @@ describe("RSVP Form Integration", () => {
         email: "john@example.com",
         attendance: "attending",
         guests: 2,
+        guest_names: ["Jane Smith", "John Smith"],
         dietary_requirements: "No nuts please",
         message: "Looking forward to it!",
         created_at: expect.any(String),
@@ -174,6 +182,7 @@ describe("RSVP Form Integration", () => {
         email: "jane@example.com",
         attendance: "not-attending",
         guests: 0,
+        guest_names: [],
         dietary_requirements: "",
         message: "Sorry I can't make it",
         created_at: expect.any(String),
@@ -258,6 +267,7 @@ describe("RSVP Form Integration", () => {
         email: "john@example.com",
         attendance: attendance,
         guests: 0,
+        guest_names: [],
         dietary_requirements: "",
         message: "Plans changed, sorry!",
         created_at: expect.any(String),

@@ -32,3 +32,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Original images (to be optimized)
+/public/images/*.jpg
+/public/images/*.jpeg
+/public/images/*.png
+!/public/images/optimized/**/*.webp
+!/public/images/open-graph/**/*.jpg
