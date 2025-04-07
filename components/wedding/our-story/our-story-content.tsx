@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-
 import { WEDDING_DETAILS } from "@/constants/wedding";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
