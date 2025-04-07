@@ -6,12 +6,12 @@ const sizes = [400, 800, 1200];
 const inputDir = "public/images";
 const outputDir = "public/images/optimized";
 
-async function processImage(inputPath: string, filename: string) {
-  const ext = path.extname(filename);
-  const name = path.basename(filename, ext);
+async function processImage(inputPath: string, imagePath: string) {
+  const ext = path.extname(imagePath);
+  const relativePath = imagePath.slice(0, -ext.length); // Remove extension but keep full path
 
   // Create output directory if it doesn't exist
-  const imageOutputDir = path.join(outputDir, name);
+  const imageOutputDir = path.join(outputDir, relativePath);
   if (!fs.existsSync(imageOutputDir)) {
     fs.mkdirSync(imageOutputDir, { recursive: true });
   }
@@ -56,7 +56,7 @@ async function main() {
   for (const image of images) {
     const inputPath = path.join(inputDir, image);
     if (fs.existsSync(inputPath)) {
-      await processImage(inputPath, path.basename(image));
+      await processImage(inputPath, image);
     } else {
       console.warn(`Warning: ${inputPath} does not exist`);
     }
