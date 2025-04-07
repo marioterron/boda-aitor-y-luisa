@@ -1,6 +1,8 @@
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
+import { OptimizedImage } from "@/components/ui/optimized-image";
+
 export default function DressCode() {
   const router = useRouter();
   const t = useTranslations("dressCode.home");
@@ -12,10 +14,13 @@ export default function DressCode() {
         {t("title")}
       </h2>
       <div className="w-[80%]">
-        <img
+        <OptimizedImage
           src="/images/dress-code.jpg"
           alt={commonT("dressCode")}
           className="aspect-[3/4] w-full object-cover grayscale"
+          width={800}
+          height={1200}
+          sizes="(max-width: 768px) 80vw, 60vw"
         />
       </div>
       <p className="mt-8 max-w-[80%] text-center text-sm">{t("description")}</p>

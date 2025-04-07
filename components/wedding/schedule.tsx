@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl";
+
 import { WEDDING_DETAILS } from "@/constants/wedding";
 import { formatTime } from "@/utils/date";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export default function Schedule() {
   const t = useTranslations("schedule");
@@ -17,10 +19,13 @@ export default function Schedule() {
   return (
     <section className="relative flex min-h-[80vh] items-center justify-center">
       <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/66cb369992e60664dc8a4f5e/1724593821114-P83HW8YAAWROPH7G1KBQ/andres-molina-wIfDI58tCuU-unsplash.jpg"
+        <OptimizedImage
+          src="/images/schedule.jpg"
           alt={commonT("wedding.fabric")}
           className="h-full w-full object-cover grayscale"
+          width={800}
+          height={1200}
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-black opacity-70"></div>
       </div>
