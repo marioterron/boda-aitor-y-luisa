@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 interface HeroImageProps {
   src: string;
@@ -8,13 +8,15 @@ interface HeroImageProps {
 
 export function HeroImage({ src, alt, priority = false }: HeroImageProps) {
   return (
-    <Image
+    <OptimizedImage
       src={src}
       alt={alt}
       width={800}
       height={1200}
       priority={priority}
-      className="w-full aspect-[3/4] object-cover grayscale"
+      quality={90}
+      className="aspect-[3/4] w-full grayscale"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
     />
   );
 }
