@@ -41,7 +41,7 @@ export default function Countdown() {
       <div className="absolute inset-0 z-0">
         <OptimizedImage
           src="/images/countdown.jpg"
-          alt={commonT("countdown")}
+          alt={commonT("floral")}
           className="h-full w-full object-cover grayscale"
           width={800}
           height={1200}
