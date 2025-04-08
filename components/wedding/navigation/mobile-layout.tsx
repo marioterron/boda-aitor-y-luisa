@@ -20,9 +20,9 @@ export function MobileLayout({
   const t = useTranslations("navigation");
 
   return (
-    <div className="mx-auto px-4">
+    <div className="mx-auto w-full px-4">
       <div className="relative flex h-20 items-center justify-between">
-        <h1 className="uppercase absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-serif text-xl md:text-2xl">
+        <h1 className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-serif text-xl uppercase md:text-2xl">
           <Link href="/">
             {t("home", {
               groom: WEDDING_DETAILS.couple.groom,
@@ -32,7 +32,7 @@ export function MobileLayout({
         </h1>
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="z-50"
+          className="relative z-50"
           aria-label="Toggle menu"
         >
           {isMenuOpen ? (
@@ -42,27 +42,30 @@ export function MobileLayout({
           )}
         </button>
         <div
-          className={`fixed inset-x-0 top-20 bottom-0 bg-white/95 transition-all duration-300 ${
+          className={`fixed inset-x-0 top-20 bottom-0 z-40 bg-white/95 transition-all duration-300 ${
             isMenuOpen ? "visible opacity-100" : "invisible opacity-0"
           }`}
         >
           <div
-            className={`flex h-full flex-col transition-opacity duration-300 ${
+            className={`flex h-full flex-col justify-between transition-opacity duration-300 ${
               isMenuOpen ? "visible opacity-100" : "invisible opacity-0"
             }`}
           >
-            <div className="flex min-h-0 flex-1 items-center justify-center">
+            <div className="flex flex-1 items-center justify-center">
               <NavLinks
                 onClick={() => setIsMenuOpen(false)}
                 className="flex flex-col items-center space-y-12 text-2xl"
               />
             </div>
-            <div className="mx-auto p-8">
+            <div className="flex w-full items-center justify-center p-8 sm:p-10">
               <Button
-                onClick={scrollToRSVP}
+                onClick={() => {
+                  scrollToRSVP();
+                  setIsMenuOpen(false);
+                }}
                 variant="outline"
                 size="lg"
-                className="text-2xl uppercase"
+                className="min-w-[200px] text-lg uppercase tracking-wider sm:min-w-[240px] sm:text-2xl"
               >
                 {t("rsvp")}
               </Button>
