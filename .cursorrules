@@ -41,5 +41,5 @@
     - Avoid for data fetching or state management.
 
   Follow Next.js docs for Data Fetching, Rendering, and Routing.
-  If you need information regarding the UI, refer to ui-development-plan.md. For database queries, refer to db-design.md. Apart from that, you can refer to prd.md and ui-breakdown.md.
+  If you need information regarding the UI, refer to docs/ui-development-plan.md. For database queries, refer to docs/db-design.md. Apart from that, you can refer to docs/prd.md and docs/ui-breakdown.md.
 
