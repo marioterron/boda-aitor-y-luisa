@@ -164,7 +164,7 @@
         }
       },
       "dietary": {
-        "label": "Preferencias o restricciones alimentarias",
+        "label": "Restricciones alimentarias",
         "placeholder": "Cuéntanos si tienes alguna necesidad alimentaria"
       },
       "email": {
