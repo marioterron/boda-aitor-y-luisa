@@ -7,7 +7,8 @@ A modern wedding website built with Next.js, TypeScript, and Tailwind CSS.
 - **Framework:** [Next.js 14](https://nextjs.org/) with App Router
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **UI Components:** [Shadcn UI](https://ui.shadcn.com/) & [Radix UI](https://www.radix-ui.com/)
+- **UI Components:** Custom components built with [Radix UI](https://www.radix-ui.com/) primitives
+- **Initial Setup:** Created with [V0](https://v0.dev/) and later customized
 - **State Management:** React Hooks & Context
 - **Testing:** Jest & React Testing Library
 - **Internationalization:** next-intl
