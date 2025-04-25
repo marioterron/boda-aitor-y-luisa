@@ -24,7 +24,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ITEMS_PER_PAGE = 15;
 
@@ -45,11 +45,45 @@ interface RsvpListProps {
 
 export function RsvpList({ rsvps }: RsvpListProps) {
   const [currentPage, setCurrentPage] = useState(1);
+  const [filter, setFilter] = useState<string>("all");
+  const [sort, setSort] = useState<string>("date-desc");
 
-  const totalPages = Math.ceil((rsvps?.length || 0) / ITEMS_PER_PAGE);
+  // Apply filtering and sorting
+  const filteredAndSortedRsvps = rsvps
+    ?.filter((rsvp) => {
+      if (filter === "all") return true;
+      return rsvp.attendance === filter;
+    })
+    .sort((a, b) => {
+      switch (sort) {
+        case "name-asc":
+          return a.full_name.localeCompare(b.full_name);
+        case "name-desc":
+          return b.full_name.localeCompare(a.full_name);
+        case "date-asc":
+          return (
+            new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+          );
+        case "date-desc":
+          return (
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          );
+        default:
+          return 0;
+      }
+    });
+
+  const totalPages = Math.ceil(
+    (filteredAndSortedRsvps?.length || 0) / ITEMS_PER_PAGE
+  );
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentRsvps = rsvps?.slice(startIndex, endIndex);
+  const currentRsvps = filteredAndSortedRsvps?.slice(startIndex, endIndex);
+
+  // Reset to first page when filter or sort changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter, sort]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -133,7 +167,7 @@ export function RsvpList({ rsvps }: RsvpListProps) {
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-xl font-semibold">RSVP List</h2>
         <div className="flex items-center space-x-4">
-          <Select>
+          <Select value={filter} onValueChange={setFilter}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Filter by status" />
             </SelectTrigger>
@@ -143,7 +177,7 @@ export function RsvpList({ rsvps }: RsvpListProps) {
               <SelectItem value="not-attending">Not Attending</SelectItem>
             </SelectContent>
           </Select>
-          <Select>
+          <Select value={sort} onValueChange={setSort}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
