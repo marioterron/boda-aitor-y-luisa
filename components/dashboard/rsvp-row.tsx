@@ -39,7 +39,9 @@ export function RsvpRow({ rsvp }: RsvpRowProps) {
   return (
     <>
       <TableRow>
-        <TableCell className="font-medium">{rsvp.full_name}</TableCell>
+        <TableCell className="font-medium capitalize">
+          {rsvp.full_name}
+        </TableCell>
         <TableCell>{rsvp.email}</TableCell>
         <TableCell>
           <span
@@ -69,7 +71,7 @@ export function RsvpRow({ rsvp }: RsvpRowProps) {
             year: "numeric",
           })}
         </TableCell>
-        <TableCell className="text-sm text-gray-500">
+        <TableCell className="text-sm capitalize text-gray-500">
           {rsvp.guest_names?.join(", ") || "-"}
         </TableCell>
         <TableCell className="text-sm text-gray-500">
@@ -95,22 +97,22 @@ export function RsvpRow({ rsvp }: RsvpRowProps) {
                 <div className="space-y-4">
                   {rsvp.dietary_requirements && (
                     <div>
-                      <h4 className="text-sm font-medium text-gray-900 flex items-center gap-2">
+                      <h4 className="flex items-center gap-2 text-sm font-medium text-gray-900">
                         <Utensils className="h-3.5 w-3.5" />
                         Dietary Requirements
                       </h4>
-                      <p className="text-sm text-gray-600 mt-1">
+                      <p className="mt-1 text-sm text-gray-600">
                         {rsvp.dietary_requirements}
                       </p>
                     </div>
                   )}
                   {rsvp.message && (
                     <div>
-                      <h4 className="text-sm font-medium text-gray-900 flex items-center gap-2">
+                      <h4 className="flex items-center gap-2 text-sm font-medium text-gray-900">
                         <MessageSquare className="h-3.5 w-3.5" />
                         Message
                       </h4>
-                      <p className="text-sm text-gray-600 mt-1">
+                      <p className="mt-1 text-sm text-gray-600">
                         {rsvp.message}
                       </p>
                     </div>
