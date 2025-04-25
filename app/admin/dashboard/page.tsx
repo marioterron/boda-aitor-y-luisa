@@ -55,6 +55,7 @@ export default async function DashboardPage() {
           icon={UsersIcon}
           badgeValue={stats.totalResponses > 0 ? "↑" : "→"}
           footerText="Total RSVPs received"
+          variant="info"
         />
 
         <StatCard
@@ -64,6 +65,7 @@ export default async function DashboardPage() {
           icon={UserCheckIcon}
           badgeValue={`${stats.attendanceRate.toFixed(0)}%`}
           footerText="Confirmed attendance"
+          variant="success"
         />
 
         <StatCard
@@ -73,6 +75,7 @@ export default async function DashboardPage() {
           icon={UserXIcon}
           badgeValue={`${stats.declineRate.toFixed(0)}%`}
           footerText="Unable to attend"
+          variant="warning"
         />
 
         <StatCard
@@ -82,6 +85,7 @@ export default async function DashboardPage() {
           icon={UserPlusIcon}
           badgeValue="Final Count"
           footerText="Including companions"
+          variant="default"
         />
       </div>
       <RsvpList rsvps={stats.rsvps} />
