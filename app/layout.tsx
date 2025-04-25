@@ -8,7 +8,7 @@ import messages from "@/messages/es.json";
 import { formatWeddingDate } from "@/utils/date";
 import rootMetadata from "./metadata";
 
-import "./globals.css";
+import "../styles/globals.css";
 
 const weddingDate = formatWeddingDate("ISO");
 export default function RootLayout({
