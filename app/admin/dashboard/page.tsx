@@ -84,7 +84,6 @@ export default async function DashboardPage() {
           footerText="Including companions"
         />
       </div>
-
       <RsvpList rsvps={stats.rsvps} />
     </div>
   );
