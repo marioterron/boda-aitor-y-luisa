@@ -195,13 +195,17 @@ export function RsvpList({ rsvps }: RsvpListProps) {
       <div className="rounded-md border">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead className="w-[200px]">Name</TableHead>
-              <TableHead className="w-[200px]">Email</TableHead>
-              <TableHead className="w-[100px]">Status</TableHead>
-              <TableHead className="w-[150px]">Date</TableHead>
-              <TableHead className="w-[200px]">Companion Names</TableHead>
-              <TableHead className="w-[200px]">Additional Info</TableHead>
+            <TableRow className="bg-gray-50 hover:bg-gray-50">
+              <TableHead className="w-[200px] text-gray-500">Name</TableHead>
+              <TableHead className="w-[200px] text-gray-500">Email</TableHead>
+              <TableHead className="w-[100px] text-gray-500">Status</TableHead>
+              <TableHead className="w-[150px] text-gray-500">Date</TableHead>
+              <TableHead className="w-[200px] text-gray-500">
+                Companion Names
+              </TableHead>
+              <TableHead className="w-[200px] text-gray-500">
+                Additional Info
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
