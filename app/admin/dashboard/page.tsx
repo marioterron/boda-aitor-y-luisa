@@ -1,5 +1,13 @@
 import { supabase } from "@/lib/services/supabase/client";
-import { RsvpList } from "./rsvp-list";
+import { RsvpList } from "@/components/dashboard/rsvp-list";
+import {
+  TrendingUpIcon,
+  UsersIcon,
+  UserCheckIcon,
+  UserXIcon,
+  UserPlusIcon,
+} from "lucide-react";
+import { StatCard } from "@/components/dashboard/stat-card";
 
 async function getDashboardStats() {
   const { data: rsvps, error } = await supabase.from("rsvps").select("*");
@@ -40,55 +48,41 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-lg bg-white p-6 shadow">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-medium text-gray-500">
-              Total Responses
-            </h3>
-            <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
-              {stats.totalResponses > 0 ? "↑" : "→"}
-            </span>
-          </div>
-          <p className="mt-2 text-3xl font-semibold text-gray-900">
-            {stats.totalResponses}
-          </p>
-        </div>
+        <StatCard
+          title="Total Responses"
+          value={stats.totalResponses}
+          description="All responses combined"
+          icon={UsersIcon}
+          badgeValue={stats.totalResponses > 0 ? "↑" : "→"}
+          footerText="Total RSVPs received"
+        />
 
-        <div className="rounded-lg bg-white p-6 shadow">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-medium text-gray-500">Attending</h3>
-            <span className="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
-              {stats.attendanceRate.toFixed(0)}%
-            </span>
-          </div>
-          <p className="mt-2 text-3xl font-semibold text-gray-900">
-            {stats.attending}
-          </p>
-        </div>
+        <StatCard
+          title="Attending"
+          value={stats.attending}
+          description="Percentage of total responses"
+          icon={UserCheckIcon}
+          badgeValue={`${stats.attendanceRate.toFixed(0)}%`}
+          footerText="Confirmed attendance"
+        />
 
-        <div className="rounded-lg bg-white p-6 shadow">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-medium text-gray-500">Not Attending</h3>
-            <span className="rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800">
-              {stats.declineRate.toFixed(0)}%
-            </span>
-          </div>
-          <p className="mt-2 text-3xl font-semibold text-gray-900">
-            {stats.notAttending}
-          </p>
-        </div>
+        <StatCard
+          title="Not Attending"
+          value={stats.notAttending}
+          description="Percentage of total responses"
+          icon={UserXIcon}
+          badgeValue={`${stats.declineRate.toFixed(0)}%`}
+          footerText="Unable to attend"
+        />
 
-        <div className="rounded-lg bg-white p-6 shadow">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-medium text-gray-500">Total Guests</h3>
-            <span className="rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800">
-              Final Count
-            </span>
-          </div>
-          <p className="mt-2 text-3xl font-semibold text-gray-900">
-            {stats.totalGuests}
-          </p>
-        </div>
+        <StatCard
+          title="Total Guests"
+          value={stats.totalGuests}
+          description="Total expected attendees"
+          icon={UserPlusIcon}
+          badgeValue="Final Count"
+          footerText="Including companions"
+        />
       </div>
 
       <RsvpList rsvps={stats.rsvps} />
