@@ -25,6 +25,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useState, useEffect } from "react";
+import { RsvpRow } from "./rsvp-row";
 
 const ITEMS_PER_PAGE = 15;
 
@@ -194,59 +195,21 @@ export function RsvpList({ rsvps }: RsvpListProps) {
       <div className="rounded-md border">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead className="w-[200px]">Name</TableHead>
-              <TableHead className="w-[200px]">Email</TableHead>
-              <TableHead className="w-[100px]">Status</TableHead>
-              <TableHead className="w-[150px]">Date</TableHead>
-              <TableHead className="w-[200px]">Companion Names</TableHead>
-              <TableHead className="w-[200px]">Additional Info</TableHead>
+            <TableRow className="bg-gray-50 hover:bg-gray-50">
+              <TableHead className="w-[200px] text-gray-500">Name</TableHead>
+              <TableHead className="w-[200px] text-gray-500">Email</TableHead>
+              <TableHead className="w-[100px] text-gray-500">Status</TableHead>
+              <TableHead className="w-[150px] text-gray-500">Date</TableHead>
+              <TableHead className="w-[200px] text-gray-500">
+                Companion Names
+              </TableHead>
+              <TableHead className="w-[200px] text-gray-500">
+                Additional Info
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {currentRsvps?.map((rsvp) => (
-              <TableRow key={rsvp.id}>
-                <TableCell className="font-medium">{rsvp.full_name}</TableCell>
-                <TableCell>{rsvp.email}</TableCell>
-                <TableCell>
-                  <span
-                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      rsvp.attendance === "attending"
-                        ? "bg-green-100 text-green-800"
-                        : "bg-red-100 text-red-800"
-                    }`}
-                  >
-                    {rsvp.attendance === "attending"
-                      ? "Attending"
-                      : "Not Attending"}
-                  </span>
-                </TableCell>
-                <TableCell className="text-sm text-gray-500">
-                  {new Date(rsvp.created_at).toLocaleDateString("es-ES", {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric",
-                  })}
-                </TableCell>
-                <TableCell className="text-sm text-gray-500">
-                  {rsvp.guest_names?.join(", ") || "-"}
-                </TableCell>
-                <TableCell className="text-sm text-gray-500">
-                  <div className="space-y-1">
-                    {rsvp.dietary_requirements && (
-                      <div>
-                        <strong>Dietary:</strong> {rsvp.dietary_requirements}
-                      </div>
-                    )}
-                    {rsvp.message && (
-                      <div>
-                        <strong>Message:</strong> {rsvp.message}
-                      </div>
-                    )}
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
+            {currentRsvps?.map((rsvp) => <RsvpRow key={rsvp.id} rsvp={rsvp} />)}
           </TableBody>
         </Table>
       </div>
