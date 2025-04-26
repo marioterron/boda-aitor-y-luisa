@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { WEDDING_DETAILS } from "@/constants/wedding";
-import { formatWeddingDate } from "@/utils/date";
+import { formatWeddingDate } from "@/lib/utils/date";
 
 const weddingDescription = `Únete a nosotros en la celebración de la boda de ${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride} el ${formatWeddingDate()} en ${WEDDING_DETAILS.venue.name}, ${WEDDING_DETAILS.venue.location}, ${WEDDING_DETAILS.venue.city}.`;
 

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 import { WEDDING_DETAILS } from "@/constants/wedding";
-import { formatWeddingDate } from "@/utils/date";
+import { formatWeddingDate } from "@/lib/utils/date";
 import messages from "@/messages/es.json";
 
 const couple = `${WEDDING_DETAILS.couple.groom} y ${WEDDING_DETAILS.couple.bride}`;
