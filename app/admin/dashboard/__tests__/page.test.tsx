@@ -20,14 +20,33 @@ interface Rsvp {
 }
 
 jest.mock("lucide-react", () => ({
+  AlertCircle: () => <div data-testid="alert-circle-icon">AlertCircle</div>,
+  CheckCircle2: () => <div data-testid="check-circle-icon">CheckCircle2</div>,
   UsersIcon: () => <div data-testid="users-icon">UsersIcon</div>,
   UserCheckIcon: () => <div data-testid="user-check-icon">UserCheckIcon</div>,
   UserXIcon: () => <div data-testid="user-x-icon">UserXIcon</div>,
   UserPlusIcon: () => <div data-testid="user-plus-icon">UserPlusIcon</div>,
+  X: () => <div data-testid="x-icon">X</div>,
 }));
 
 jest.mock("@/lib/services/admin/dashboard", () => ({
   getDashboardStats: jest.fn(),
+}));
+
+jest.mock("@/components/dashboard/status-modal", () => ({
+  StatusModal: ({ isOpen, onClose, config }: any) => (
+    <div data-testid="status-modal">
+      {isOpen && (
+        <div>
+          <div data-testid="modal-title">{config?.title}</div>
+          <div data-testid="modal-description">{config?.description}</div>
+          <button onClick={onClose} data-testid="modal-close">
+            Close
+          </button>
+        </div>
+      )}
+    </div>
+  ),
 }));
 
 jest.mock("@/components/dashboard/stat-card", () => ({
@@ -86,7 +105,7 @@ describe("DashboardPage", () => {
     (getDashboardStats as jest.Mock).mockResolvedValue(mockStats);
 
     await act(async () => {
-      render(await DashboardPage());
+      render(<DashboardPage />);
     });
 
     // Check if all stat cards are rendered
@@ -126,7 +145,7 @@ describe("DashboardPage", () => {
     (getDashboardStats as jest.Mock).mockResolvedValue(mockStats);
 
     await act(async () => {
-      render(await DashboardPage());
+      render(<DashboardPage />);
     });
 
     // Check if all stat cards show 0
@@ -156,7 +175,7 @@ describe("DashboardPage", () => {
     // Render the component
     await act(async () => {
       try {
-        render(await DashboardPage());
+        render(<DashboardPage />);
       } catch (e) {
         // Log the error to our spy
         console.error(e);

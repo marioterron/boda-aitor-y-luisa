@@ -95,7 +95,7 @@ describe("getDashboardStats", () => {
       attendanceRate: 0,
       declineRate: 0,
       companionRatio: 0,
-      rsvps: null,
+      rsvps: [],
     });
   });
 
