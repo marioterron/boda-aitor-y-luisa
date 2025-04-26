@@ -8,9 +8,10 @@ import {
 import { RsvpList } from "@/components/dashboard/rsvp-list";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { getDashboardStats } from "@/lib/services/admin/dashboard";
+import { DashboardStats } from "@/lib/types/dashboard";
 
 export default async function DashboardPage() {
-  const stats = await getDashboardStats();
+  const stats: DashboardStats = await getDashboardStats();
 
   return (
     <div className="space-y-6">

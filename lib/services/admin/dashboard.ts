@@ -1,29 +1,24 @@
 import { supabase } from "@/lib/services/supabase/client";
-
-export interface DashboardStats {
-  totalGuests: number;
-  attending: number;
-  notAttending: number;
-  totalResponses: number;
-  attendanceRate: number;
-  declineRate: number;
-  companionRatio: number;
-  rsvps: any[] | null;
-}
+import { DashboardStats, Rsvp } from "@/lib/types/dashboard";
 
 export async function getDashboardStats(): Promise<DashboardStats> {
   const { data: rsvps, error } = await supabase.from("rsvps").select("*");
 
   if (error) throw error;
 
-  const attending =
-    rsvps?.filter((r) => r.attendance === "attending").length || 0;
-  const notAttending =
-    rsvps?.filter((r) => r.attendance === "not-attending").length || 0;
-  const totalCompanions =
-    rsvps?.reduce((acc, r) => acc + (r.guests || 0), 0) || 0;
+  const rsvpsData = (rsvps || []) as Rsvp[];
+  const attending = rsvpsData.filter(
+    (r) => r.attendance === "attending"
+  ).length;
+  const notAttending = rsvpsData.filter(
+    (r) => r.attendance === "not-attending"
+  ).length;
+  const totalCompanions = rsvpsData.reduce(
+    (acc, r) => acc + (r.guests ?? 0),
+    0
+  );
   const totalGuests = attending + totalCompanions;
-  const totalResponses = rsvps?.length || 0;
+  const totalResponses = rsvpsData.length;
 
   // Calculate percentages
   const attendanceRate =
@@ -40,6 +35,6 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     attendanceRate,
     declineRate,
     companionRatio,
-    rsvps,
+    rsvps: rsvpsData,
   };
 }
