@@ -1,46 +1,13 @@
-import { supabase } from "@/lib/services/supabase/client";
-import { RsvpList } from "@/components/dashboard/rsvp-list";
 import {
-  TrendingUpIcon,
-  UsersIcon,
   UserCheckIcon,
-  UserXIcon,
   UserPlusIcon,
+  UsersIcon,
+  UserXIcon,
 } from "lucide-react";
+
+import { RsvpList } from "@/components/dashboard/rsvp-list";
 import { StatCard } from "@/components/dashboard/stat-card";
-
-async function getDashboardStats() {
-  const { data: rsvps, error } = await supabase.from("rsvps").select("*");
-
-  if (error) throw error;
-
-  const attending =
-    rsvps?.filter((r) => r.attendance === "attending").length || 0;
-  const notAttending =
-    rsvps?.filter((r) => r.attendance === "not-attending").length || 0;
-  const totalCompanions =
-    rsvps?.reduce((acc, r) => acc + (r.guests || 0), 0) || 0;
-  const totalGuests = attending + totalCompanions;
-  const totalResponses = rsvps?.length || 0;
-
-  // Calculate percentages
-  const attendanceRate =
-    totalResponses > 0 ? (attending / totalResponses) * 100 : 0;
-  const declineRate =
-    totalResponses > 0 ? (notAttending / totalResponses) * 100 : 0;
-  const companionRatio = attending > 0 ? totalCompanions / attending : 0;
-
-  return {
-    totalGuests,
-    attending,
-    notAttending,
-    totalResponses,
-    attendanceRate,
-    declineRate,
-    companionRatio,
-    rsvps,
-  };
-}
+import { getDashboardStats } from "@/lib/services/admin/dashboard";
 
 export default async function DashboardPage() {
   const stats = await getDashboardStats();
