@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { WEDDING_DETAILS } from "@/constants/wedding";
 import messages from "@/messages/es.json";
-import { formatWeddingDate } from "@/utils/date";
+import { formatWeddingDate } from "@/lib/utils/date";
 import rootMetadata from "./metadata";
 
 import "../styles/globals.css";

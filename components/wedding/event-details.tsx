@@ -1,6 +1,6 @@
 import { CalendarIcon, MapPinIcon, ClockIcon } from "lucide-react";
 import { WEDDING_DATE, WEDDING_DETAILS } from "@/constants/wedding";
-import { formatDate, formatTime } from "@/utils/date";
+import { formatDate, formatTime } from "@/lib/utils/date";
 
 export default function EventDetails() {
   const { venue, schedule } = WEDDING_DETAILS;

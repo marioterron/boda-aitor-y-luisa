@@ -94,7 +94,7 @@ export function OurStoryContent() {
             alt={commonT("couple.fourthImage")}
             width={800}
             height={800}
-            className="h-full w-full rounded-lg object-cover grayscale"
+            className="h-full w-full object-cover grayscale"
             sizes="(max-width: 768px) 100vw, 50vw"
             isBackground
           />

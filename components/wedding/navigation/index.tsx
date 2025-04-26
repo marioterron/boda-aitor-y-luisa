@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import cn from "@/lib/utils/cn";
-import smoothScrollTo from "@/utils/smoothScrollTo";
+import smoothScrollTo from "@/lib/utils/smoothScrollTo";
 import { DesktopLayout } from "./desktop-layout";
 import { MobileLayout } from "./mobile-layout";
 

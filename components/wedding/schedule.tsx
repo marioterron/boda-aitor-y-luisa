@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
 import { WEDDING_DETAILS } from "@/constants/wedding";
-import { formatTime } from "@/utils/date";
+import { formatTime } from "@/lib/utils/date";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export default function Schedule() {

@@ -12,7 +12,7 @@ import {
   Rsvp,
   Schedule,
 } from "@/components/wedding";
-import smoothScrollTo from "@/utils/smoothScrollTo";
+import smoothScrollTo from "@/lib/utils/smoothScrollTo";
 
 export default function Home() {
   useEffect(() => {

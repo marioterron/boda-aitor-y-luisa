@@ -1,94 +1,60 @@
-import { supabase } from "@/lib/services/supabase/client";
+"use client";
+
+import { useEffect, useState } from "react";
+
 import { RsvpList } from "@/components/dashboard/rsvp-list";
-import {
-  TrendingUpIcon,
-  UsersIcon,
-  UserCheckIcon,
-  UserXIcon,
-  UserPlusIcon,
-} from "lucide-react";
-import { StatCard } from "@/components/dashboard/stat-card";
+import { StatsGrid } from "@/components/dashboard/stats-grid";
+import { StatusModal } from "@/components/dashboard/status-modal";
+import { getDashboardStats } from "@/lib/services/admin/dashboard";
+import { DashboardStats } from "@/lib/types/dashboard";
 
-async function getDashboardStats() {
-  const { data: rsvps, error } = await supabase.from("rsvps").select("*");
+const emptyStats: DashboardStats = {
+  totalGuests: 0,
+  attending: 0,
+  notAttending: 0,
+  totalResponses: 0,
+  attendanceRate: 0,
+  declineRate: 0,
+  companionRatio: 0,
+  rsvps: [],
+};
 
-  if (error) throw error;
+export default function DashboardPage() {
+  const [stats, setStats] = useState<DashboardStats>(emptyStats);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<"error" | "empty">("error");
 
-  const attending =
-    rsvps?.filter((r) => r.attendance === "attending").length || 0;
-  const notAttending =
-    rsvps?.filter((r) => r.attendance === "not-attending").length || 0;
-  const totalCompanions =
-    rsvps?.reduce((acc, r) => acc + (r.guests || 0), 0) || 0;
-  const totalGuests = attending + totalCompanions;
-  const totalResponses = rsvps?.length || 0;
+  useEffect(() => {
+    async function loadStats() {
+      try {
+        const data = await getDashboardStats();
+        setStats(data);
 
-  // Calculate percentages
-  const attendanceRate =
-    totalResponses > 0 ? (attending / totalResponses) * 100 : 0;
-  const declineRate =
-    totalResponses > 0 ? (notAttending / totalResponses) * 100 : 0;
-  const companionRatio = attending > 0 ? totalCompanions / attending : 0;
+        if (data.totalResponses === 0) {
+          setModalType("empty");
+          setIsModalOpen(true);
+        }
+      } catch (error) {
+        console.error("Dashboard data fetch error:", error);
+        setModalType("error");
+        setIsModalOpen(true);
+      }
+    }
 
-  return {
-    totalGuests,
-    attending,
-    notAttending,
-    totalResponses,
-    attendanceRate,
-    declineRate,
-    companionRatio,
-    rsvps,
-  };
-}
-
-export default async function DashboardPage() {
-  const stats = await getDashboardStats();
+    loadStats();
+  }, []);
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard
-          title="Total Responses"
-          value={stats.totalResponses}
-          description="All responses combined"
-          icon={UsersIcon}
-          badgeValue={stats.totalResponses > 0 ? "↑" : "→"}
-          footerText="Total RSVPs received"
-          variant="info"
-        />
-
-        <StatCard
-          title="Attending"
-          value={stats.attending}
-          description="Percentage of total responses"
-          icon={UserCheckIcon}
-          badgeValue={`${stats.attendanceRate.toFixed(0)}%`}
-          footerText="Confirmed attendance"
-          variant="success"
-        />
-
-        <StatCard
-          title="Not Attending"
-          value={stats.notAttending}
-          description="Percentage of total responses"
-          icon={UserXIcon}
-          badgeValue={`${stats.declineRate.toFixed(0)}%`}
-          footerText="Unable to attend"
-          variant="warning"
-        />
-
-        <StatCard
-          title="Total Guests"
-          value={stats.totalGuests}
-          description="Total expected attendees"
-          icon={UserPlusIcon}
-          badgeValue="Final Count"
-          footerText="Including companions"
-          variant="default"
-        />
-      </div>
+      <StatsGrid stats={stats} />
       <RsvpList rsvps={stats.rsvps} />
+      {isModalOpen && (
+        <StatusModal
+          isOpen={isModalOpen}
+          type={modalType}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   );
 }
